@@ -1,0 +1,24 @@
+.logo {
+    margin-top: 20px;
+    background-color: white;
+}
+
+.logo img {
+    width: 65px;
+}
+
+.bg-navbar-lateral {
+    background-color: #004AAD;
+}
+
+.bg-navbar-lateral-nuevo {
+    color: #00C2CB;
+}
+
+.bg-navbar-lateral-items:hover {
+    background-color: #0060dd;
+}
+
+.bg-navbar-lateral-items:active {
+    background-color: #00449c;
+}
