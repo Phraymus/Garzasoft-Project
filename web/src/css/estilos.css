@@ -1,0 +1,107 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.header{
+    width: 100%;
+    background: rgb(216, 216, 122);
+    height: 70px;
+}
+.ancho{
+    width: 80%;
+    height: 70px;
+    margin: auto;
+}
+.logo1{
+   width: 30%;
+   height: 70px;
+   float: left;
+   padding-top: 10px;
+   box-sizing: border-box;
+}
+.logo1 p a{
+   color: #fff;
+   font-size: 40px;
+   text-decoration: none;
+   font-weight: bold;
+   font-family: rale;
+}
+nav{
+ width: 70%;
+ height: 70px;
+ float: left;
+ text-align: right;
+ padding-top: 24px;
+ box-sizing: border-box;
+}
+nav ul li{
+   display: inline;
+}
+nav ul li a{
+   color: #fff;
+   font-size: 13px;
+   text-transform: uppercase;
+   padding-left: 15px;
+   font-weight: bold;
+   letter-spacing: 1px;
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3em;
+    background-color: rgba(253, 253, 253, 0.993);
+}
+/*
+.menu ul{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    margin-left: 800px;
+} */
+
+/* .menu ul li{
+    list-style: none;
+    transition: all 0.5;
+}
+
+.menu ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.5em;
+    transition: all 0.5;
+}
+
+.menu ul li :hover{
+    background-color: yellow;
+    color: blue;
+} */
+
+
+.container{
+    display: flex; 
+ }
+
+ .logo img{
+    margin-left: 200px;
+    margin-top: 80px;
+    margin-right: 120px;
+     
+ }
+
+ .container img{
+    margin-left: 80px;
+    margin-top: 50px;
+    margin-right: 120px;
+    margin-bottom: 30px;  
+ }
+
+ .container p{
+    margin-left: 40px;
+    margin-top: 0px;
+    margin-right: 20px;
+    margin-bottom: 30px; 
+    text-align: justify;
+ }
+
+

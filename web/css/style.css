@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+:root {
+    --login-bg: #f8f3ff;
+    --title-bg: #004AAD;
+    --button-bg: #0FB001;
+    --light-pink: #004AAD;
+    --image-bg: #f8f3ff;
+}
+
+body {
+    height: 80vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+    height: 37.5em;
+    width: 77.5em;
+    margin: auto;
+    
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.login-info-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 0.5rem;
+    background-color: var(--login-bg);
+}
+
+.title {
+    text-transform: capitalize;
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--title-bg);
+    margin-top: 50px;
+}
+
+.login-info-container img {
+    width: 6.5rem;
+    height: 3.7rem;
+    position: relative;
+    margin-left: -450px;
+    letter-spacing: 100px;
+}
+
+.login-info-container>p {
+    font-size: 1.25em;
+    margin-top: 0em;
+}
+
+.inputs-container {
+    height: 55%;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input,
+.btn {
+    width: 90%;
+    height: 3.125rem;
+    font-size: 1 em;
+    width: 250px;
+}
+
+.input {
+    padding-left: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+}
+
+.input:hover {
+    border: 2px solid var(--button-bg);
+}
+
+.btn {
+    width: 45%;
+    letter-spacing: 1px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    cursor: pointer;
+}
+
+.inputs-container p {
+    margin: 0;
+}
+
+.span {
+    color: var(--light-pink);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.image-container {
+    height: 38em;
+    width: 40em;
+    
+}
+
+@media screen and (max-width: 1000px) {
+    .login-container {
+        width: 70%;
+        margin-top: 3rem;
+    }
+    .login-info-container {
+        width: 100%;
+        border-radius: 5px;
+    }
+    .image-container {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .login-container {
+        width: 90%;
+    }
+}
