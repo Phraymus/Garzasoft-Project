@@ -1,0 +1,40 @@
+:root {
+    --blue: #0057FF;
+    --blue-hover: #6196ff;
+    --blue-active: #0042c7;
+}
+
+.nav-iniciarsesion {
+    border-radius: 20px;
+    border: solid 2px var(--blue);
+    color: var(--blue) !important;
+    text-decoration: none;
+}
+
+.nav-iniciarsesion:hover {
+    border: solid 2px var(--blue-hover);
+    color: var(--blue-hover) !important;
+    border-color: var(--blue-hover);
+}
+
+.nav-iniciarsesion:active {
+    border: solid 2px var(--blue-active);
+    color: var(--blue-active) !important;
+    border-color: var(--blue-active);
+}
+
+.menu {
+    background-color: white;
+    position: absolute;
+    right: 0px;
+    width: 100vw;
+    z-index: 100;
+}
+
+.principalcarrusel img {
+    height: 100vh;
+}
+
+h3 {
+    font-size: calc(0.8em + 1vw)
+}
