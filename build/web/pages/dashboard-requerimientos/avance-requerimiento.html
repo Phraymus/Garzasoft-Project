@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../../css/layout-dashboard.css">
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/layout-requerimiento.css" type="text/css">
+    <link rel="stylesheet" href="../../css/layout-avance.css" type="text/css">
 
     <!-- <link rel="stylesheet" href="../../src/css/bootstrap.min.css"> -->
 
@@ -106,8 +106,7 @@
                         <a class="collapse-item " href="#">Calendario</a>
                         <a class="collapse-item "
                             href="../dashboard-requerimientos/requerimiento.html">Requerimiento</a>
-                        <a class="collapse-item "
-                            href="../dashboard-requerimientos/avance-requerimiento.html">Avance</a>
+                        <a class="collapse-item " href="#">Avance</a>
                     </div>
                 </div>
             </li>
@@ -291,70 +290,76 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 col">
-                        <h1 class="h3 mb-0 text-gray-800">Requerimiento</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    
+                         <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                <div class="list-group-horizontal">
+                                    <li ><a href="#"><img src="../../img/requerimiento/garzasoft-logo.png"></a> </li>
+                                    <li > <img src="../../img/requerimiento/GarzaSoft-letra.png"></li>
+                                </div>
+                                    
+                                <div id="report-generate" class="embed-responsive-item">  
+                                    <li id="report">
+                                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                                    </li>
+                                </div>
+
+                                </ol>
+                                
+                        </nav>
+
+                        
                     </div>
 
                 </div>
 
-            
+                <div class="table-responsive w-100 p-3">
+                    <table id="table-requerimiento" class="table table-responsive-xxl table-hover" >
+                        <thead class="table-light"> 
+                            <tr class="table-active bg-primary">
+                                <th id="table-id" class="col-1 table-id"> ID </th>
+                                <th id="table-name" class="col-10">NOMBRE MODULO</th>
+                                <th colspan="3"><span id="table-status" class="badge bg-danger">Finalizado</span> </th>
+                            </tr>
+                        </thead>
 
-            
-            <div>
-                
-                
+                        <tbody >
+                            <tr class="table-light table-responsive-xxl">
+                                <td scope="row" class="font-weight-bold ">001</td>
+                                <td scope="col" class="font-weight-bold">Nombre requerimiento</td>
+                                <td scope="col" class="font-weight-bold"> Fecha inicio </td>
+                                <td scope="col" class="font-weight-bold"> Fecha fin </td>
+                                <td scope="col" class="font-weight-bold"> Estado</td>
+
+                            </tr>
+                            <tr >
+                                <td scope="row">001</td>
+                                <td>Nombre requerimiento</td>
+                                <td> 00/00/2022</td>
+                                <td> 00/00/2022</td>
+                                <td> <span id="table-status" class="badge bg-success">Finalizado</span> </td>
+
+                            </tr>
+                            <tr > 
+                                <td>001</td>
+                                <td>Nombre requerimiento</td>
+                                <td> 00/00/2022</td>
+                                <td> 00/00/2022</td>
+                                <td> <span id="table-status" class="badge bg-warning black">Finalizado</span> </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+
+                <div id="cont"></div>
 
             </div>
-
-
-            <div class="table-responsive w-100 p-3">
-                <table class="table table-responsive-xxl table-hover">
-                    <thead class="table-light ">
-                        <tr id="table-requerimiento" class="table-active bg-primary">
-                            <th id="table-id" class="col-1 table-id "> ID </th>
-                            <th id="table-name" class="col-10">NOMBRE MODULO</th>
-                            <th colspan="3"><span id="table-status" class="badge bg-danger">Finalizado</span> </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr class="table-light table-responsive-xxl">
-                            <td scope="row" class="font-weight-bold ">001</td>
-                            <td scope="col" class="font-weight-bold">Nombre requerimiento</td>
-                            <td scope="col" class="font-weight-bold"> Fecha inicio </td>
-                            <td scope="col" class="font-weight-bold"> Fecha fin </td>
-                            
-                            <td scope="col" class="font-weight-bold"> Estado</td>
-
-                        </tr>
-                        <tr>
-                            <td scope="row">001</td>
-                            <td>Nombre requerimiento</td>
-                            <td> 00/00/2022</td>
-                            <td> 00/00/2022</td>
-                            <td> <span id="table-status" class="badge bg-success">Finalizado</span> </td>
-
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>Nombre requerimiento</td>
-                            <td> 00/00/2022</td>
-                            <td> 00/00/2022</td>
-                            <td> <span id="table-status" class="badge bg-warning black">Finalizado</span> </td>
-
-                        </tr>
-                    </tbody>
-
-                </table>
-            </div>
-
-
-
-            <div id="cont"></div>
-
         </div>
-    </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->

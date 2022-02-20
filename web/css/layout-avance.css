@@ -1,0 +1,29 @@
+#report {
+   float: right ;
+}
+
+#imagen-garzasoft{
+   height: 45px;
+}
+
+#table-status{
+   color:white;
+}
+
+#table-requerimiento{
+   border-color: black;
+
+}
+
+#datos{
+   margin-left: 45px;
+   margin-top: 20px;
+}
+
+#lista-datos{
+   margin-left: 40px;
+   margin-top: 10px;
+   font-weight: bold;
+   color: black;
+
+}
