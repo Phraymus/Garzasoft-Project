@@ -16,8 +16,8 @@
 }
 
 #datos{
-   margin-left: 45px;
-   margin-top: 20px;
+   margin-left: 25px;
+   margin-top: 10px;
 }
 
 #lista-datos{
@@ -36,15 +36,20 @@
    margin: 40px;
 }
 
-#progreso {
-   padding-block: 35px;
-   
+#containera{
+   margin-top: 15px;
 }
+
+
 
 #item1{
    justify-content: center;
-   margin-top: 20px;
+   margin-top: 10px;
    margin-bottom: 15px;
    color: black;
    font-weight: bold;
+}
+
+#proyecto{
+   margin: 40px;
 }
