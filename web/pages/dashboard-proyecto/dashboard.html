@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link rel="stylesheet" href="../../css/layout-dashboard.css">
+    <link rel="stylesheet" href="../../css/layout-proyecto.css">
+
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -51,7 +53,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active bg-navbar-lateral-items">
+            <li class="nav-item bg-navbar-lateral-items">
                 <a class="nav-link" href="../dashboard-inicio/dashboard.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Inicio</span></a>
@@ -69,7 +71,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item bg-navbar-lateral-items">
-                <a class="nav-link" href="../dashboard-usuario/dashboard.html">
+                <a class="nav-link">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Usuario</span></a>
             </li>
@@ -90,8 +92,8 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="#">
+            <li class="nav-item active bg-navbar-lateral-items">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="../dashboard-proyecto/dashboard.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Proyecto de manzanas</span>
                 </a>
@@ -270,41 +272,113 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid ">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 col">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                
+
+                    <!-- Usuario
+                    <div class="row mb-4">
+
+                        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3  text-center">
+                            <img src="../../img/dashboard/usuario.png" alt="Usuario">
+                        </div>
+
+                        <div class="col">
+
+                            <dl class="row">
+                                <h2 class="col-sm-12 col-md-12 col-lg-12 col-xl-3 font-weight-bold">beceo2001sds</h2>
+                                <dd class="col-sm-12 col-md-12 col-lg-12 col-xl-2 display-6"><small>Administrador</small></dd>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-sm-3">bcarrascoo@outlook.com</dt>
+                            </dl>
+
+                        </div>
+                    </div> -->
+
+                    <!--Usuario-->
+                    <div class="row mb-4">
+
+                        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3  text-center">
+                            <img src="../../img/dashboard/proyecto.png" alt="Proyecto">
+                        </div>
+
+                        <div class="col">
+
+                            <dl class="row">
+                                <td>
+                                    <h1 class="font-weight-bold">Gestión de Proyecto</h1>
+                                </td> 
+                            </dl>
+                        </div>
                     </div>
 
 
+                    <div>
+
+                        <script>
+                            abrirUrl('informaciondelproyecto.html', 'cont');
+                        </script>
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick="abrirUrl('informaciondelproyecto.html', 'cont')">Información de Proyecto</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="abrirUrl('informaciondemodulos.html', 'cont')">Información de Módulos</button>
+                            </li>
+                        </ul>
+
+                        <!-- <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Tab1</div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">tab2</div>
+                        </div> -->
+
+                        <!-- <ul class="nav nav-tabs">
+
+                            <li class="nav-item" role="presentation">
+
+                                <a class="nav-link" role="tab" aria-selected="false" href="#" onclick="abrirUrl('informaciondelacuenta.html', 'cont')">Informacion de la cuenta</a>
+
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+
+                                <a class="nav-link" role="tab" href="#" aria-selected="false" onclick="abrirUrl('editarperfil.html', 'cont')">Editar perfil</a>
+
+                            </li>
+
+                        </ul> -->
+                    </div>
+
+                    <div id="cont"></div>
+
                 </div>
-
-                <div id="cont"></div>
-
             </div>
+
+           
+
+
+
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../../js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../../js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="../../vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="../../js/demo/chart-area-demo.js"></script>
+        <script src="../../js/demo/chart-pie-demo.js"></script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="../../src/js/bootstrap.bundle.min.js"></script>
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="../../src/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
