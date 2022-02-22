@@ -1,0 +1,72 @@
+
+.title h1{
+margin-left: 330px;
+color:black;
+}
+
+.title2 h4{
+    margin-left: 60px;
+    color:black;
+}
+
+.col {
+margin-top: 25px;
+margin-left: 40px;
+}
+
+.columna2 {
+    margin-top: 25px;
+    margin-left: 80px;
+    }
+
+
+
+#cabeza-table {
+    background-color: #004AAD;
+}
+
+#table-status{
+    color:white;
+   
+}
+
+#table-id {
+    color:white;
+}
+
+#table-name {
+    color: white;
+}
+
+#table-fechinic {
+    color: white;
+}
+
+#table-fechfin {
+    color: white;
+}
+
+#table-estado {
+    color: white;
+}
+
+.container {
+    display: flex; 
+    margin-left: 40px;
+    margin-top: 40px;
+ }
+
+.btnperfil { 
+    margin-left: 140px;
+    margin-top: 20px;
+    height: 1.2rem;
+    font-size: 0.8em;  
+    width: 18%; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color:  #004AAD;
+    cursor: pointer;
+    
+}
+
