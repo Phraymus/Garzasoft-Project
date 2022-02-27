@@ -15,9 +15,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link rel="stylesheet" href="../../css/layout-dashboard.css">
     <!-- Custom styles for this template-->
@@ -43,9 +41,8 @@
         <ul class="navbar-nav bg-navbar-lateral sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand text-dark d-flex align-items-center justify-content-center logo"
-                href="../dashboard-inicio/dashboard.html">
-                <div class="sidebar-brand-icon">
+            <a class="sidebar-brand text-dark d-flex align-items-center justify-content-center logo" href="../dashboard-inicio/dashboard.html">
+                <div class="sidebar-brand-icon ml-3">
                     <img src="../../img/logos/GarzaSoft.png">
                 </div>
                 <div class="sidebar-brand-text  mx-3">
@@ -57,7 +54,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active bg-navbar-lateral-items">
+            <li class="nav-item bg-navbar-lateral-items">
                 <a class="nav-link" href="../dashboard-inicio/dashboard.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Inicio</span></a>
@@ -81,7 +78,7 @@
             </li>
 
             <li class="nav-item bg-navbar-lateral-items">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../dashboard-gestionarUsuario/dashboard.html ">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Gestionar Usuarios</span></a>
             </li>
@@ -97,19 +94,17 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed bg-navbar-lateral-items" href="#" data-toggle="collapse"
-                    data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="#">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Proyecto de manzanas</span>
                 </a>
                 <div id="proyecton1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-navbar-lateral py-2 collapse-inner rounded">
+                        <a class="collapse-item " href="../dashboard-proyecto/dashboard.html">Informacion General</a>
                         <a class="collapse-item " href="#">Administrar</a>
                         <a class="collapse-item " href="#">Calendario</a>
-                        <a class="collapse-item "
-                            href="../dashboard-requerimientos/requerimiento.html">Requerimiento</a>
-                        <a class="collapse-item "
-                            href="../dashboard-requerimientos/avance-requerimiento.html">Avance</a>
+                        <a class="collapse-item " href="../dashboard-proyecto/requerimiento.html">Requerimiento</a>
+                        <a class="collapse-item " href="../dashboard-proyecto/avance-requerimiento.html">Avance</a>
                     </div>
                 </div>
             </li>
@@ -130,7 +125,7 @@
             </div>
 
             <!-- soporte -->
-            <li class="nav-item bg-navbar-lateral-items">
+            <li class="nav-item active bg-navbar-lateral-items">
                 <a class="nav-link" href="../dashboard-contacto/contacto.html">
                     <i class="fas fa-fw fa-phone"></i>
                     <span>Contacto</span></a>
@@ -162,12 +157,9 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Busquedad de proyectos por nombre o código" aria-label="Search"
-                                aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -181,18 +173,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Busquedad de proyectos por nombre o código" aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -205,15 +193,13 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">5+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Notificaciones
                                 </h6>
@@ -259,14 +245,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
                                 </a>
@@ -293,22 +277,22 @@
                 <div class="row justify-content-start align-items-center" style="margin-left: 7%;">
                     <div class="col-5">
                         <h3 style="color: rgba(0, 0, 0, 0.616);">Contacto</h3>
-                    </div>                   
+                    </div>
                 </div>
 
                 <hr style="width: 85%; height: 0.2%; margin-top: 0%;" noshade="noshade">
                 <div class="row justify-content-center py-2 ">
                     <div class="col-5">
                         <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                        <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="My name is ...">      
+                        <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="My name is ...">
                         <label for="exampleFormControlInput2" class="form-label">Correo Elecetronico</label>
                         <input type="email" class="form-control mb-3" id="exampleFormControlInput2" placeholder="name@example.com">
-                        <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>                            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="6"></textarea>
+                        <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label> <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="6"></textarea>
                     </div>
-                </div> 
+                </div>
 
                 <div class="row justify-content-center">
-                
+
                     <input class="btn btn-primary" type="submit" value="Enviar">
 
                 </div>
