@@ -1,4 +1,55 @@
 #report {
-   position: unset; ;
+   float: right ;
 }
 
+#imagen-garzasoft{
+   height: 45px;
+}
+
+#table-status{
+   color:white;
+}
+
+#table-requerimiento{
+   border-color: black;
+
+}
+
+#datos{
+   margin-left: 25px;
+   margin-top: 10px;
+}
+
+#lista-datos{
+   margin-left: 15px;
+   margin-top: 10px;
+   font-weight: bold;
+   color: black;
+
+}
+
+#container{
+   float: left;
+}
+
+#container1{
+   margin: 40px;
+}
+
+#containera{
+   margin-top: 15px;
+}
+
+
+
+#item1{
+   justify-content: center;
+   margin-top: 10px;
+   margin-bottom: 15px;
+   color: black;
+   font-weight: bold;
+}
+
+#proyecto{
+   margin: 40px;
+}

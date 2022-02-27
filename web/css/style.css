@@ -2,21 +2,15 @@
 :root {
     --login-bg: #f8f3ff;
     --title-bg: #004AAD;
-    --button-bg: #0FB001;
+    --button-bg: #016ab0;
     --light-pink: #004AAD;
     --image-bg: #f8f3ff;
 }
 
-body {
-    height: 80vh;
-    font-family: 'Poppins', sans-serif;
-}
-
 .login-container {
-    height: 37.5em;
-    width: 77.5em;
+    height: 100vh;
+    width: 100vw;
     margin: auto;
-    
     display: flex;
     justify-content: space-between;
     overflow: hidden;
@@ -30,6 +24,7 @@ body {
     text-align: center;
     padding-top: 0.5rem;
     background-color: var(--login-bg);
+    height: 100vh;
 }
 
 .title {
@@ -43,8 +38,9 @@ body {
 .login-info-container img {
     width: 6.5rem;
     height: 3.7rem;
+    margin-top: 30px;
     position: relative;
-    margin-left: -450px;
+    margin-right: calc(15vw);
     letter-spacing: 100px;
 }
 
@@ -62,25 +58,29 @@ body {
     align-items: center;
 }
 
-.input,
-.btn {
+.input {
     width: 90%;
     height: 3.125rem;
     font-size: 1 em;
     width: 250px;
-}
-
-.input {
     padding-left: 20px;
     border: none;
-    border-radius: 5px;
+    border-bottom: black 2px solid;
+    border-radius: 3px;
     font-weight: 600;
     letter-spacing: 1px;
     box-sizing: border-box;
 }
 
 .input:hover {
-    border: 2px solid var(--button-bg);
+    border-bottom: var(--button-bg) 2px solid;
+    border-color: #2e84e0;
+}
+
+.input:focus {
+    border-bottom: var(--button-bg) 2px solid;
+    outline: none !important;
+    border-color: #719ECE;
 }
 
 .btn {
@@ -104,15 +104,13 @@ body {
 }
 
 .image-container {
-    height: 38em;
-    width: 40em;
-    
+    height: 100vh;
+    width: 50%;
 }
 
 @media screen and (max-width: 1000px) {
     .login-container {
         width: 70%;
-        margin-top: 3rem;
     }
     .login-info-container {
         width: 100%;
@@ -120,6 +118,9 @@ body {
     }
     .image-container {
         display: none;
+    }
+    .login-info-container img {
+        margin-right: calc(2vw);
     }
 }
 
