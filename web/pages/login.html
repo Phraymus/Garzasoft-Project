@@ -8,38 +8,50 @@
 
     <link rel="stylesheet" href="../css/style.css">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="../css/sb-admin-2.min.css">
+    <title>
+        Inicio de sesión
+    </title>
 </head>
 
 <body>
     <div class="login-container">
         <img class="image-container" src="../img/login/imagen.png" alt="login">
-        <div class="login-info-container">
-            <img src="../img/login/logo.png" alt="gazasoft-img">
-            <h1 class="title">INICIO DE SESION</h1>
+        <div class="login-info-container bg-white">
+            <a href="../index.html"><img src="../img/login/logo.png" alt="gazasoft-img"></a>
+            <h1 class="title font-weight-bold">INICIO DE SESION</h1>
             <p>¡Ingresa tus datos!</p>
-            <form class="inputs-container">
+            <form class="inputs-container" name="frmLogin">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
-                    <input class="input" type="text" placeholder="Usuario"></span>
+                    <input class="input" type="text" id="txtUsuario" placeholder="Usuario"></span>
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
                         <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                                             </svg>
-                    <input class="input" type="password" placeholder="Contraseña"></span>
+                    <input class="input" type="password" id="txtPassword" placeholder="Contraseña"></span>
                 </div>
 
-                <a class="btn btn-primary" href="dashboard-inicio/dashboard.html">iniciar sesion</a>
-                <p>¿Olvidaste tu contraseña? <span class="span">Clic aqui</span></p>
+                <a class="btn btn-primary" href="javascript:autentificar()">Iniciar Sesión</a>
+                <p>¿Olvidaste tu contraseña? <span class="span"><a>Clic aquí</a></span></p>
             </form>
         </div>
     </div>
+    <script>
+        function autentificar() {
+            if (document.getElementById("txtUsuario").value == "garzasoft" && document.getElementById("txtPassword").value == "garzasoft1234#") {
+                document.frmLogin.action = "dashboard-inicio/dashboard.html";
+                document.frmLogin.method = "submit";
+                document.frmLogin.submit();
+            } else {
+                alert('Tranquilo mijin, no estas autorizado para este sistema.');
+            }
+        }
+    </script>
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 

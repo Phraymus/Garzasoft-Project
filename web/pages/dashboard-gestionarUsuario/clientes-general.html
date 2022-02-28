@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="d-md-flex align-items-start justify-content-between mb-2">
+            <!-- Topbar Search -->
+            <form class=" d-sm-inline-block form-inline mt-4 mw-100 ml-4 navbar-search w-75">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-white border-0 small" placeholder="Busquedad de clientes por nombre de usuario, nombres o apellidos" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xl-4 text-center mt-4 mb-2">
+                <a href="javascript:abrirUrl('clientes-nuevo.html', 'cont')" class="text-success text-lg font-weight-bold"><i
+                class="fas fa-plus fa-sm mr-2" ></i>Agregar nuevo usuario</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="d-md-flex align-items-start justify-content-between mb-4">
+            <div class="table-responsive w-100 p-3">
+                <table id="table-requerimiento" class="table table-responsive-xxl table-hover">
+                    <tbody>
+                        <tr class="table-light table-responsive-xxl">
+                            <td scope="row" class="font-weight-bold ">Codigo</td>
+                            <td scope="col" class="font-weight-bold">Nombre Usuario</td>
+                            <td scope="col" class="font-weight-bold">Nombres</td>
+                            <td scope="col" class="font-weight-bold">Apellidos Paterno</td>
+                            <td scope="col" class="font-weight-bold">Apellido Materno</td>
+                            <td scope="col" class="font-weight-bold"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td scope="row">001</td>
+                            <td>beceo2001</td>
+                            <td>BRAYAN DANIEL</td>
+                            <td>CARRASCO</td>
+                            <td>
+                                OCAÑA
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-circle bg-warning text-white" href="javascript:abrirUrl('clientes-editar.html', 'cont')"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">001</td>
+                            <td>beceo2001</td>
+                            <td>BRAYAN DANIEL</td>
+                            <td>CARRASCO</td>
+                            <td>
+                                OCAÑA
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-circle bg-warning text-white" href="javascript:abrirUrl('clientes-editar.html', 'cont')"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">001</td>
+                            <td>beceo2001</td>
+                            <td>BRAYAN DANIEL</td>
+                            <td>CARRASCO</td>
+                            <td>
+                                OCAÑA
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-circle bg-warning text-white" href="javascript:abrirUrl('clientes-editar.html', 'cont')"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">001</td>
+                            <td>beceo2001</td>
+                            <td>BRAYAN DANIEL</td>
+                            <td>CARRASCO</td>
+                            <td>
+                                OCAÑA
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-circle bg-warning text-white" href="javascript:abrirUrl('clientes-editar.html', 'cont')"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
