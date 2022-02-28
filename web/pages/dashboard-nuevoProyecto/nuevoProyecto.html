@@ -161,9 +161,9 @@
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <a class="btn btn-primary" href="../dashboard-busqueda/resultado.html">
                                     <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -182,9 +182,9 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <a class="btn btn-primary" href="../dashboard-busqueda/resultado.html">
                                                 <i class="fas fa-search fa-sm"></i>
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </form>
@@ -261,7 +261,8 @@
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity Log
                                 </a> -->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../login.html" data-target="#logoutModal">
+                                    <!--data-toggle="modal"-->
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar Sesión
                                 </a>
                             </div>
@@ -273,39 +274,120 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="row" style="margin-left: 7%;">
-                    <h3 style="color: rgba(0, 0, 0, 0.616);">Crear nuevo proyecto</h3>
-
+                <div class="row justify-content-start align-items-center" style="margin-left: 7%;">
+                    <div class="col-5">
+                        <h3 class="text-dark">Crear nuevo proyecto</h3>
+                    </div>
                 </div>
 
                 <hr style="width: 85%; height: 0.2%; margin-top: 0%;" noshade="noshade">
 
-                <div class="row" style="margin-left: 15%;margin-top: 5%;">
-                    <h5 style="color: rgba(0, 0, 0, 0.616);">Tipo:</h5>
 
-                </div>
+                <div class="container-fluid">
+                    <div class="d-md-flex align-items-center justify-content-end mb-4">
+                        <div class="col-xl-9 col-md-9 col-sm-12">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3">Nombre</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
 
-                <div class="row justify-content-center">
-                    <div class="col-4" style="background-color: #c4c4c4;">
-                        <div class="form-check " style="text-align: center; margin-top: 25%; margin-bottom: 20%;">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1" style="font-size: 120%;">
-                                Desarrollo
-                            </label>
-                        </div>
-                        <div class="form-check" style="text-align: center; margin-bottom: 20%; ">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                            <label class="form-check-label" for="flexRadioDefault2" style="font-size: 120%;">
-                                Soporte
-                            </label>
+                                    <td>
+                                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Proyecto1">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3">Trabajador</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Gilberto Ampuero">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3">Cliente</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Molinos SAC">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3">Fecha de inicio</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control ml-3 mt-3 text-dark" type="date" value="2022-02-22">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3">Fecha de termino</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control ml-3 mt-3 text-dark" type="date" value="2022-04-08">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3">Tipo de proyecto</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
+                                    <td>
+                                        <select id="cmbTipoProyecto" class="form-control ml-3 mt-3 text-dark" onchange="cambiarTitulo()">
+                                        <option>
+                                            Desarrollo
+                                        </option>
+                                        <option>
+                                            Soporte
+                                        </option>
+                                    </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="mt-3" id="lblSelect">checkList</h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="mt-3">:</h5>
+                                    </td>
+                                    <td>
+                                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="NameChecklist">
+                                    </td>
+                                </tr>
+
+                            </table>
                         </div>
                     </div>
+
                 </div>
 
-                <div class="row justify-content-center" style="margin-top: 5%;">
 
-                    <a href="../dashboard-nuevoProyecto/nuevoProyecto-Desarrollo.html"><button type="button" class="btn btn-success">Siguiente</button></a>
+                <div class="d-flex flex-row bd-highlight justify-content-center">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" class="btn btn-primary">Crear</button>
+                    </div>
 
+                    <div class="p-2 bd-highlight">
+                        <button type="button" class="btn btn-danger">Cancelar</button>
+                    </div>
                 </div>
 
 
@@ -332,6 +414,8 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="../../src/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../js/dashboard-nuevoProyecto/nuevoProyecto.js"></script>
 
 </body>
 

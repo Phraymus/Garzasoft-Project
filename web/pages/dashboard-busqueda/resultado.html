@@ -11,18 +11,13 @@
 
     <title>GarzaSoft|Dashboard</title>
 
-
-
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link rel="stylesheet" href="../../css/layout-dashboard.css">
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/layout-requerimiento.css" type="text/css">
 
     <!-- <link rel="stylesheet" href="../../src/css/bootstrap.min.css"> -->
 
@@ -43,9 +38,8 @@
         <ul class="navbar-nav bg-navbar-lateral sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand text-dark d-flex align-items-center justify-content-center logo"
-                href="../dashboard-inicio/dashboard.html">
-                <div class="sidebar-brand-icon">
+            <a class="sidebar-brand text-dark d-flex align-items-center justify-content-center logo" href="../dashboard-inicio/dashboard.html">
+                <div class="sidebar-brand-icon ml-3">
                     <img src="../../img/logos/GarzaSoft.png">
                 </div>
                 <div class="sidebar-brand-text  mx-3">
@@ -57,7 +51,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active bg-navbar-lateral-items">
+            <li class="nav-item bg-navbar-lateral-items">
                 <a class="nav-link" href="../dashboard-inicio/dashboard.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Inicio</span></a>
@@ -81,7 +75,7 @@
             </li>
 
             <li class="nav-item bg-navbar-lateral-items">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../dashboard-gestionarUsuario/dashboard.html ">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Gestionar Usuarios</span></a>
             </li>
@@ -97,19 +91,17 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed bg-navbar-lateral-items" href="#" data-toggle="collapse"
-                    data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="#">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Proyecto de manzanas</span>
                 </a>
                 <div id="proyecton1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-navbar-lateral py-2 collapse-inner rounded">
+                        <a class="collapse-item " href="../dashboard-proyecto/dashboard.html">Informacion General</a>
                         <a class="collapse-item " href="#">Administrar</a>
                         <a class="collapse-item " href="#">Calendario</a>
-                        <a class="collapse-item "
-                            href="../dashboard-requerimientos/requerimiento.html">Requerimiento</a>
-                        <a class="collapse-item "
-                            href="../dashboard-requerimientos/avance-requerimiento.html">Avance</a>
+                        <a class="collapse-item " href="../dashboard-proyecto/requerimiento.html">Requerimiento</a>
+                        <a class="collapse-item " href="../dashboard-proyecto/avance-requerimiento.html">Avance</a>
                     </div>
                 </div>
             </li>
@@ -162,16 +154,13 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Busquedad de proyectos por nombre o código" aria-label="Search"
-                                aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <a class="btn btn-primary" href="../dashboard-busqueda/resultado.html">
                                     <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -181,22 +170,18 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Busquedad de proyectos por nombre o código" aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <a class="btn btn-primary" href="../dashboard-busqueda/resultado.html">
                                                 <i class="fas fa-search fa-sm"></i>
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </form>
@@ -205,15 +190,13 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">5+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Notificaciones
                                 </h6>
@@ -250,8 +233,7 @@
                                         Pronta finalización de plazo para terminar requerimiento.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas las
-                                    alertas</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas las alertas</a>
                             </div>
                         </li>
 
@@ -259,14 +241,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
                                 </a>
@@ -277,7 +257,8 @@
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity Log
                                 </a> -->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../login.html" data-target="#logoutModal">
+                                    <!--data-toggle="modal"-->
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar Sesión
                                 </a>
                             </div>
@@ -289,107 +270,113 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="row justify-content-start align-items-center" style="margin-left: 7%;">
-                    <div class="col-5">
-                        <h3 style="color: rgba(0, 0, 0, 0.616);">Crear nuevo proyecto</h3>
+                <div class="container-fluid ">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 col">
+                        <h1 class="h3 mb-0 text-gray-800">Resultado de la búsqueda</h1>
                     </div>
-                    <div class="col-4">
-                        <h4 style="color: rgba(0, 0, 0, 0.616);">Soporte</h4>
+
+                    <!-- <div class="container-fluid m-1 mt-3 mb-3 shadow-lg text-dark bg-white">
+                        <div class="d-md-flex align-items-start justify-content-between mb-4">
+                            <div class="table-responsive w-100 p-3">
+                                <table class="table-responsive-xxl ">
+                                    <tr>
+                                        <td colspan="4">
+                                            <h3 class="mt-3">Nombre del proyecto</h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">
+
+                                        </td>
+                                        <td colspan="3">
+                                            <p class="ml-5 display-6">Proyecto de desarrollo</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+
+                                        </td>
+                                        <td colspan="2">
+                                            <p class="ml-5 display-6 font-weight-bold">Fecha de inicio</p>
+                                        </td>
+                                        <td colspan="2">
+                                            <p class="ml-5 display-6 font-weight-bold">Fecha de fin</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+
+                                        </td>
+                                        <td colspan="2">
+                                            <p class="ml-5 display-6">01/02/2022</p>
+                                        </td>
+                                        <td colspan="2">
+                                            <p class="ml-5 display-6">05/03/2022</p>
+                                        </td>
+
+                                        <td colspan="2">
+                                            <a href="Proyecto.html" class="ml-5 display-6 text-white btn btn-sm btn-success">Ver más</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="container-fluid shadow-lg text-dark bg-white p-4">
+                        <div class="col">
+
+                            <dl class="row">
+                                <td class="col-xl-12">
+                                    <h3>
+                                        <p class="font-weight-normal ml-3 mt-3">Nombre del proyecto</p>
+                                    </h3>
+                                </td>
+                            </dl>
+                            <dl class="row">
+                                <dt class="col-xl-12  text-center">
+                                    <p class="col-xl-4 font-weight-normal">Proyecto de desarrollo</p>
+                                </dt>
+                            </dl>
+
+                            <dl class="row col-xl-12 text-right ">
+                                <table class="col-xl-9">
+                                    <tr>
+                                        <td>
+                                            <p class="font-weight-bold">Fecha de inicio</p>
+                                        </td>
+                                        <td>
+                                            <p class="pl-2 font-weight-bold">Fecha de fin</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>01/02/2022</p>
+                                        </td>
+                                        <td>
+                                            <p class="pl-2">05/03/2022</p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div class="col-xl-12 text-right">
+                                    <a href="Proyecto.html" class="ml-5 display-6 text-white btn btn-sm btn-success">Ver más</a>
+                                </div>
+                            </dl>
+
+
+
+                        </div>
                     </div>
+
+
+
                 </div>
 
-                <hr style="width: 85%; height: 0.2%; margin-top: 0%;" noshade="noshade">
-
-
-                <div class="row justify-content-center py-3">
-                    <div>
-                        <table>
-                            <tr>
-                                <td>
-                                    <h5 class="mt-3">Nombre</h5>
-                                </td>
-                                <td>
-                                    <h5 class="mt-3">:</h5>
-                                </td>
-
-                                <td>
-                                    <input class="form-control ml-3 mt-3 text-dark" type="text" value="Proyecto1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5 class="mt-3">Trabajador</h5>
-                                </td>
-                                <td>
-                                    <h5 class="mt-3">:</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control ml-3 mt-3 text-dark" type="text"
-                                        value="Gilberto Ampuero">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5 class="mt-3">Tarea</h5>
-                                </td>
-                                <td>
-                                    <h5 class="mt-3">:</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control ml-3 mt-3 text-dark" type="text" value="Tarea #X">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5 class="mt-3">Cliente</h5>
-                                </td>
-                                <td>
-                                    <h5 class="mt-3">:</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control ml-3 mt-3 text-dark" type="text" value="Molinos SAC">
-                                </td>
-                            </tr> 
-                            <tr>
-                                <td>
-                                    <h5 class="mt-3">Fecha de inicio</h5>
-                                </td>
-                                <td>
-                                    <h5 class="mt-3">:</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control ml-3 mt-3 text-dark" type="date" value="2022-02-22">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5 class="mt-3">Fecha de termino</h5>
-                                </td>
-                                <td>
-                                    <h5 class="mt-3">:</h5>
-                                </td>
-                                <td>
-                                    <input class="form-control ml-3 mt-3 text-dark" type="date" value="2022-04-08">
-                                </td>
-                            </tr>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-
-                <div class="d-flex flex-row bd-highlight mt-5 justify-content-center">
-                    <div class="p-2 bd-highlight">
-                        <button type="button" class="btn btn-primary">Crear</button>
-                    </div>
-
-                    <div class="p-2 bd-highlight">
-                        <button type="button" class="btn btn-danger">Cancelar</button>
-                    </div>
-                </div>
-
+                <div id="cont"></div>
 
             </div>
         </div>
