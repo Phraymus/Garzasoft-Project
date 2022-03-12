@@ -17,10 +17,14 @@
             rel="stylesheet">
     
         <link rel="stylesheet" href="../../css/layout-dashboard.css">
+        <link rel="stylesheet" href="../dashboard-administar/ventana.css">
+        <link rel="stylesheet" href="../dashboard-administar/editarmodulo.css">
         <!-- Custom styles for this template-->
         <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../../css/layout-requerimiento.css" type="text/css">
-    
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
         <!-- <link rel="stylesheet" href="../../src/css/bootstrap.min.css"> -->
     
         <!--JQuery-->
@@ -291,7 +295,10 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4 col">
                             <h1 class="h3 mb-0 text-gray-800">Requerimiento</h1>
-                            <a href="#" style="color:#00C2CB"><b>+ Añadir Modulo</b> </a>
+                            <div>
+                                <a href="#" style="color:#00C2CB"><b>+ Añadir Modulo</b> </a>
+                            </div>
+                            
                         </div>
     
                     </div>
@@ -307,12 +314,20 @@
     
     
                 <div class="table-responsive w-100 p-3">
-                    <table class="table table-responsive-xxl table-hover">
+                    <table class="table table-responsive-xxl taover">
                         <thead class="table-light ">
                             <tr id="table-requerimiento" class="table-active bg-primary">
                                 <th id="table-id" class="col-1 table-id ">  </th>
                                 <th id="table-name" class="col-10">NOMBRE MODULO 01</th>
                                 <th colspan="3"></th>
+                                <td>
+                                    <a class="btn btn-sm btn-circle bg-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i class="fas fa-pen"></i></a>
+                                </td>
+                                <td>
+                                    
+                                    <a class="btn btn-sm btn-circle bg-danger text-white"data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fas fa-trash"></i></a>
+                                    
+                                </td>
                             </tr>
                         </thead>
     
@@ -324,15 +339,13 @@
                                 <td scope="col" class="font-weight-bold"> Fecha fin </td>
                                 
                                 <td scope="col" class="font-weight-bold"> Estado</td>
-    
+                                <td colspan="4"></td>
                             </tr>
                             <tr>
                                 <td scope="row">001</td>
-                                <td>Nombre requerimiento</td>
-                                <td><input  type="date" id="start" name="trip-start"
-                                    min="2022-01-01" max="2025-12-31"></td>
-                                <td> <input  type="date" id="start" name="trip-start"
-                                    min="2022-01-01" max="2025-12-31"></td>
+                                <td scope="row">Nombre de Requerimiento1</td>
+                                <td scope="row">01/01/2022</td>
+                                <td scope="row">01/01/2022</td>
                                 <td>
                                     <form>
                                         <select class="badge" name="tareas">
@@ -341,17 +354,23 @@
                                             <option class="bg-success">Finalizado</option>
                                         </select>
                                     </form>
-                                </td>   
-                                   
+                                </td> 
+                                <td>
+                                    
+                                    <a class="btn btn-sm btn-circle bg-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2"><i class="fas fa-pen"></i></a>
+                                    
+                                </td>  
+                                <td>
+                                    
+                                    <a class="btn btn-sm btn-circle bg-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-trash"></i></a>
+                                </td>
     
                             </tr>
                             <tr>
                                 <td>002</td>
-                                <td>Nombre requerimiento</td>
-                                <td> <input  type="date" id="start" name="trip-start"
-                                    min="2022-01-01" max="2025-12-31"></td>
-                                <td> <input  type="date" id="start" name="trip-start"
-                                    min="2022-01-01" max="2025-12-31"></td>
+                                <td scope="row">Nombre de Requerimiento2</td>
+                                <td scope="row">01/01/2022</td>
+                                <td scope="row">01/01/2022</td>
                                 <td> <form>
                                     <select class="badge" name="tareas">
                                         <option id="table" class="bg-danger">Pendiente</option>
@@ -360,7 +379,14 @@
                                     </select>
                                 </form>
                              </td>
-    
+                             <td>
+                                    
+                                <a class="btn btn-sm btn-circle bg-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2"><i class="fas fa-pen"></i></a>
+                                
+                            </td>
+                             <td>
+                                 <a class="btn btn-sm btn-circle bg-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="fas fa-trash"></i></a>
+                            </td>
                             </tr>
                             
                         </tbody>
@@ -376,7 +402,112 @@
             </div>
         </div>
         </div>
+
+
     
+
+
+        <!-- Modal eliminar modulo-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+          <h5 class="text-center">¿Desea eliminar Modulo?</h5>
+         
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NO</button>
+          <button type="button" class="btn btn-success">SI</button>
+        </div>
+      </div>
+    </div>
+ </div>
+  <!-- Modal eliminar requerimiento-->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+          <h5 class="text-center">¿Desea eliminar Requerimiento?</h5>
+         
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NO</button>
+          <button type="button" class="btn btn-success">SI</button>
+        </div>
+      </div>
+    </div>
+ </div>
+<!--Modal Editar Requerimiento-->
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+            <div>
+                 <table>             
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Nombre de requerimiento:</h6>
+                    </td>
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Requerimiento1">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Fecha Inicio:</h6>
+                    </td>
+                   
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="date" value="2001-05-01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Fecha Fin:</h6>
+                    </td>
+                   
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="date" value="2001-05-01">
+                    </td>
+                </tr>
+                
+            </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+            
+        
+      </div>
+    </div>
+  </div>
+  <!--Modal Editar Modulo-->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+            <div>
+                 <table>             
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Nombre de Modulo:</h6>
+                    </td>
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Modulo1">
+                    </td>
+                </tr>
+                
+            </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+            
+        
+      </div>
+    </div>
+  </div>
         <!-- Bootstrap core JavaScript-->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -396,6 +527,7 @@
     
         <!-- Option 1: Bootstrap Bundle with Popper -->
         <script src="../../src/js/bootstrap.bundle.min.js"></script>
-    
+        <script src="popup.js"></script>
+        <script src="popup1.js"></script>
     </body>   
 </html> 
