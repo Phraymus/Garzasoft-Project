@@ -5,12 +5,10 @@
  */
 package modelo.dao;
 
-import config.Conexion;
 import java.util.ArrayList;
 import modelo.beans.Trabajador;
-import modelo.interfaces.DAO;
 import java.sql.ResultSet;
-import modelo.beans.Cliente;
+import modelo.interfaces.TrabajadorInterface;
 
 
 
@@ -18,12 +16,7 @@ import modelo.beans.Cliente;
  *
  * @author ELIAS
  */
-public class TrabajadorDAO implements DAO{
-     Conexion conexion;
-
-    final String TABLA = "tb_trabajador";
-    final String ATRIBUTOS[] = {"tb_persona_id", "tipo"};
-    final String CLAVE_PRIMARIA = "tb_persona_id";
+public class TrabajadorDAO implements TrabajadorInterface{
 
     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
@@ -37,6 +30,7 @@ public class TrabajadorDAO implements DAO{
                 listaRetorno.add(atributos);
             }
             rs.close();
+            conexion.cerrar();
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -58,6 +52,7 @@ public class TrabajadorDAO implements DAO{
                 
             }
             rs.close();
+            conexion.cerrar();
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -78,11 +73,12 @@ public class TrabajadorDAO implements DAO{
                 Trabajador trabajador = new Trabajador();
 
                 trabajador.setTb_persona_id(rs.getInt(1));
-                trabajador.setTipo(rs.getString(1));
+                trabajador.setTipo(rs.getString(2));
 
                 listaRetorno.add(trabajador);
             }
             rs.close();
+            conexion.cerrar();
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -118,15 +114,4 @@ public class TrabajadorDAO implements DAO{
         }
     }
 
-    @Override
-    public boolean insertar(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean editar(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }

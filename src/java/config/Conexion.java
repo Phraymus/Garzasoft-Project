@@ -17,22 +17,20 @@ import java.sql.Statement;
  * @author Brayan Carrasco
  */
 public class Conexion {
-    
-    final String DRIVER="com.mysql.cj.jdbc.Driver";
-    final String URL="132.226.240.106";
-    final String PUERTO="3306";
-    final String DATABASE="db_garzasoftproject";
-    final String USER="garzasoft";
-    final String PASSWORD="garzasoft1234";
-    
+
+    final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    final String URL = "132.226.240.106";
+    final String PUERTO = "3306";
+    final String DATABASE = "db_garzasoftproject";
+    final String USER = "garzasoft";
+    final String PASSWORD = "garzasoft1234";
+
     private Connection cn;
-    
-    
 
     public Connection getCn() {
         try {
             Class.forName(DRIVER);
-            cn = DriverManager.getConnection(String.format("jdbc:mysql://%s/%s/",URL,PUERTO),
+            cn = DriverManager.getConnection(String.format("jdbc:mysql://%s/%s/", URL, PUERTO),
                     USER, PASSWORD);
             return cn;
         } catch (Exception e) {
@@ -41,23 +39,30 @@ public class Conexion {
         }
     }
 
+    public void cerrar() throws SQLException {
+        if (cn != null) {
+            if (!cn.isClosed()) {
+                cn.close();
+            }
+        }
+    }
+
     //CUD
-    public boolean ejecutar(String sql,Object[] parametros) throws Exception {
+    public boolean ejecutar(String sql, Object[] parametros) throws Exception {
         PreparedStatement ps;
         try {
             if (getCn() == null) {
             } else {
                 ps = this.getCn().prepareStatement(sql);
                 for (int i = 0; i < parametros.length; i++) {
-                    ps.setObject(i+1, parametros[i]);
+                    ps.setObject(i + 1, parametros[i]);
                 }
                 ps.executeUpdate();
             }
-            
             return true;
         } catch (Exception e) {
             throw e;
-        }finally{
+        } finally {
             cn.close();
         }
     }

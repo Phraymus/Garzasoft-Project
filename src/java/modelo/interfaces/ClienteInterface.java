@@ -5,15 +5,23 @@
  */
 package modelo.interfaces;
 
+import config.Conexion;
 import java.util.ArrayList;
 import modelo.beans.Cliente;
 
 /**
  *
- * @author bryan
+ * @author Brayan Carrasco
  */
-public interface DAO {
-    public ArrayList listar();
+public interface ClienteInterface {
+    
+    final Conexion conexion=new Conexion();
+    final String TABLA = "tb_cliente";
+    final String ATRIBUTOS[] = {"tb_persona_id", "ruc", "nombre_empresa"};
+    final String CLAVE_PRIMARIA = "tb_persona_id";
+    
+    public ArrayList<Cliente> listar();
+    public Cliente buscar(int id);
     public boolean insertar(Cliente cliente);
     public boolean editar(Cliente cliente);
     public boolean eliminar(int id);
