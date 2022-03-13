@@ -22,7 +22,7 @@ public class ClienteDAO implements DAO {
     Conexion conexion;
 
     final String TABLA = "tb_cliente";
-    final String ATRIBUTOS[] = {"tb_persona_id, ruc, nombre_empresa"};
+    final String ATRIBUTOS[] = {"tb_persona_id", "ruc", "nombre_empresa"};
     final String CLAVE_PRIMARIA = "tb_persona_id";
 
     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
@@ -94,7 +94,7 @@ public class ClienteDAO implements DAO {
     @Override
     public boolean insertar(Cliente cliente) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, cliente.getRuc(), cliente.getNombreEmpresa()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{cliente.getTb_persona_id(), cliente.getRuc(), cliente.getNombreEmpresa()});
         } catch (Exception ex) {
             return false;
         }
@@ -103,7 +103,7 @@ public class ClienteDAO implements DAO {
     @Override
     public boolean editar(Cliente cliente) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET ruc=?, nombre_empresa=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{null, cliente.getRuc(), cliente.getNombreEmpresa()});
+            return conexion.ejecutar(String.format("UPDATE %s SET ruc=?, nombre_empresa=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{cliente.getRuc(), cliente.getNombreEmpresa(), cliente.getTb_persona_id()});
         } catch (Exception ex) {
             return false;
         }
