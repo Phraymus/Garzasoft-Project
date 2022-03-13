@@ -294,9 +294,9 @@
     
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4 col">
-                            <h1 class="h3 mb-0 text-gray-800">Requerimiento</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Administrar</h1>
                             <div>
-                                <a href="#" style="color:#00C2CB"><b>+ Añadir Modulo</b> </a>
+                                <a href="#" style="color:#00C2CB" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><b>+ Añadir Modulo</b> </a>
                             </div>
                             
                         </div>
@@ -392,7 +392,7 @@
                         </tbody>
                         
                     </table>
-                    <a href="#" style="text-decoration:none">+Añadir Requerimiento</a>
+                    <a href="#" style="text-decoration:none" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3">+Añadir Requerimiento</a>
                 </div>
     
     
@@ -483,7 +483,7 @@
     </div>
   </div>
   <!--Modal Editar Modulo-->
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
             <div>
@@ -501,6 +501,76 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success">Guardar</button>
                     <button class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+            
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+            <div>
+                 <table>             
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Nombre de Modulo:</h6>
+                    </td>
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Modulo1">
+                    </td>
+                </tr>
+                
+            </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+            
+        
+      </div>
+    </div>
+  </div>
+  <!--Modal Añadir requerimiento-->
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+            <div>
+                 <table>             
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Nombre de requerimiento:</h6>
+                    </td>
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="text" value="Requerimiento1">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Fecha Inicio:</h6>
+                    </td>
+                   
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="date" value="2001-05-01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6 class="mt-3">Fecha Fin:</h6>
+                    </td>
+                   
+                    <td>
+                        <input class="form-control ml-3 mt-3 text-dark" type="date" value="2001-05-01">
+                    </td>
+                </tr>
+                
+            </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Guardar</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
             
