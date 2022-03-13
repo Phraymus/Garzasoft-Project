@@ -5,17 +5,16 @@
  */
 package modelo.dao;
 
-import java.util.ArrayList;
-import modelo.beans.Cliente;
 import java.sql.ResultSet;
-import modelo.interfaces.ClienteInterface;
+import java.util.ArrayList;
+import modelo.beans.Pais;
+import modelo.interfaces.PaisInterface;
 
 /**
  *
- * @author Brayan Carrasco
+ * @author Marco
  */
-public class ClienteDAO implements ClienteInterface {
-
+public class PaisDAO implements PaisInterface{
     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
@@ -38,8 +37,8 @@ public class ClienteDAO implements ClienteInterface {
     }
 
     @Override
-    public Cliente buscar(int id) {
-        Cliente cliente = null;
+    public Pais buscar(int id) {
+        Pais pais = null;
         try {
             String sql = "SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
@@ -47,22 +46,21 @@ public class ClienteDAO implements ClienteInterface {
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql, TABLA, CLAVE_PRIMARIA, id));
             while (rs.next()) {
-                cliente.setTb_persona_id(rs.getInt(1));
-                cliente.setRuc(rs.getString(2));
-                cliente.setNombreEmpresa(rs.getString(3));
+                pais.setIdtb_pais(rs.getInt(1));
+                pais.setNombre(rs.getString(2));
             }
             rs.close();
             conexion.cerrar();
         } catch (Exception ex) {
             throw ex;
         } finally {
-            return cliente;
+            return pais;
         }
     }
 
     @Override
-    public ArrayList<Cliente> listar() {
-        ArrayList<Cliente> listaRetorno = new ArrayList<>();
+    public ArrayList<Pais> listar() {
+        ArrayList<Pais> listaRetorno = new ArrayList<>();
         try {
             String sql = "SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
@@ -70,13 +68,12 @@ public class ClienteDAO implements ClienteInterface {
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
-                Cliente cliente = new Cliente();
+                Pais pais = new Pais();
 
-                cliente.setTb_persona_id(rs.getInt(1));
-                cliente.setRuc(rs.getString(2));
-                cliente.setNombreEmpresa(rs.getString(3));
+                pais.setIdtb_pais(rs.getInt(1));
+                pais.setNombre(rs.getString(2));
 
-                listaRetorno.add(cliente);
+                listaRetorno.add(pais);
             }
             rs.close();
             conexion.cerrar();
@@ -88,18 +85,18 @@ public class ClienteDAO implements ClienteInterface {
     }
 
     @Override
-    public boolean insertar(Cliente cliente) {
+    public boolean insertar(Pais pais) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{cliente.getTb_persona_id(), cliente.getRuc(), cliente.getNombreEmpresa()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{null, pais.getNombre()});
         } catch (Exception ex) {
             return false;
         }
     }
 
     @Override
-    public boolean editar(Cliente cliente) {
+    public boolean editar(Pais pais) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET ruc=?, nombre_empresa=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{cliente.getRuc(), cliente.getNombreEmpresa(), cliente.getTb_persona_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{pais.getNombre(), pais.getIdtb_pais()});
         } catch (Exception ex) {
             return false;
         }
@@ -112,6 +109,5 @@ public class ClienteDAO implements ClienteInterface {
         } catch (Exception ex) {
             return false;
         }
-    }
-
+    } 
 }

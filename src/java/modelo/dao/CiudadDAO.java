@@ -5,17 +5,20 @@
  */
 package modelo.dao;
 
-import java.util.ArrayList;
-import modelo.beans.Cliente;
 import java.sql.ResultSet;
-import modelo.interfaces.ClienteInterface;
+import java.util.ArrayList;
+import modelo.beans.Ciudad;
+import modelo.interfaces.CiudadInterface;
+
+
+
 
 /**
  *
- * @author Brayan Carrasco
+ * @author Marco
  */
-public class ClienteDAO implements ClienteInterface {
-
+public class CiudadDAO implements CiudadInterface{
+    
     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
@@ -38,8 +41,8 @@ public class ClienteDAO implements ClienteInterface {
     }
 
     @Override
-    public Cliente buscar(int id) {
-        Cliente cliente = null;
+    public Ciudad buscar(int id) {
+        Ciudad ciudad = null;
         try {
             String sql = "SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
@@ -47,22 +50,22 @@ public class ClienteDAO implements ClienteInterface {
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql, TABLA, CLAVE_PRIMARIA, id));
             while (rs.next()) {
-                cliente.setTb_persona_id(rs.getInt(1));
-                cliente.setRuc(rs.getString(2));
-                cliente.setNombreEmpresa(rs.getString(3));
+                ciudad.setIdtb_ciudad(rs.getInt(1));
+                ciudad.setNombre(rs.getString(2));
+                ciudad.setTb_departamento_id(rs.getInt(3));
             }
             rs.close();
             conexion.cerrar();
         } catch (Exception ex) {
             throw ex;
         } finally {
-            return cliente;
+            return ciudad;
         }
     }
 
     @Override
-    public ArrayList<Cliente> listar() {
-        ArrayList<Cliente> listaRetorno = new ArrayList<>();
+    public ArrayList<Ciudad> listar() {
+        ArrayList<Ciudad> listaRetorno = new ArrayList<>();
         try {
             String sql = "SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
@@ -70,13 +73,13 @@ public class ClienteDAO implements ClienteInterface {
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
-                Cliente cliente = new Cliente();
+                Ciudad ciudad = new Ciudad();
 
-                cliente.setTb_persona_id(rs.getInt(1));
-                cliente.setRuc(rs.getString(2));
-                cliente.setNombreEmpresa(rs.getString(3));
+                ciudad.setIdtb_ciudad(rs.getInt(1));
+                ciudad.setNombre(rs.getString(2));
+                ciudad.setTb_departamento_id(rs.getInt(3));
 
-                listaRetorno.add(cliente);
+                listaRetorno.add(ciudad);
             }
             rs.close();
             conexion.cerrar();
@@ -88,18 +91,18 @@ public class ClienteDAO implements ClienteInterface {
     }
 
     @Override
-    public boolean insertar(Cliente cliente) {
+    public boolean insertar(Ciudad ciudad) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{cliente.getTb_persona_id(), cliente.getRuc(), cliente.getNombreEmpresa()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, ciudad.getNombre(), ciudad.getTb_departamento_id()});
         } catch (Exception ex) {
             return false;
         }
     }
 
     @Override
-    public boolean editar(Cliente cliente) {
+    public boolean editar(Ciudad ciudad) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET ruc=?, nombre_empresa=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{cliente.getRuc(), cliente.getNombreEmpresa(), cliente.getTb_persona_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id()=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ciudad.getNombre(), ciudad.getTb_departamento_id(), ciudad.getIdtb_ciudad()});
         } catch (Exception ex) {
             return false;
         }
@@ -113,5 +116,4 @@ public class ClienteDAO implements ClienteInterface {
             return false;
         }
     }
-
 }
