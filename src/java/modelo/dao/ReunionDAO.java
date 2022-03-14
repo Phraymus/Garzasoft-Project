@@ -5,20 +5,17 @@
  */
 package modelo.dao;
 
-import java.util.ArrayList;
-import modelo.beans.Trabajador;
 import java.sql.ResultSet;
-import modelo.interfaces.TrabajadorInterface;
-
-
+import java.util.ArrayList;
+import modelo.beans.Reunion;
+import modelo.interfaces.ReunionInterface;
 
 /**
  *
  * @author ELIAS
  */
-public class TrabajadorDAO implements TrabajadorInterface{
-
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+public class ReunionDAO implements ReunionInterface {
+     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
             ResultSet rs = conexion.recuperar(sql);
@@ -38,8 +35,8 @@ public class TrabajadorDAO implements TrabajadorInterface{
         }
     }
 
-    public Trabajador buscar(int id) {
-        Trabajador trabajador = null;
+    public Reunion buscar(int id) {
+        Reunion reunion = null;
         try {
             String sql="SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
@@ -47,22 +44,24 @@ public class TrabajadorDAO implements TrabajadorInterface{
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql,TABLA,CLAVE_PRIMARIA,id));
             while (rs.next()) {
-                trabajador.setIdtb_trabajador(rs.getInt(1));
-                trabajador.setTipo(rs.getString(2));
-                trabajador.setTb_persona_id(rs.getInt(3)); 
+                reunion.setIdtb_reuniones(rs.getInt(1));
+                reunion.setFecha(rs.getDate(2));
+                reunion.setAsunto(rs.getString(3));
+                reunion.setLink(rs.getString(4));
+                reunion.setTb_medio_id(rs.getInt(5));
             }
             rs.close();
             conexion.cerrar();
         } catch (Exception ex) {
             throw ex;
         } finally {
-            return trabajador;
+            return reunion;
         }
     }
 
     @Override
-    public ArrayList<Trabajador> listar() {
-        ArrayList<Trabajador> listaRetorno = new ArrayList<>();
+    public ArrayList<Reunion> listar() {
+        ArrayList<Reunion> listaRetorno = new ArrayList<>();
         try {
             String sql="SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
@@ -70,11 +69,12 @@ public class TrabajadorDAO implements TrabajadorInterface{
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s",sql,TABLA));
             while (rs.next()) {
-                Trabajador trabajador = new Trabajador();
-                trabajador.setIdtb_trabajador(rs.getInt(1));
-                trabajador.setTipo(rs.getString(2));
-                trabajador.setTb_persona_id(rs.getInt(3));
-                listaRetorno.add(trabajador);
+                Reunion reunion = new Reunion();
+                 reunion.setIdtb_reuniones(rs.getInt(1));
+                reunion.setFecha(rs.getDate(2));
+                reunion.setAsunto(rs.getString(3));
+                reunion.setLink(rs.getString(4));
+                reunion.setTb_medio_id(rs.getInt(5));
             }
             rs.close();
             conexion.cerrar();
@@ -87,18 +87,20 @@ public class TrabajadorDAO implements TrabajadorInterface{
     
 
     @Override
-    public boolean insertar(Trabajador trabajador) {
+    public boolean insertar(Reunion reunion) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{trabajador.getIdtb_trabajador(), trabajador.getTipo(),trabajador.getTb_persona_id()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?)", TABLA), new Object[]{
+                reunion.getIdtb_reuniones(), reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id()});
         } catch (Exception ex) {
             return false;
         }
     }
 
     @Override
-    public boolean editar(Trabajador trabajador) {
+    public boolean editar(Reunion reunion) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET tipo=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{trabajador.getIdtb_trabajador(), trabajador.getTipo(),trabajador.getTb_persona_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET tipo=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+                reunion.getIdtb_reuniones(), reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id()});
         } catch (Exception ex) {
             return false;
         }

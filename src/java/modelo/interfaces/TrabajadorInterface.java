@@ -17,12 +17,12 @@ public interface TrabajadorInterface {
     
     final Conexion conexion=new Conexion();
     final String TABLA = "tb_trabajador";
-    final String ATRIBUTOS[] = {"tb_persona_id", "tipo"};
-    final String CLAVE_PRIMARIA = "tb_persona_id";
+    final String ATRIBUTOS[] = {"idtb_trabajador","tb_persona_id", "tipo"};
+    final String CLAVE_PRIMARIA = "idtb_trabajador";
     
     public ArrayList<Trabajador> listar();
     public Trabajador buscar(int id);
-    public boolean insertar(Trabajador cliente);
-    public boolean editar(Trabajador cliente);
+    public boolean insertar(Trabajador trabajador);
+    public boolean editar(Trabajador trabajador);
     public boolean eliminar(int id);
 }
