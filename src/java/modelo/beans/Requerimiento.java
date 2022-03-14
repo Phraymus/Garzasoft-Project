@@ -12,12 +12,12 @@ import jdk.jfr.Timestamp;
  * @author Sttefany
  */
 public class Requerimiento {
-       public int modulo_id;
-       public int idtb_checklist;
-       public String nombre;
-       public char estado;
-       public Timestamp fecha_inicio;
-       public Timestamp fecha_fin;
+    private int modulo_id;
+    private int idtb_checklist;
+    private String nombre;
+    private char estado;
+    private Timestamp fecha_inicio;
+    private Timestamp fecha_fin;
 
     public Requerimiento() {
     }

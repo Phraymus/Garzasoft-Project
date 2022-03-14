@@ -9,10 +9,10 @@ package modelo.beans;
  * @author Sttefany
  */
 public class Modulo {
-    public int idtb_modulo;
-    public String nombre;
-    public char estado;
-    public int tb_proyecto_id;
+    private int idtb_modulo;
+    private String nombre;
+    private char estado;
+    private int tb_proyecto_id;
 
     public Modulo() {
     }

@@ -11,16 +11,16 @@ import jdk.jfr.Timestamp;
  * @author Sttefany
  */
 public class Proyecto {
-    public int idtb_proyecto;
-    public String nombre;
-    public char estado;
-    public Timestamp fecha_inicio;
-    public Timestamp fecha_fin;
-    public String tarea;
-    public String tarea_descripcion;
-    public String checklist;
-    public int tb_trabjador_id;
-    public int tb_cliente_id;
+    private int idtb_proyecto;
+    private String nombre;
+    private char estado;
+    private Timestamp fecha_inicio;
+    private Timestamp fecha_fin;
+    private String tarea;
+    private String tarea_descripcion;
+    private String checklist;
+    private int tb_trabjador_id;
+    private int tb_cliente_id;
 
     public Proyecto() {
     }
