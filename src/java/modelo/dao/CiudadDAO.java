@@ -8,6 +8,8 @@ package modelo.dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.beans.Ciudad;
+import modelo.beans.Departamento;
+import modelo.beans.Pais;
 import modelo.interfaces.CiudadInterface;
 
 
@@ -19,40 +21,41 @@ import modelo.interfaces.CiudadInterface;
  */
 public class CiudadDAO implements CiudadInterface{
     
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-        ArrayList<Object[]> listaRetorno = new ArrayList<>();
-        try {
-            ResultSet rs = conexion.recuperar(sql);
-            while (rs.next()) {
-                Object atributos[] = new Object[numeroAtributos];
-                for (int i = 0; i < numeroAtributos; i++) {
-                    atributos[i] = rs.getObject(i + 1);
-                }
-                listaRetorno.add(atributos);
-            }
-            rs.close();
-            conexion.cerrar();
-
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            return listaRetorno;
-        }
-    }
+//    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+//        ArrayList<Object[]> listaRetorno = new ArrayList<>();
+//        try {
+//            ResultSet rs = conexion.recuperar(sql);
+//            while (rs.next()) {
+//                Object atributos[] = new Object[numeroAtributos];
+//                for (int i = 0; i < numeroAtributos; i++) {
+//                    atributos[i] = rs.getObject(i + 1);
+//                }
+//                listaRetorno.add(atributos);
+//            }
+//            rs.close();
+//            conexion.cerrar();
+//
+//        } catch (Exception ex) {
+//            throw ex;
+//        } finally {
+//            return listaRetorno;
+//        }
+//    }
 
     @Override
     public Ciudad buscar(int id) {
         Ciudad ciudad = null;
         try {
-            String sql = "SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql = (i == ATRIBUTOS.length - 1) ? sql + ATRIBUTOS[i] + ", " : sql + ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql, TABLA, CLAVE_PRIMARIA, id));
+            String sql = "SELECT c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE c.idtb_ciudad = "+id;
+            ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
+                
+                ciudad = new Ciudad();
+                Pais pais= new Pais(rs.getInt(5), rs.getString(6));
+                Departamento departamento= new Departamento(rs.getInt(3), rs.getString(4), pais);
                 ciudad.setIdtb_ciudad(rs.getInt(1));
                 ciudad.setNombre(rs.getString(2));
-                ciudad.setTb_departamento_id(rs.getInt(3));
+                ciudad.setTb_departamento_id(departamento);
             }
             rs.close();
             conexion.cerrar();
@@ -67,17 +70,19 @@ public class CiudadDAO implements CiudadInterface{
     public ArrayList<Ciudad> listar() {
         ArrayList<Ciudad> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql = (i == ATRIBUTOS.length - 1) ? sql + ATRIBUTOS[i] + ", " : sql + ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            String sql = "SELECT c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais";
+            
+            ResultSet rs = conexion.recuperar(sql);
+            
             while (rs.next()) {
                 Ciudad ciudad = new Ciudad();
-
+                
+                Pais pais= new Pais(rs.getInt(5), rs.getString(6));
+                Departamento departamento= new Departamento(rs.getInt(3), rs.getString(4), pais);
+                        
                 ciudad.setIdtb_ciudad(rs.getInt(1));
                 ciudad.setNombre(rs.getString(2));
-                ciudad.setTb_departamento_id(rs.getInt(3));
+                ciudad.setTb_departamento_id(departamento);
 
                 listaRetorno.add(ciudad);
             }
@@ -102,7 +107,7 @@ public class CiudadDAO implements CiudadInterface{
     @Override
     public boolean editar(Ciudad ciudad) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id()=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ciudad.getNombre(), ciudad.getTb_departamento_id(), ciudad.getIdtb_ciudad()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ciudad.getNombre(), ciudad.getTb_departamento_id(), ciudad.getIdtb_ciudad()});
         } catch (Exception ex) {
             return false;
         }

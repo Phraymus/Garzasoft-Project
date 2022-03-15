@@ -12,12 +12,12 @@ package modelo.beans;
 public class Ciudad {
     private int idtb_ciudad;
     private String nombre;
-    private int tb_departamento_id;
+    private Departamento tb_departamento_id;
 
     public Ciudad() { 
     }
 
-    public Ciudad(int idtb_ciudad, String nombre, int tb_departamento_id) {
+    public Ciudad(int idtb_ciudad, String nombre, Departamento tb_departamento_id) {
         this.idtb_ciudad = idtb_ciudad;
         this.nombre = nombre;
         this.tb_departamento_id = tb_departamento_id;
@@ -39,13 +39,11 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
-    public int getTb_departamento_id() {
+    public Departamento getTb_departamento_id() {
         return tb_departamento_id;
     }
 
-    public void setTb_departamento_id(int tb_departamento_id) {
+    public void setTb_departamento_id(Departamento tb_departamento_id) {
         this.tb_departamento_id = tb_departamento_id;
     }
-    
-    
 }

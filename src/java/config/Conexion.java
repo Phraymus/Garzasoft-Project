@@ -30,7 +30,7 @@ public class Conexion {
     public Connection getCn() {
         try {
             Class.forName(DRIVER);
-            cn = DriverManager.getConnection(String.format("jdbc:mysql://%s/%s/", URL, PUERTO),
+            cn = DriverManager.getConnection(String.format("jdbc:mysql://%s:%s/%s", URL, PUERTO,DATABASE),
                     USER, PASSWORD);
             return cn;
         } catch (Exception e) {

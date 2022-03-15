@@ -12,12 +12,12 @@ package modelo.beans;
 public class Departamento {
     private int idtb_departamento;
     private String nombre;
-    private int tb_pais_id;
+    private Pais tb_pais_id;
 
     public Departamento() { 
     }
 
-    public Departamento(int idtb_departamento, String nombre, int tb_pais_id) {
+    public Departamento(int idtb_departamento, String nombre, Pais tb_pais_id) {
         this.idtb_departamento = idtb_departamento;
         this.nombre = nombre;
         this.tb_pais_id = tb_pais_id;
@@ -39,12 +39,11 @@ public class Departamento {
         this.nombre = nombre;
     }
 
-    public int getTb_pais_id() {
+    public Pais getTb_pais_id() {
         return tb_pais_id;
     }
 
-    public void setTb_pais_id(int tb_pais_id) {
+    public void setTb_pais_id(Pais tb_pais_id) {
         this.tb_pais_id = tb_pais_id;
     }
-    
 }
