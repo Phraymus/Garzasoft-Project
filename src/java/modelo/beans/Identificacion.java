@@ -11,13 +11,13 @@ package modelo.beans;
  */
 public class Identificacion {
     private int idtb_identificacion;
-    private char tipo;
+    private String tipo;
     private String numero;
 
     public Identificacion() {
     }
 
-    public Identificacion(int idtb_identificacion, char tipo, String numero) {
+    public Identificacion(int idtb_identificacion, String tipo, String numero) {
         this.idtb_identificacion = idtb_identificacion;
         this.tipo = tipo;
         this.numero = numero;
@@ -31,11 +31,11 @@ public class Identificacion {
         this.idtb_identificacion = idtb_identificacion;
     }
 
-    public char getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
