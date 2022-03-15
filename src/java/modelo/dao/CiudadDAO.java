@@ -55,7 +55,7 @@ public class CiudadDAO implements CiudadInterface{
                 Departamento departamento= new Departamento(rs.getInt(3), rs.getString(4), pais);
                 ciudad.setIdtb_ciudad(rs.getInt(1));
                 ciudad.setNombre(rs.getString(2));
-                ciudad.setTb_departamento_id(departamento);
+                ciudad.setDepartamento(departamento);
             }
             rs.close();
             conexion.cerrar();
@@ -82,7 +82,7 @@ public class CiudadDAO implements CiudadInterface{
                         
                 ciudad.setIdtb_ciudad(rs.getInt(1));
                 ciudad.setNombre(rs.getString(2));
-                ciudad.setTb_departamento_id(departamento);
+                ciudad.setDepartamento(departamento);
 
                 listaRetorno.add(ciudad);
             }
@@ -98,7 +98,7 @@ public class CiudadDAO implements CiudadInterface{
     @Override
     public boolean insertar(Ciudad ciudad) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, ciudad.getNombre(), ciudad.getTb_departamento_id()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, ciudad.getNombre(), ciudad.getDepartamento().getIdtb_departamento()});
         } catch (Exception ex) {
             return false;
         }
@@ -107,7 +107,7 @@ public class CiudadDAO implements CiudadInterface{
     @Override
     public boolean editar(Ciudad ciudad) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ciudad.getNombre(), ciudad.getTb_departamento_id(), ciudad.getIdtb_ciudad()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ciudad.getNombre(), ciudad.getDepartamento().getIdtb_departamento(), ciudad.getIdtb_ciudad()});
         } catch (Exception ex) {
             return false;
         }
