@@ -18,7 +18,7 @@ public interface UsuarioReunionInterface {
     final Conexion conexion=new Conexion();
     final String TABLA = "tb_usuarioreunion";
     final String ATRIBUTOS[] = {"tb_reunion_id","tb_usuario_id"};
-    final String CLAVE_PRIMARIA = "tb_reunion_id","tb_usuario_id";
+    //final String CLAVE_PRIMARIA = "tb_reunion_id","tb_usuario_id";
     
     public ArrayList<UsuarioReunion> listar();
     public UsuarioReunion buscar(int id);

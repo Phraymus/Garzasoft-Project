@@ -7,6 +7,7 @@ package modelo.dao;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import modelo.beans.Medio;
 import modelo.beans.Reunion;
 import modelo.interfaces.ReunionInterface;
 
@@ -15,7 +16,7 @@ import modelo.interfaces.ReunionInterface;
  * @author ELIAS
  */
 public class ReunionDAO implements ReunionInterface {
-     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+     /*public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
             ResultSet rs = conexion.recuperar(sql);
@@ -33,22 +34,24 @@ public class ReunionDAO implements ReunionInterface {
         } finally {
             return listaRetorno;
         }
-    }
+    }*/
 
+     @Override
     public Reunion buscar(int id) {
         Reunion reunion = null;
         try {
-            String sql="SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql=(i==ATRIBUTOS.length-1)?sql+ATRIBUTOS[i]+", ":sql+ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql,TABLA,CLAVE_PRIMARIA,id));
+            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_reunion AS r JOIN tb_medio AS m ON r.tb_medio_id=m.idtb_medio WHERE r.idtb_reuniones = "+id;
+            ResultSet rs = conexion.recuperar(sql); 
             while (rs.next()) {
+                
+                reunion = new Reunion();
+                Medio medio= new Medio(rs.getInt(5), rs.getString(6));
+ 
                 reunion.setIdtb_reuniones(rs.getInt(1));
-                reunion.setFecha(rs.getDate(2));
+                reunion.setFecha(rs.getTimestamp(2));
                 reunion.setAsunto(rs.getString(3));
                 reunion.setLink(rs.getString(4));
-                reunion.setTb_medio_id(rs.getInt(5));
+                reunion.setTb_medio_id(medio);
             }
             rs.close();
             conexion.cerrar();
@@ -63,18 +66,22 @@ public class ReunionDAO implements ReunionInterface {
     public ArrayList<Reunion> listar() {
         ArrayList<Reunion> listaRetorno = new ArrayList<>();
         try {
-            String sql="SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql=(i==ATRIBUTOS.length-1)?sql+ATRIBUTOS[i]+", ":sql+ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s",sql,TABLA));
+            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_reunion AS r JOIN tb_medio AS m ON r.tb_medio_id=m.idtb_medio WHERE r.idtb_reuniones = "+id;
+            
+            ResultSet rs = conexion.recuperar(sql);
+            
             while (rs.next()) {
                 Reunion reunion = new Reunion();
-                 reunion.setIdtb_reuniones(rs.getInt(1));
-                reunion.setFecha(rs.getDate(2));
+               
+                Medio medio= new Medio(rs.getInt(5), rs.getString(6));
+ 
+                reunion.setIdtb_reuniones(rs.getInt(1));
+                reunion.setFecha(rs.getTimestamp(2));
                 reunion.setAsunto(rs.getString(3));
                 reunion.setLink(rs.getString(4));
-                reunion.setTb_medio_id(rs.getInt(5));
+                reunion.setTb_medio_id(medio);
+
+                listaRetorno.add( reunion);
             }
             rs.close();
             conexion.cerrar();
@@ -84,13 +91,11 @@ public class ReunionDAO implements ReunionInterface {
             return listaRetorno;
         }
     }
-    
 
     @Override
     public boolean insertar(Reunion reunion) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?)", TABLA), new Object[]{
-                reunion.getIdtb_reuniones(), reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?)", TABLA), new Object[]{null, reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id().getIdtb_medio()});
         } catch (Exception ex) {
             return false;
         }
@@ -99,13 +104,12 @@ public class ReunionDAO implements ReunionInterface {
     @Override
     public boolean editar(Reunion reunion) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET tipo=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
-                reunion.getIdtb_reuniones(), reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id().getIdtb_medio()});
         } catch (Exception ex) {
             return false;
         }
     }
-    
+
     @Override
     public boolean eliminar(int id) {
         try {

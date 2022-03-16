@@ -7,6 +7,9 @@ package modelo.dao;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import modelo.beans.Medio;
+import modelo.beans.Reunion;
+import modelo.beans.Usuario;
 import modelo.beans.UsuarioReunion;
 import modelo.interfaces.UsuarioReunionInterface;
 
@@ -16,7 +19,7 @@ import modelo.interfaces.UsuarioReunionInterface;
  */
 public class UsuarioReunionDAO implements UsuarioReunionInterface{
     
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+    /*public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
             ResultSet rs = conexion.recuperar(sql);
@@ -34,20 +37,25 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
         } finally {
             return listaRetorno;
         }
-    }
+    }*/
 
+     @Override
     public UsuarioReunion buscar(int id) {
         UsuarioReunion usuarioreunion = null;
         try {
-            String sql="SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql=(i==ATRIBUTOS.length-1)?sql+ATRIBUTOS[i]+", ":sql+ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql,TABLA,CLAVE_PRIMARIA,id));
+            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE c.idtb_ciudad = "+id;
+            ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
-                usuarioreunion.setTb_reunion_id(rs.getInt(1));
-                usuarioreunion.setTb_usuario_id(rs.getInt(2));
-               
+                
+                usuarioreunion = new UsuarioReunion();
+                Medio medio=new Medio(rs.getInt(5),rs.getString(6));
+                Reunion reunion= new Reunion(rs.getInt(1),rs.getTimestamp(2),rs.getString(3),rs.getString(4),medio);
+                
+                Usuario usuario= new Usuario(rs.getInt(7), rs.getString(8), rs.getString(9),rs.getString(10),persona,personac);
+                
+                usuarioreunion.setTb_reunion_id(reunion);
+                usuarioreunion.setTb_usuario_id(usuario);
+                
             }
             rs.close();
             conexion.cerrar();
@@ -57,21 +65,26 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
             return usuarioreunion;
         }
     }
-     @Override
+
+    @Override
     public ArrayList<UsuarioReunion> listar() {
         ArrayList<UsuarioReunion> listaRetorno = new ArrayList<>();
         try {
-            String sql="SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql=(i==ATRIBUTOS.length-1)?sql+ATRIBUTOS[i]+", ":sql+ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s",sql,TABLA));
+            String sql = "SELECT c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais";
+            
+            ResultSet rs = conexion.recuperar(sql);
+            
             while (rs.next()) {
-                UsuarioReunion usuarioreunion = new UsuarioReunion();
-                usuarioreunion.setTb_reunion_id(rs.getInt(1));
-                usuarioreunion.setTb_usuario_id(rs.getInt(2));
+                Ciudad ciudad = new Ciudad();
                 
-                listaRetorno.add(usuarioreunion);
+                Pais pais= new Pais(rs.getInt(5), rs.getString(6));
+                Departamento departamento= new Departamento(rs.getInt(3), rs.getString(4), pais);
+                        
+                ciudad.setIdtb_ciudad(rs.getInt(1));
+                ciudad.setNombre(rs.getString(2));
+                ciudad.setDepartamento(departamento);
+
+                listaRetorno.add(ciudad);
             }
             rs.close();
             conexion.cerrar();
@@ -81,12 +94,11 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
             return listaRetorno;
         }
     }
-    
 
-   @Override
+    @Override
     public boolean insertar(UsuarioReunion usuarioreunion) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{usuarioreunion.getTb_reunion_id(), usuarioreunion.getTb_usuario_id()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, ciudad.getNombre(), ciudad.getDepartamento().getIdtb_departamento()});
         } catch (Exception ex) {
             return false;
         }
@@ -95,12 +107,12 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
     @Override
     public boolean editar(UsuarioReunion usuarioreunion) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET tipo=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuarioreunion.getTb_reunion_id(), usuarioreunion.getTb_usuario_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ciudad.getNombre(), ciudad.getDepartamento().getIdtb_departamento(), ciudad.getIdtb_ciudad()});
         } catch (Exception ex) {
             return false;
         }
     }
-    
+
     @Override
     public boolean eliminar(int id) {
         try {

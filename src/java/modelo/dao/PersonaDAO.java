@@ -5,8 +5,11 @@
  */
 package modelo.dao;
 
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import modelo.beans.Ciudad;
+import modelo.beans.Identificacion;
 import modelo.beans.Persona;
 import modelo.interfaces.PersonaInterface;
 
@@ -21,22 +24,22 @@ public class PersonaDAO implements PersonaInterface{
     public ArrayList<Persona> listar() {
         ArrayList<Persona> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql = (i == ATRIBUTOS.length - 1) ? sql + ATRIBUTOS[i] + ", " : sql + ATRIBUTOS[i];
-            }
+            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto, i.idtb_identificacion, i.tipo, i.numero, c.idtb_ciudad, c.nombre FROM tb_persona AS p JOIN tb_identificacion AS i ON p.tb_identificacion_id=i.idtb_identificacion JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad; ";
+            
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
-                Persona  persona = new Persona();
-
+                Persona persona = new Persona();
+                Identificacion identificacion = new Identificacion(rs.getInt(7), rs.getString(8), rs.getString(9));
+                Ciudad ciudad = new Ciudad(rs.getInt(10), rs.getString(11));
+                
                 persona.setIdtb_persona(rs.getInt(1));
                 persona.setNombre(rs.getString(2));
                 persona.setApellido_paterno(rs.getString(3));
                 persona.setApellido_materno(rs.getString(4));
                 persona.setCorreo(rs.getString(5));
-                persona.setFoto(rs.get(6));
-                persona.setTb_identificacion_id(rs.getInt(7));
-                persona.setTb_cuidad_id(rs.getInt(8));
+                persona.setFoto((Image) rs.getBlob(6));
+                persona.setIdentificacion(identificacion);
+                persona.setCiudad(ciudad);
 
                 listaRetorno.add(persona);
             }
@@ -53,20 +56,23 @@ public class PersonaDAO implements PersonaInterface{
     public Persona buscar(int id) {
         Persona persona = null;
         try {
-            String sql = "SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql = (i == ATRIBUTOS.length - 1) ? sql + ATRIBUTOS[i] + ", " : sql + ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql, TABLA, CLAVE_PRIMARIA, id));
+            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto, i.idtb_identificacion, i.tipo, i.numero, c.idtb_ciudad, c.nombre FROM tb_persona AS p JOIN tb_identificacion AS i ON p.tb_identificacion_id=i.idtb_identificacion JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad WHERE p.idtb_persona="+id;
+      
+            ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
+                
+                persona = new Persona();
+                Identificacion identificacion = new Identificacion(rs.getInt(7), rs.getString(8), rs.getString(9));
+                Ciudad ciudad = new Ciudad(rs.getInt(10), rs.getString(11));
+                
                 persona.setIdtb_persona(rs.getInt(1));
                 persona.setNombre(rs.getString(2));
                 persona.setApellido_paterno(rs.getString(3));
                 persona.setApellido_materno(rs.getString(4));
                 persona.setCorreo(rs.getString(5));
-                persona.setFoto(rs.get(6));
-                persona.setTb_identificacion_id(rs.getInt(7));
-                persona.setTb_cuidad_id(rs.getInt(8));
+                persona.setFoto((Image) rs.getBlob(6));
+                persona.setIdentificacion(identificacion);
+                persona.setCiudad(ciudad);
             }
             rs.close();
             conexion.cerrar();
@@ -82,7 +88,7 @@ public class PersonaDAO implements PersonaInterface{
         
         try{
             return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?,?,?,?)", TABLA), new Object[]
-                {null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getFoto(), persona.getTb_identificacion_id(), persona.getTb_cuidad_id()});
+                {null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getFoto(), persona.getIdentificacion(), persona.getCiudad()});
         }
         catch (Exception ex) {
             return false;
@@ -93,7 +99,7 @@ public class PersonaDAO implements PersonaInterface{
     @Override
     public boolean editar(Persona persona) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getFoto(), persona.getTb_identificacion_id(), persona.getTb_cuidad_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, apellido_paterno=?, apellido_materno=?, correo=?, foto=?, identificacion=?, ciudad=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getFoto(), persona.getIdentificacion(), persona.getCiudad()});
         } catch (Exception ex) {
             return false;
         }

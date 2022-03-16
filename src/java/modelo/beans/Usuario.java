@@ -13,21 +13,23 @@ public class Usuario {
     private int idtb_usuario;
     private String nombre;
     private String clave;
-    private String tb_perfil_usuario_id;
-    private Trabajador tb_trabajador_id;
-    private Cliente tb_cliente_id;
+    private String perfil_usuario;
+    private Trabajador trabajador;
+    private Cliente cliente;
 
     public Usuario() {
     }
 
-    public Usuario(int idtb_usuario, String nombre, String clave, String tb_perfil_usuario_id, Trabajador tb_trabajador_id, Cliente tb_cliente_id) {
+    public Usuario(int idtb_usuario, String nombre, String clave, String perfil_usuario, Trabajador trabajador, Cliente cliente) {
         this.idtb_usuario = idtb_usuario;
         this.nombre = nombre;
         this.clave = clave;
-        this.tb_perfil_usuario_id = tb_perfil_usuario_id;
-        this.tb_trabajador_id = tb_trabajador_id;
-        this.tb_cliente_id = tb_cliente_id;
+        this.perfil_usuario = perfil_usuario;
+        this.trabajador = trabajador;
+        this.cliente = cliente;
     }
+
+    
 
     public int getIdtb_usuario() {
         return idtb_usuario;
@@ -53,29 +55,29 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public String getTb_perfil_usuario_id() {
-        return tb_perfil_usuario_id;
+    public String getPerfil_usuario() {
+        return perfil_usuario;
     }
 
-    public void setTb_perfil_usuario_id(String tb_perfil_usuario_id) {
-        this.tb_perfil_usuario_id = tb_perfil_usuario_id;
+    public void setPerfil_usuario(String perfil_usuario) {
+        this.perfil_usuario = perfil_usuario;
     }
 
-    public Trabajador getTb_trabajador_id() {
-        return tb_trabajador_id;
+    public Trabajador getTrabajador() {
+        return trabajador;
     }
 
-    public void setTb_trabajador_id(Trabajador tb_trabajador_id) {
-        this.tb_trabajador_id = tb_trabajador_id;
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
     }
 
-    public Cliente getTb_cliente_id() {
-        return tb_cliente_id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setTb_cliente_id(Cliente tb_cliente_id) {
-        this.tb_cliente_id = tb_cliente_id;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
-    
+
     
 }
