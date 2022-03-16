@@ -19,21 +19,21 @@ public class Persona {
     private String correo;
     private Image foto;
     
-    private Identificacion tb_identificacion_id;
-    private Ciudad tb_cuidad_id;
+    private Identificacion identificacion;
+    private Ciudad ciudad;
 
     public Persona() {
     }
 
-    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, Image foto, Identificacion tb_identificacion_id, Ciudad tb_cuidad_id) {
+    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, Image foto, Identificacion identificacion, Ciudad ciudad) {
         this.idtb_persona = idtb_persona;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
         this.correo = correo;
         this.foto = foto;
-        this.tb_identificacion_id = tb_identificacion_id;
-        this.tb_cuidad_id = tb_cuidad_id;
+        this.identificacion = identificacion;
+        this.ciudad = ciudad;
     }
 
     public int getIdtb_persona() {
@@ -84,21 +84,22 @@ public class Persona {
         this.foto = foto;
     }
 
-    public Identificacion getTb_identificacion_id() {
-        return tb_identificacion_id;
+    public Identificacion getIdentificacion() {
+        return identificacion;
     }
 
-    public void setTb_identificacion_id(Identificacion tb_identificacion_id) {
-        this.tb_identificacion_id = tb_identificacion_id;
+    public void setIdentificacion(Identificacion identificacion) {
+        this.identificacion = identificacion;
     }
 
-    public Ciudad getTb_cuidad_id() {
-        return tb_cuidad_id;
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 
-    public void setTb_cuidad_id(Ciudad tb_cuidad_id) {
-        this.tb_cuidad_id = tb_cuidad_id;
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
+
     
     
 }

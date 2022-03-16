@@ -17,6 +17,11 @@ public class Ciudad {
     public Ciudad() { 
     }
 
+    public Ciudad(int idtb_ciudad, String nombre) {
+        this.idtb_ciudad = idtb_ciudad;
+        this.nombre = nombre;
+    }
+
     public Ciudad(int idtb_ciudad, String nombre, Departamento tb_departamento_id) {
         this.idtb_ciudad = idtb_ciudad;
         this.nombre = nombre;
