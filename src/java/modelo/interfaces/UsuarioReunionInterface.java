@@ -7,7 +7,6 @@ package modelo.interfaces;
 
 import config.Conexion;
 import java.util.ArrayList;
-import modelo.beans.Trabajador;
 import modelo.beans.UsuarioReunion;
 
 /**

@@ -7,6 +7,7 @@ package modelo.dao;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import jdk.jfr.Timestamp;
 import modelo.beans.Medio;
 import modelo.beans.Reunion;
 import modelo.beans.Usuario;
@@ -43,13 +44,13 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
     public UsuarioReunion buscar(int id) {
         UsuarioReunion usuarioreunion = null;
         try {
-            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE c.idtb_ciudad = "+id;
+            String sql = "SELECT ur.tb_reunion_id,ur.tb_usuario_id, FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE c.idtb_ciudad = "+id;
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 
                 usuarioreunion = new UsuarioReunion();
                 Medio medio=new Medio(rs.getInt(5),rs.getString(6));
-                Reunion reunion= new Reunion(rs.getInt(1),rs.getTimestamp(2),rs.getString(3),rs.getString(4),medio);
+                Reunion reunion= new Reunion(rs.getInt(1),(Timestamp)rs.getTimestamp(2),rs.getString(3),rs.getString(4),medio);
                 
                 Usuario usuario= new Usuario(rs.getInt(7), rs.getString(8), rs.getString(9),rs.getString(10),persona,personac);
                 

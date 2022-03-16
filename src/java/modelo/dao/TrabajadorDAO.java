@@ -53,11 +53,11 @@ public class TrabajadorDAO implements TrabajadorInterface{
             while (rs.next()) {
                 
                 trabajador = new Trabajador();
-                Persona persona= new Persona(rs.getInt(1), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(5),rs.getImage(6));
                 Identificacion identificacion = new Identificacion(rs.getInt(8), rs.getString(9), rs.getString(10));
                 Pais pais =new Pais(rs.getInt(15),rs.getString(16));
                 Departamento departamento= new Departamento(rs.getInt(13), rs.getString(14), pais);
                 Ciudad ciudad = new Ciudad(rs.getInt(11), rs.getString(12),departamento);
+                Persona persona= new Persona(rs.getInt(1), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(5),(Image)rs.getBlob(6),identificacion,ciudad);
                 trabajador.setTipo(rs.getString(2));
                 
             }
@@ -74,18 +74,17 @@ public class TrabajadorDAO implements TrabajadorInterface{
     public ArrayList<Trabajador> listar() {
         ArrayList<Trabajador> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT t.idtb_persona, t.tipo, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto, i.idtb_identificacion, i.tipo, i.numero, c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_trabajador AS t JOIN tb_persona AS p t.tb_persona=p.idtb_persona AS p ON tb_identificacion=i AS i ON p.tb_identificacion_id=i.idtb_identificacion JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad; ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql=(i==ATRIBUTOS.length-1)?sql+ATRIBUTOS[i]+", ":sql+ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s",sql,TABLA));
+            String sql = "SELECT t.tb_persona_id, t.tipo, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto, i.idtb_identificacion, i.tipo, i.numero, c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_trabajador AS t JOIN tb_persona AS p ON t.tb_persona_id=p.idtb_persona JOIN tb_identificacion AS i ON p.tb_identificacion=i.idtb_identificacion JOIN tb_cuidad AS c ON p.tb_cuidad_id=c.idtb_cuidad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais";
+            
+            ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 Trabajador trabajador = new Trabajador();
-                Persona persona= new Persona(rs.getInt(1), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(5),rs.getImage(6));
+                
                 Identificacion identificacion = new Identificacion(rs.getInt(8), rs.getString(9), rs.getString(10));
                 Pais pais =new Pais(rs.getInt(15),rs.getString(16));
                 Departamento departamento= new Departamento(rs.getInt(13), rs.getString(14), pais);
                 Ciudad ciudad = new Ciudad(rs.getInt(11), rs.getString(12),departamento);
+                Persona persona= new Persona(rs.getInt(1), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(5),(Image)rs.getBlob(6),identificacion,ciudad);
                 trabajador.setTipo(rs.getString(2));
             }
             rs.close();

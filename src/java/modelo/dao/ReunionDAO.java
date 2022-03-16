@@ -7,6 +7,7 @@ package modelo.dao;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import jdk.jfr.Timestamp;
 import modelo.beans.Medio;
 import modelo.beans.Reunion;
 import modelo.interfaces.ReunionInterface;
@@ -48,7 +49,7 @@ public class ReunionDAO implements ReunionInterface {
                 Medio medio= new Medio(rs.getInt(5), rs.getString(6));
  
                 reunion.setIdtb_reuniones(rs.getInt(1));
-                reunion.setFecha(rs.getTimestamp(2));
+                reunion.setFecha((Timestamp)rs.getTimestamp(2));
                 reunion.setAsunto(rs.getString(3));
                 reunion.setLink(rs.getString(4));
                 reunion.setTb_medio_id(medio);
@@ -66,7 +67,7 @@ public class ReunionDAO implements ReunionInterface {
     public ArrayList<Reunion> listar() {
         ArrayList<Reunion> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_reunion AS r JOIN tb_medio AS m ON r.tb_medio_id=m.idtb_medio WHERE r.idtb_reuniones = "+id;
+            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_reunion AS r JOIN tb_medio AS m ON r.tb_medio_id=m.idtb_medio ";
             
             ResultSet rs = conexion.recuperar(sql);
             
@@ -76,7 +77,7 @@ public class ReunionDAO implements ReunionInterface {
                 Medio medio= new Medio(rs.getInt(5), rs.getString(6));
  
                 reunion.setIdtb_reuniones(rs.getInt(1));
-                reunion.setFecha(rs.getTimestamp(2));
+                reunion.setFecha((Timestamp)rs.getTimestamp(2));
                 reunion.setAsunto(rs.getString(3));
                 reunion.setLink(rs.getString(4));
                 reunion.setTb_medio_id(medio);
