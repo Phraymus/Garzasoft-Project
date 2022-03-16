@@ -18,7 +18,7 @@ import modelo.interfaces.TrabajadorInterface;
  */
 public class TrabajadorDAO implements TrabajadorInterface{
 
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+    /*public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
             ResultSet rs = conexion.recuperar(sql);
@@ -36,20 +36,22 @@ public class TrabajadorDAO implements TrabajadorInterface{
         } finally {
             return listaRetorno;
         }
-    }
+    }*/
 
+   @Override
     public Trabajador buscar(int id) {
         Trabajador trabajador = null;
         try {
-            String sql="SELECT ";
-            for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql=(i==ATRIBUTOS.length-1)?sql+ATRIBUTOS[i]+", ":sql+ATRIBUTOS[i];
-            }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql,TABLA,CLAVE_PRIMARIA,id));
+            String sql = "SELECT c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE c.idtb_ciudad = "+id;
+            ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
-                trabajador.setIdtb_trabajador(rs.getInt(1));
-                trabajador.setTipo(rs.getString(2));
-                trabajador.setTb_persona_id(rs.getInt(3)); 
+                
+                trabajador = new Trabajador();
+                Pais pais= new Pais(rs.getInt(5), rs.getString(6));
+                Departamento departamento= new Departamento(rs.getInt(3), rs.getString(4), pais);
+                ciudad.setIdtb_ciudad(rs.getInt(1));
+                ciudad.setNombre(rs.getString(2));
+                ciudad.setTb_departamento_id(departamento);
             }
             rs.close();
             conexion.cerrar();

@@ -5,7 +5,8 @@
  */
 package modelo.beans;
 
-import java.util.Date;
+
+import jdk.jfr.Timestamp;
 
 /**
  *
@@ -13,17 +14,18 @@ import java.util.Date;
  */
 public class Reunion {
     private int idtb_reuniones;
-    private Date fecha;
+    private Timestamp fecha;
     private String asunto;
     private String link;
-    private int tb_medio_id;
+    private Medio tb_medio_id;
 
     public Reunion() {
     }
 
-    public Reunion(int idtb_reuniones, Date fecha, String link, int tb_medio_id) {
+    public Reunion(int idtb_reuniones, Timestamp fecha, String asunto, String link, Medio tb_medio_id) {
         this.idtb_reuniones = idtb_reuniones;
         this.fecha = fecha;
+        this.asunto = asunto;
         this.link = link;
         this.tb_medio_id = tb_medio_id;
     }
@@ -36,11 +38,11 @@ public class Reunion {
         this.idtb_reuniones = idtb_reuniones;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
@@ -60,13 +62,15 @@ public class Reunion {
         this.link = link;
     }
 
-    public int getTb_medio_id() {
+    public Medio getTb_medio_id() {
         return tb_medio_id;
     }
 
-    public void setTb_medio_id(int tb_medio_id) {
+    public void setTb_medio_id(Medio tb_medio_id) {
         this.tb_medio_id = tb_medio_id;
     }
-    
+
+   
+
     
 }
