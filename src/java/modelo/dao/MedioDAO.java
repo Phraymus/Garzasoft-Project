@@ -26,10 +26,7 @@ public class MedioDAO implements MedioInterface{
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
-                Medio medio = new Medio();
-
-                medio.setIdtb_medio(rs.getInt(1));
-                medio.setNombre(rs.getString(2));
+                Medio medio = new Medio(rs.getInt(1),rs.getString(2));
 
                 listaRetorno.add(medio);
             }
@@ -52,8 +49,7 @@ public class MedioDAO implements MedioInterface{
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql, TABLA, CLAVE_PRIMARIA, id));
             while (rs.next()) {
-                medio.setIdtb_medio(rs.getInt(1));
-                medio.setNombre(rs.getString(2));
+                medio = new Medio(rs.getInt(1),rs.getString(2));
             }
             rs.close();
             conexion.cerrar();
@@ -67,7 +63,7 @@ public class MedioDAO implements MedioInterface{
     @Override
     public boolean insertar(Medio medio) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{medio.getIdtb_medio(), medio.getNombre()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{medio.getIdtb_medio(), medio.getNombre()});
         } catch (Exception ex) {
             return false;
         }
@@ -76,7 +72,7 @@ public class MedioDAO implements MedioInterface{
     @Override
     public boolean editar(Medio medio) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET ruc=?, nombre_empresa=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{medio.getIdtb_medio(), medio.getNombre()});
+            return conexion.ejecutar(String.format("UPDATE %s SET ruc=?, nombre_empresa=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{medio.getNombre(),medio.getIdtb_medio()});
         } catch (Exception ex) {
             return false;
         }

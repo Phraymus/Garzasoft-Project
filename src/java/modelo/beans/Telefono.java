@@ -12,18 +12,15 @@ package modelo.beans;
 public class Telefono {
     private int idtb_telefono;
     private String numero;
-    private int tb_persona_id;
-    private int tb_persona_idt;
+    private Persona persona;
 
     public Telefono() {
     }
-    
 
-    public Telefono(int idtb_telefono, String numero, int tb_persona_id, int tb_persona_idt) {
+    public Telefono(int idtb_telefono, String numero, Persona persona) {
         this.idtb_telefono = idtb_telefono;
         this.numero = numero;
-        this.tb_persona_id = tb_persona_id;
-        this.tb_persona_idt = tb_persona_idt;
+        this.persona = persona;
     }
 
     public int getIdtb_telefono() {
@@ -42,19 +39,11 @@ public class Telefono {
         this.numero = numero;
     }
 
-    public int getTb_persona_id() {
-        return tb_persona_id;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setTb_persona_id(int tb_persona_id) {
-        this.tb_persona_id = tb_persona_id;
-    }
-
-    public int getTb_persona_idt() {
-        return tb_persona_idt;
-    }
-
-    public void setTb_persona_idt(int tb_persona_idt) {
-        this.tb_persona_idt = tb_persona_idt;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 }

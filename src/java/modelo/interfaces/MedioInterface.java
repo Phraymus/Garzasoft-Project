@@ -16,8 +16,8 @@ import modelo.beans.Medio;
 public interface MedioInterface {
     final Conexion conexion=new Conexion();
     final String TABLA = "tb_medio";
-    final String ATRIBUTOS[] = {"tbmedio_id", "ruc", "nombre_empresa"};
-    final String CLAVE_PRIMARIA = "tb_persona_id";
+    final String ATRIBUTOS[] = {"tbmedio_id", "nombre"};
+    final String CLAVE_PRIMARIA = "tb_medio_id";
     
     public ArrayList<Medio> listar();
     public Medio buscar(int id);
