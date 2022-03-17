@@ -16,7 +16,7 @@ import modelo.beans.Telefono;
 public interface TelefonoInterface {
     final Conexion conexion=new Conexion();
     final String TABLA = "tb_telefono";
-    final String ATRIBUTOS[] = {"idtb_telefono", "numero", "tbpersona_id","tbpersona_id"};
+    final String ATRIBUTOS[] = {"idtb_telefono", "numero", "tbpersona_id"};
     final String CLAVE_PRIMARIA = "idtb_telefono";
     
     public ArrayList<Telefono> listar();
