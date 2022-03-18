@@ -14,19 +14,14 @@ import modelo.beans.Persona;
  * @author ESTUDIANTE
  */
 public interface PersonaInterface {
-
     final Conexion conexion = new Conexion();
     final String TABLA = "tb_persona";
-    final String ATRIBUTOS[] = {"idtb_persona", "nombre", "apellido_paterno", "apellido_materno", "correo", "foto", "tipo_identificacion", "numero_identificacion", "tb_cuidad_id"};
+    final String ATRIBUTOS[] = {"idtb_persona", "nombre", "apellido_paterno", "apellido_materno", "correo", "tipo_identificacion", "numero_identificacion", "foto", "tb_cuidad_id"};
     final String CLAVE_PRIMARIA = "idtb_persona";
 
     public ArrayList<Persona> listar();
-
     public Persona buscar(int id);
-
     public boolean insertar(Persona persona);
-
     public boolean editar(Persona persona);
-
     public boolean eliminar(int id);
 }
