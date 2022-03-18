@@ -14,7 +14,18 @@
     </title>
 </head>
 
-<body>
+<body onkeypress="if(event.keyCode==13){autentificar();}">
+    <script>
+        function autentificar() {
+            if (document.getElementById("txtUsuario").value == "garzasoft" && document.getElementById("txtPassword").value == "garzasoft1234#") {
+                document.frmLogin.action = "dashboard-inicio/dashboard.html";
+                document.frmLogin.method = "submit";
+                document.frmLogin.submit();
+            } else {
+                alert('Tranquilo mijin, no estas autorizado para este sistema.');
+            }
+        }
+    </script>
     <div class="login-container">
         <img class="image-container" src="../img/login/imagen.png" alt="login">
         <div class="login-info-container bg-white">
@@ -41,18 +52,9 @@
             </form>
         </div>
     </div>
-    <script>
-        function autentificar() {
-            if (document.getElementById("txtUsuario").value == "garzasoft" && document.getElementById("txtPassword").value == "garzasoft1234#") {
-                document.frmLogin.action = "dashboard-inicio/dashboard.html";
-                document.frmLogin.method = "submit";
-                document.frmLogin.submit();
-            } else {
-                alert('Tranquilo mijin, no estas autorizado para este sistema.');
-            }
-        }
-    </script>
+
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 
 </html>
