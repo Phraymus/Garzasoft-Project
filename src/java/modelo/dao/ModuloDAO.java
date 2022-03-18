@@ -1,14 +1,15 @@
-/*
+*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo.dao;
-
+ 
 import java.awt.Image;
 import java.util.ArrayList;
 import modelo.interfaces.ModuloInterface;
 import java.sql.ResultSet;
-import jdk.jfr.Timestamp;
+import java.sql.Timestamp;
+
 import modelo.beans.Ciudad;
 import modelo.beans.Cliente;
 import modelo.beans.Departamento;
@@ -17,6 +18,9 @@ import modelo.beans.Pais;
 import modelo.beans.Persona;
 import modelo.beans.Proyecto;
 import modelo.beans.Trabajador;
+import static modelo.interfaces.ModuloInterface.CLAVE_PRIMARIA;
+import static modelo.interfaces.ModuloInterface.TABLA;
+import static modelo.interfaces.ModuloInterface.conexion;
 /**
  *
  * @author Sttefany
@@ -52,7 +56,7 @@ public class ModuloDAO  implements ModuloInterface{
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 Pais pais1 = new  Pais(rs.getInt(41), rs.getString(42));
-                Departamento departamento1 = new  Departamento(rs.getInt(39), rs.getString(40), pais);
+                Departamento departamento1 = new  Departamento(rs.getInt(39), rs.getString(40), pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(37), rs.getString(38), departamento1);
                 Persona persona1 = new Persona(rs.getInt(29), rs.getString(30), rs.getString(31), rs.getString(32), rs.getString(33), (Image) rs.getBlob(34), rs.getString(35), rs.getString(36), ciudad1 );
                 Cliente cliente = new Cliente(persona1, rs.getString(27), rs.getString(28));
@@ -111,15 +115,16 @@ public class ModuloDAO  implements ModuloInterface{
                 Pais pais2 = new Pais(rs.getInt(56), rs.getString(57));
                 Departamento departamento2 = new Departamento( rs.getInt(54), rs.getString(55), pais2);
                 Ciudad ciudad2 = new Ciudad(rs.getInt(52), rs.getString(53), departamento2);
-                Persona persona = new Persona(rs.getInt(44), rs.getString(45), rs.getString(46), rs.getString(47), rs.getString(48), (Image) rs.getBlob(49), rs.getString(50), rs.getString(51), ciudad2 );
+                Persona persona2 = new Persona(rs.getInt(44), rs.getString(45), rs.getString(46), rs.getString(47), rs.getString(48), (Image) rs.getBlob(49), rs.getString(50), rs.getString(51), ciudad2 );
                 Trabajador programador = new Trabajador(persona2, rs.getString(43));
 
 
-                Proyecto proyecto = new Proyecto(rs.getInt(4), rs.getString(5), rs.getString(6), (Timestamp)rs.getTimestamp(7), (Timestamp)rs.getTimestamp(8), 
-                rs.getString(9),rs.getString(10),rs.getString(11), programador, administrador, cliente );
-                Modulo modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), proyecto);
-              
-               
+//                Proyecto proyecto = new Proyecto(rs.getInt(4), rs.getString(5), rs.getString(6), (Timestamp)rs.getTimestamp(7), (Timestamp)rs.getTimestamp(8), 
+//                rs.getString(9),rs.getString(10),rs.getString(11), administrador, cliente, programador );
+//                Modulo modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), proyecto);
+//              
+               Proyecto proyecto = new Proyecto(rs.getInt(4), rs.getString(5), rs.getString(6), rs.getTimestamp(7), rs.getTimestamp(8), rs.getString(9), rs.getString(10), rs.getString(11),
+                 administrador, cliente, programador);
                 listaRetorno.add(modulo);
             }
             rs.close();

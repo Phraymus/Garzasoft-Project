@@ -1,4 +1,4 @@
-/*
+*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -18,6 +18,9 @@ import modelo.beans.Proyecto;
 import modelo.beans.Requerimiento;
 import modelo.beans.Trabajador;
 import modelo.interfaces.RequerimientoInterface;
+import static modelo.interfaces.RequerimientoInterface.CLAVE_PRIMARIA;
+import static modelo.interfaces.RequerimientoInterface.TABLA;
+import static modelo.interfaces.RequerimientoInterface.conexion;
 
 /**
  *
@@ -56,7 +59,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
             
             while (rs.next()) {
                 Pais pais1 = new  Pais(rs.getInt(46), rs.getString(47));
-                Departamento departamento1 = new  Departamento(rs.getInt(44), rs.getString(45), pais);
+                Departamento departamento1 = new  Departamento(rs.getInt(44), rs.getString(45), pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(42), rs.getString(43), departamento1);
                 Persona persona1 = new Persona(rs.getInt(34), rs.getString(35), rs.getString(36), rs.getString(37), rs.getString(38), (Image) rs.getBlob(39), rs.getString(40), rs.getString(41), ciudad1 );
                 Cliente cliente = new Cliente(persona1, rs.getString(32), rs.getString(33));

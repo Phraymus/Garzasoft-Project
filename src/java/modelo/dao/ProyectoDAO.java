@@ -6,8 +6,9 @@ package modelo.dao;
 
 import java.awt.Image;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import jdk.jfr.Timestamp;
+ 
 import modelo.beans.Ciudad;
 import modelo.beans.Cliente;
 import modelo.beans.Departamento;
@@ -17,6 +18,9 @@ import modelo.beans.Persona;
 import modelo.beans.Proyecto;
 import modelo.beans.Trabajador;
 import modelo.interfaces.ProyectoInterface;
+import static modelo.interfaces.ProyectoInterface.CLAVE_PRIMARIA;
+import static modelo.interfaces.ProyectoInterface.TABLA;
+import static modelo.interfaces.ProyectoInterface.conexion;
 
 /**
  *
@@ -53,7 +57,7 @@ public class ProyectoDAO implements ProyectoInterface{
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 Pais pais1 = new  Pais(rs.getInt(38), rs.getString(39));
-                Departamento departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais);
+                Departamento departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(34), rs.getString(35), departamento1);
                 Persona persona1 = new Persona(rs.getInt(26), rs.getString(27), rs.getString(28),
                 rs.getString(29), rs.getString(30), (Image) rs.getBlob(31), rs.getString(32), rs.getString(33), ciudad1 );
@@ -77,8 +81,7 @@ public class ProyectoDAO implements ProyectoInterface{
 
 
                 proyecto = new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), 
-                (Timestamp)rs.getTimestamp(5), 
-                rs.getString(6),rs.getString(7),rs.getString(8), programador, administrador, cliente );
+                (Timestamp)rs.getTimestamp(5), rs.getString(6),rs.getString(7),rs.getString(8), administrador, cliente, programador );
 
               
                 
@@ -103,7 +106,7 @@ public class ProyectoDAO implements ProyectoInterface{
             while (rs.next()) {
                 
                 Pais pais1 = new  Pais(rs.getInt(38), rs.getString(39));
-                Departamento departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais);
+                Departamento departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(34), rs.getString(35), departamento1);
                 Persona persona1 = new Persona(rs.getInt(26), rs.getString(27), rs.getString(28),
                 rs.getString(29), rs.getString(30), (Image) rs.getBlob(31), rs.getString(32), rs.getString(33), ciudad1 );
@@ -126,8 +129,7 @@ public class ProyectoDAO implements ProyectoInterface{
                 Trabajador programador = new Trabajador(persona2, rs.getString(40));
 
                 Proyecto proyecto = new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), 
-                (Timestamp)rs.getTimestamp(5), 
-                rs.getString(6),rs.getString(7),rs.getString(8), programador, administrador, cliente );
+                (Timestamp)rs.getTimestamp(5), rs.getString(6),rs.getString(7),rs.getString(8), administrador, cliente, programador );
 
                 listaRetorno.add(proyecto);
             }

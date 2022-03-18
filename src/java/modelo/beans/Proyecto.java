@@ -19,14 +19,14 @@ public class Proyecto {
     private String tarea;
     private String tarea_descripcion;
     private String checklist;
-    private  Persona administrador;
+    private  Trabajador administrador;
     private  Cliente cliente;
-    private  Persona programador;
+    private  Trabajador programador;
 
     public Proyecto() {
     }
 
-    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, Persona administrador, Cliente cliente, Persona programador) {
+    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, Trabajador administrador, Cliente cliente, Trabajador programador) {
         this.idtb_proyecto = idtb_proyecto;
         this.nombre = nombre;
         this.estado = estado;
@@ -104,11 +104,11 @@ public class Proyecto {
         this.checklist = checklist;
     }
 
-    public Persona getAdministrador() {
+    public Trabajador getAdministrador() {
         return administrador;
     }
 
-    public void setAdministrador(Persona administrador) {
+    public void setAdministrador(Trabajador administrador) {
         this.administrador = administrador;
     }
 
@@ -120,15 +120,13 @@ public class Proyecto {
         this.cliente = cliente;
     }
 
-    public Persona getProgramador() {
+    public Trabajador getProgramador() {
         return programador;
     }
 
-    public void setProgramador(Persona programador) {
+    public void setProgramador(Trabajador programador) {
         this.programador = programador;
     }
-
-   
 
     
 
