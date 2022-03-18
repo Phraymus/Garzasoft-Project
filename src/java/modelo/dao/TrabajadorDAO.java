@@ -11,7 +11,6 @@ import modelo.beans.Trabajador;
 import java.sql.ResultSet;
 import modelo.beans.Ciudad;
 import modelo.beans.Departamento;
-import modelo.beans.Identificacion;
 import modelo.beans.Pais;
 import modelo.beans.Persona;
 import modelo.interfaces.TrabajadorInterface;
@@ -53,11 +52,11 @@ public class TrabajadorDAO implements TrabajadorInterface{
             while (rs.next()) {
                 
                 trabajador = new Trabajador();
-                Identificacion identificacion = new Identificacion(rs.getInt(8), rs.getString(9), rs.getString(10));
+                
                 Pais pais =new Pais(rs.getInt(15),rs.getString(16));
                 Departamento departamento= new Departamento(rs.getInt(13), rs.getString(14), pais);
                 Ciudad ciudad = new Ciudad(rs.getInt(11), rs.getString(12),departamento);
-                Persona persona= new Persona(rs.getInt(1), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(5),(Image)rs.getBlob(6),identificacion,ciudad);
+                Persona persona= new Persona(rs.getInt(1), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),(Image)rs.getBlob(8),ciudad);
                 trabajador.setTipo(rs.getString(2));
                 
             }
@@ -100,7 +99,7 @@ public class TrabajadorDAO implements TrabajadorInterface{
     @Override
     public boolean insertar(Trabajador trabajador) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{trabajador.getTb_persona_id(), trabajador.getTipo()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{trabajador.getPersona(), trabajador.getTipo()});
         } catch (Exception ex) {
             return false;
         }

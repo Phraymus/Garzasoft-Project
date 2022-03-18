@@ -52,7 +52,7 @@ public class ReunionDAO implements ReunionInterface {
                 reunion.setFecha((Timestamp)rs.getTimestamp(2));
                 reunion.setAsunto(rs.getString(3));
                 reunion.setLink(rs.getString(4));
-                reunion.setTb_medio_id(medio);
+                reunion.setMedio(medio);
             }
             rs.close();
             conexion.cerrar();
@@ -80,7 +80,7 @@ public class ReunionDAO implements ReunionInterface {
                 reunion.setFecha((Timestamp)rs.getTimestamp(2));
                 reunion.setAsunto(rs.getString(3));
                 reunion.setLink(rs.getString(4));
-                reunion.setTb_medio_id(medio);
+                reunion.setMedio(medio);
 
                 listaRetorno.add( reunion);
             }
@@ -96,7 +96,7 @@ public class ReunionDAO implements ReunionInterface {
     @Override
     public boolean insertar(Reunion reunion) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?)", TABLA), new Object[]{null, reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id().getIdtb_medio()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?)", TABLA), new Object[]{null, reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getMedio().getIdtb_medio()});
         } catch (Exception ex) {
             return false;
         }
@@ -105,7 +105,7 @@ public class ReunionDAO implements ReunionInterface {
     @Override
     public boolean editar(Reunion reunion) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getTb_medio_id().getIdtb_medio()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{ reunion.getFecha(),reunion.getAsunto(),reunion.getLink(),reunion.getMedio().getIdtb_medio()});
         } catch (Exception ex) {
             return false;
         }

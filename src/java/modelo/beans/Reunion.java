@@ -17,17 +17,17 @@ public class Reunion {
     private Timestamp fecha;
     private String asunto;
     private String link;
-    private Medio tb_medio_id;
+    private Medio medio;
 
     public Reunion() {
     }
 
-    public Reunion(int idtb_reuniones, Timestamp fecha, String asunto, String link, Medio tb_medio_id) {
+    public Reunion(int idtb_reuniones, Timestamp fecha, String asunto, String link, Medio medio) {
         this.idtb_reuniones = idtb_reuniones;
         this.fecha = fecha;
         this.asunto = asunto;
         this.link = link;
-        this.tb_medio_id = tb_medio_id;
+        this.medio = medio;
     }
 
     public int getIdtb_reuniones() {
@@ -62,15 +62,14 @@ public class Reunion {
         this.link = link;
     }
 
-    public Medio getTb_medio_id() {
-        return tb_medio_id;
+    public Medio getMedio() {
+        return medio;
     }
 
-    public void setTb_medio_id(Medio tb_medio_id) {
-        this.tb_medio_id = tb_medio_id;
+    public void setMedio(Medio medio) {
+        this.medio = medio;
     }
 
-   
-
+    
     
 }
