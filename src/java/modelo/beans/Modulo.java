@@ -11,17 +11,17 @@ package modelo.beans;
 public class Modulo {
     private int idtb_modulo;
     private String nombre;
-    private char estado;
-    private int tb_proyecto_id;
+    private String estado;
+    private Proyecto proyecto;
 
     public Modulo() {
     }
 
-    public Modulo(int idtb_modulo, String nombre, char estado, int tb_proyecto_id) {
+    public Modulo(int idtb_modulo, String nombre, String estado, Proyecto proyecto) {
         this.idtb_modulo = idtb_modulo;
         this.nombre = nombre;
         this.estado = estado;
-        this.tb_proyecto_id = tb_proyecto_id;
+        this.proyecto = proyecto;
     }
 
     public int getIdtb_modulo() {
@@ -40,21 +40,22 @@ public class Modulo {
         this.nombre = nombre;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getTb_proyecto_id() {
-        return tb_proyecto_id;
+    public Proyecto getProyecto() {
+        return proyecto;
     }
 
-    public void setTb_proyecto_id(int tb_proyecto_id) {
-        this.tb_proyecto_id = tb_proyecto_id;
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
-  
+
+    
     
 }

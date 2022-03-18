@@ -13,19 +13,20 @@ import jdk.jfr.Timestamp;
 public class Proyecto {
     private int idtb_proyecto;
     private String nombre;
-    private char estado;
+    private String estado;
     private Timestamp fecha_inicio;
     private Timestamp fecha_fin;
     private String tarea;
     private String tarea_descripcion;
     private String checklist;
-    private int tb_trabjador_id;
-    private int tb_cliente_id;
+    private  Persona administrador;
+    private  Cliente cliente;
+    private  Persona programador;
 
     public Proyecto() {
     }
 
-    public Proyecto(int idtb_proyecto, String nombre, char estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, int tb_trabjador_id, int tb_cliente_id) {
+    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, Persona administrador, Cliente cliente, Persona programador) {
         this.idtb_proyecto = idtb_proyecto;
         this.nombre = nombre;
         this.estado = estado;
@@ -34,16 +35,9 @@ public class Proyecto {
         this.tarea = tarea;
         this.tarea_descripcion = tarea_descripcion;
         this.checklist = checklist;
-        this.tb_trabjador_id = tb_trabjador_id;
-        this.tb_cliente_id = tb_cliente_id;
-    }
-
-    public String getTarea_descripcion() {
-        return tarea_descripcion;
-    }
-
-    public void setTarea_descripcion(String tarea_descripcion) {
-        this.tarea_descripcion = tarea_descripcion;
+        this.administrador = administrador;
+        this.cliente = cliente;
+        this.programador = programador;
     }
 
     public int getIdtb_proyecto() {
@@ -62,11 +56,11 @@ public class Proyecto {
         this.nombre = nombre;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -94,6 +88,14 @@ public class Proyecto {
         this.tarea = tarea;
     }
 
+    public String getTarea_descripcion() {
+        return tarea_descripcion;
+    }
+
+    public void setTarea_descripcion(String tarea_descripcion) {
+        this.tarea_descripcion = tarea_descripcion;
+    }
+
     public String getChecklist() {
         return checklist;
     }
@@ -102,21 +104,32 @@ public class Proyecto {
         this.checklist = checklist;
     }
 
-    public int getTb_trabjador_id() {
-        return tb_trabjador_id;
+    public Persona getAdministrador() {
+        return administrador;
     }
 
-    public void setTb_trabjador_id(int tb_trabjador_id) {
-        this.tb_trabjador_id = tb_trabjador_id;
+    public void setAdministrador(Persona administrador) {
+        this.administrador = administrador;
     }
 
-    public int getTb_cliente_id() {
-        return tb_cliente_id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setTb_cliente_id(int tb_cliente_id) {
-        this.tb_cliente_id = tb_cliente_id;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
+    public Persona getProgramador() {
+        return programador;
+    }
+
+    public void setProgramador(Persona programador) {
+        this.programador = programador;
+    }
+
+   
+
+    
 
 }
