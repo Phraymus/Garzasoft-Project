@@ -26,7 +26,7 @@ public class PersonaDAO implements PersonaInterface{
     public ArrayList<Persona> listar() {
         ArrayList<Persona> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.tipo_identificacion, p.numero_identificacion, p.foto, c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, pa.idtb_pais, pa.nombre FROM tb_persona AS p JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS pa ON d.tb_pais_id=pa.idtb_pais";
+            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto,p.tipo_identificacion, p.numero_identificacion,  c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, pa.idtb_pais, pa.nombre FROM tb_persona AS p JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS pa ON d.tb_pais_id=pa.idtb_pais";
             
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
@@ -40,9 +40,9 @@ public class PersonaDAO implements PersonaInterface{
                 persona.setApellido_paterno(rs.getString(3));
                 persona.setApellido_materno(rs.getString(4));
                 persona.setCorreo(rs.getString(5));
-                persona.setTipo_identificacion(rs.getString(6));
-                persona.setNumero_identificacion(rs.getString(7));
-                persona.setFoto((Image) rs.getBlob(8));
+                persona.setTipo_identificacion(rs.getString(7));
+                persona.setNumero_identificacion(rs.getString(8));
+                persona.setFoto((Image) rs.getBlob(6));
                 
                 persona.setCiudad(ciudad);
                
@@ -61,7 +61,7 @@ public class PersonaDAO implements PersonaInterface{
     public Persona buscar(int id) {
         Persona persona = null;
         try {
-            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.tipo_identificacion, p.numero_identificacion, p.foto, c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, pa.idtb_pais, pa.nombre FROM tb_persona AS p JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS pa ON d.tb_pais_id=pa.idtb_pais WHERE p.idtb_persona="+id;
+            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto,p.tipo_identificacion, p.numero_identificacion,  c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, pa.idtb_pais, pa.nombre FROM tb_persona AS p JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS pa ON d.tb_pais_id=pa.idtb_pais WHERE p.idtb_persona="+id;
       
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
@@ -76,9 +76,10 @@ public class PersonaDAO implements PersonaInterface{
                 persona.setApellido_paterno(rs.getString(3));
                 persona.setApellido_materno(rs.getString(4));
                 persona.setCorreo(rs.getString(5));
-                persona.setTipo_identificacion(rs.getString(6));
-                persona.setNumero_identificacion(rs.getString(7));
-                persona.setFoto((Image) rs.getBlob(8));
+               persona.setTipo_identificacion(rs.getString(7));
+                persona.setNumero_identificacion(rs.getString(8));
+                persona.setFoto((Image) rs.getBlob(6));
+                
                 
                 persona.setCiudad(ciudad);
             }

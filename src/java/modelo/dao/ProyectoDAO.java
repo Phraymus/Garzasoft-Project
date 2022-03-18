@@ -157,7 +157,7 @@ public class ProyectoDAO implements ProyectoInterface{
     @Override
     public boolean editar(Proyecto proyecto) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, tb_pais_id()=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+            return conexion.ejecutar(String.format("UPDATE %s SET idtb_proyecto=?, nombre=?, estado=?, fecha_inicio=?, fecha_fin=?,tarea=?, tarea_descripcion=?,  checklist=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
             proyecto.getNombre(), proyecto.getEstado(), proyecto.getFecha_inicio(),
             proyecto.getFecha_fin(), proyecto.getTarea(), proyecto.getTarea_descripcion(),
             proyecto.getChecklist(),  proyecto.getAdministrador(), proyecto.getCliente(), proyecto.getProgramador()});

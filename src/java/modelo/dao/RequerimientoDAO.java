@@ -163,7 +163,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
     @Override
     public boolean editar(Requerimiento requerimiento) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, tb_pais_id()=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+            return conexion.ejecutar(String.format("UPDATE %s SET idtb_checklist=?, nombre=?, fecha_inicio=?, fecha_fin=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
             requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
             requerimiento.getFecha_fin(), requerimiento.getModulo()});
         } catch (Exception ex) {

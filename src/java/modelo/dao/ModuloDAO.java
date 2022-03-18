@@ -143,7 +143,7 @@ public class ModuloDAO implements ModuloInterface {
     @Override
     public boolean editar(Modulo modulo) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, tb_pais_id()=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+            return conexion.ejecutar(String.format("UPDATE %s SET idtb_modulo=?, nombre=? , estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
                 modulo.getNombre(), modulo.getEstado(), modulo.getProyecto()});
         } catch (Exception ex) {
             return false;
