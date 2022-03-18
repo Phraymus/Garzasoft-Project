@@ -36,15 +36,15 @@ public class UsuarioDAO implements UsuarioInterface{
                 Pais pais1 = new Pais(rs.getInt(18), rs.getString(19));
                 Departamento departamento1 = new Departamento(rs.getInt(16), rs.getString(17),pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(14), rs.getString(15), departamento1);
-                Persona persona1 = new Persona(rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), (Image) rs.getBlob(13), ciudad1);
-                Trabajador trabajador = new Trabajador(persona1, rs.getString(5));
+               Persona persona1 = new Persona(rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), (Image) rs.getBlob(11),rs.getString(12), rs.getString(13),  ciudad1);
+                Trabajador trabajador = new Trabajador(persona1, rs.getString(5));  
                 
                 Pais pais2 = new Pais(rs.getInt(30), rs.getString(31));
                 Departamento departamento2 = new Departamento(rs.getInt(16), rs.getString(17),pais2);
                 Ciudad ciudad2 = new Ciudad(rs.getInt(14), rs.getString(15), departamento2);
-                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27), rs.getString(28), (Image) rs.getBlob(29), ciudad2);
+                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), (Image)  rs.getBlob(27), rs.getString(28), rs.getString(29),  ciudad2);
                 Cliente cliente = new Cliente(persona2, rs.getString(20), rs.getString(21));
-                
+
                 usuario.setIdtb_usuario(rs.getInt(1));
                 usuario.setNombre(rs.getString(2));
                 usuario.setClave(rs.getString(3));
@@ -76,13 +76,13 @@ public class UsuarioDAO implements UsuarioInterface{
                 Pais pais1 = new Pais(rs.getInt(18), rs.getString(19));
                 Departamento departamento1 = new Departamento(rs.getInt(16), rs.getString(17),pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(14), rs.getString(15), departamento1);
-                Persona persona1 = new Persona(rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), (Image) rs.getBlob(13), ciudad1);
+                Persona persona1 = new Persona(rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), (Image) rs.getBlob(11),rs.getString(12), rs.getString(13),  ciudad1);
                 Trabajador trabajador = new Trabajador(persona1, rs.getString(5));
                 
                 Pais pais2 = new Pais(rs.getInt(30), rs.getString(31));
                 Departamento departamento2 = new Departamento(rs.getInt(16), rs.getString(17),pais2);
                 Ciudad ciudad2 = new Ciudad(rs.getInt(14), rs.getString(15), departamento2);
-                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27), rs.getString(28), (Image) rs.getBlob(29), ciudad2);
+                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), (Image)  rs.getBlob(27), rs.getString(28), rs.getString(29),  ciudad2);
                 Cliente cliente = new Cliente(persona2, rs.getString(20), rs.getString(21));
                 
                 usuario.setIdtb_usuario(rs.getInt(1));
@@ -105,7 +105,7 @@ public class UsuarioDAO implements UsuarioInterface{
     public boolean insertar(Usuario usuario) {
         try{
             return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?,?,?)", TABLA), new Object[]
-                {null, usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTrabajador().getPersona().getIdtb_persona(), usuario.getTrabajador().getTipo(), usuario.getCliente().getPersona().getIdtb_persona()});
+                {null, usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTrabajador(), usuario.getTrabajador().getTipo(), usuario.getCliente().getPersona().getIdtb_persona()});
         }
         catch (Exception ex) {
             return false;
@@ -115,7 +115,7 @@ public class UsuarioDAO implements UsuarioInterface{
     @Override
     public boolean editar(Usuario usuario) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, clave=?, perfil_usuario=?, tb_persona_id=? , tb_persona_idc=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTrabajador().getPersona().getIdtb_persona(), usuario.getCliente().getPersona().getIdtb_persona(), usuario.getIdtb_usuario()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, clave=?, perfil_usuario=?, tb_persona_id=? , tb_persona_idc=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTrabajador(), usuario.getCliente().getPersona().getIdtb_persona(), usuario.getIdtb_usuario()});
         } catch (Exception ex) {
             return false;
         }
