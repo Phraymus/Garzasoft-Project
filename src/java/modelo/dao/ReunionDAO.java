@@ -41,18 +41,14 @@ public class ReunionDAO implements ReunionInterface {
     public Reunion buscar(int id) {
         Reunion reunion = null;
         try {
-            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_reunion AS r JOIN tb_medio AS m ON r.tb_medio_id=m.idtb_medio WHERE r.idtb_reuniones = "+id;
-            ResultSet rs = conexion.recuperar(sql); 
+            String sql = "SELECT r.idtb_reuniones,r.fecha,r.asunto,r.link,m.idtb_medio,m.nombre FROM tb_reunion AS r JOIN tb_medio AS m ON r.tb_medio=m.idtb_medio WHERE r.tb_medio= "+id;
+            ResultSet rs = conexion.recuperar(sql);                                             
             while (rs.next()) {
                 
-                reunion = new Reunion();
+                
                 Medio medio= new Medio(rs.getInt(5), rs.getString(6));
- 
-                reunion.setIdtb_reuniones(rs.getInt(1));
-                reunion.setFecha((Timestamp)rs.getTimestamp(2));
-                reunion.setAsunto(rs.getString(3));
-                reunion.setLink(rs.getString(4));
-                reunion.setMedio(medio);
+                reunion = new Reunion(rs.getInt(1),(Timestamp)rs.getTimestamp(2),rs.getString(3),rs.getString(4),medio);
+                
             }
             rs.close();
             conexion.cerrar();
