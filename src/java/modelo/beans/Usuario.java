@@ -14,11 +14,30 @@ public class Usuario {
     private String nombre;
     private String clave;
     private String perfil_usuario;
+    
     private Trabajador trabajador;
     private Cliente cliente;
 
     public Usuario() {
     }
+
+    public Usuario(int idtb_usuario, String nombre, String clave, String perfil_usuario, Trabajador trabajador) {
+        this.idtb_usuario = idtb_usuario;
+        this.nombre = nombre;
+        this.clave = clave;
+        this.perfil_usuario = perfil_usuario;
+        this.trabajador = trabajador;
+    }
+
+    public Usuario(int idtb_usuario, String nombre, String clave, String perfil_usuario, Cliente cliente) {
+        this.idtb_usuario = idtb_usuario;
+        this.nombre = nombre;
+        this.clave = clave;
+        this.perfil_usuario = perfil_usuario;
+        this.cliente = cliente;
+    }
+    
+    
 
     public Usuario(int idtb_usuario, String nombre, String clave, String perfil_usuario, Trabajador trabajador, Cliente cliente) {
         this.idtb_usuario = idtb_usuario;
