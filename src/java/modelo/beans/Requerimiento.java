@@ -5,8 +5,8 @@
 package modelo.beans;
 
 import java.util.Date;
-import jdk.jfr.Timestamp;
 
+import java.sql.Timestamp;
 /**
  *
  * @author Sttefany
@@ -22,7 +22,7 @@ public class Requerimiento {
     public Requerimiento() {
     }
 
-    public Requerimiento(int modulo_id, int idtb_checklist, String nombre, char estado, Timestamp fecha_inicio, Timestamp fecha_fin) {
+    public Requerimiento(int modulo_id, int idtb_checklist, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin) {
         this.modulo_id = modulo_id;
         this.idtb_checklist = idtb_checklist;
         this.nombre = nombre;
@@ -55,11 +55,11 @@ public class Requerimiento {
         this.nombre = nombre;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -79,7 +79,7 @@ public class Requerimiento {
         this.fecha_fin = fecha_fin;
     }
 
-        
+   
 
     
 }

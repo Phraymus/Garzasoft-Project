@@ -4,8 +4,8 @@
  */
 package modelo.beans;
 
-import jdk.jfr.Timestamp;
 
+import java.sql.Timestamp;
 /**
  *
  * @author Sttefany
