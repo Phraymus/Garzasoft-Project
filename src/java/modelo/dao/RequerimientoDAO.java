@@ -1,13 +1,15 @@
-*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo.dao;
 
+
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import jdk.jfr.Timestamp;
+import java.sql.Timestamp;
+
 import modelo.beans.Ciudad;
 import modelo.beans.Cliente;
 import modelo.beans.Departamento;
@@ -80,12 +82,13 @@ public class RequerimientoDAO implements RequerimientoInterface{
                 Trabajador programador = new Trabajador(persona2, rs.getString(48));
 
 
-                Proyecto proyecto = new Proyecto(rs.getInt(9), rs.getString(10), rs.getString(11), (Timestamp)rs.getTimestamp(12), (Timestamp)rs.getTimestamp(13), 
-                rs.getString(14),rs.getString(15),rs.getString(16), programador, administrador, cliente );
-                Modulo modulo = new Modulo(rs.getInt(6), rs.getString(7), rs.getString(8), proyecto);
-                requerimiento = new Requerimiento(modulo, rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5));
+                Proyecto proyecto = new Proyecto(rs.getInt(9), rs.getString(10), rs.getString(11), (Timestamp)rs.getTimestamp(12), 
+                (Timestamp)rs.getTimestamp(13), rs.getString(14),rs.getString(15),rs.getString(16), administrador, cliente, programador );
 
-               
+              
+
+              Modulo modulo = new Modulo(rs.getInt(6), rs.getString(7), rs.getString(8), proyecto);
+                requerimiento = new Requerimiento(modulo, rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5));
             }
             rs.close();
             conexion.cerrar();
@@ -107,7 +110,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
 
                 
                Pais pais1 = new  Pais(rs.getInt(46), rs.getString(47));
-                Departamento departamento1 = new  Departamento(rs.getInt(44), rs.getString(45), pais);
+                Departamento departamento1 = new  Departamento(rs.getInt(44), rs.getString(45), pais1);
                 Ciudad ciudad1 = new Ciudad(rs.getInt(42), rs.getString(43), departamento1);
                 Persona persona1 = new Persona(rs.getInt(34), rs.getString(35), rs.getString(36), rs.getString(37), rs.getString(38), (Image) rs.getBlob(39), rs.getString(40), rs.getString(41), ciudad1 );
                 Cliente cliente = new Cliente(persona1, rs.getString(32), rs.getString(33));
@@ -129,7 +132,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
 
 
                 Proyecto proyecto = new Proyecto(rs.getInt(9), rs.getString(10), rs.getString(11), (Timestamp)rs.getTimestamp(12), (Timestamp)rs.getTimestamp(13), 
-                rs.getString(14),rs.getString(15),rs.getString(16), programador, administrador, cliente );
+                rs.getString(14),rs.getString(15),rs.getString(16),administrador, cliente, programador );
                 Modulo modulo = new Modulo(rs.getInt(6), rs.getString(7), rs.getString(8), proyecto);
                 Requerimiento requerimiento = new Requerimiento(modulo, rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5));
 
@@ -151,7 +154,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
         try {
             return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null,  
             requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
-            requerimiento.getFecha_fin(), requerimiento.getModulo_id()});
+            requerimiento.getFecha_fin(), requerimiento.getModulo()});
         } catch (Exception ex) {
             return false;
         }
@@ -162,7 +165,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
         try {
             return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, tb_pais_id()=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
             requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
-            requerimiento.getFecha_fin(), requerimiento.getModulo_id()});
+            requerimiento.getFecha_fin(), requerimiento.getModulo()});
         } catch (Exception ex) {
             return false;
         }

@@ -17,28 +17,27 @@ public class Persona {
     private String apellido_paterno;
     private String apellido_materno;
     private String correo;
+    private Image foto;
     private String tipo_identificacion;
     private String numero_identificacion;
-    private Image foto;
+    
 
     private Ciudad ciudad;
 
     public Persona() {
     }
 
-    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, String tipo_identificacion, String numero_identificacion, Image foto, Ciudad ciudad) {
+    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, Image foto, String tipo_identificacion, String numero_identificacion, Ciudad ciudad) {
         this.idtb_persona = idtb_persona;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
         this.correo = correo;
+        this.foto = foto;
         this.tipo_identificacion = tipo_identificacion;
         this.numero_identificacion = numero_identificacion;
-        this.foto = foto;
         this.ciudad = ciudad;
     }
-
-    
 
     public int getIdtb_persona() {
         return idtb_persona;
@@ -104,8 +103,6 @@ public class Persona {
         this.numero_identificacion = numero_identificacion;
     }
 
-    
-
     public Ciudad getCiudad() {
         return ciudad;
     }
@@ -114,6 +111,7 @@ public class Persona {
         this.ciudad = ciudad;
     }
 
+   
     
     
 }
