@@ -15,7 +15,7 @@ public class Requerimiento {
     private int modulo_id;
     private int idtb_checklist;
     private String nombre;
-    private char estado;
+    private String estado;
     private Timestamp fecha_inicio;
     private Timestamp fecha_fin;
 
