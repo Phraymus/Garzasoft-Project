@@ -16,7 +16,7 @@ import modelo.beans.Persona;
 public interface PersonaInterface {
     final Conexion conexion = new Conexion();
     final String TABLA = "tb_persona";
-    final String ATRIBUTOS[] = {"idtb_persona", "nombre", "apellido_paterno", "apellido_materno", "correo", "foto", "tb_identificacion_id", "tb_cuidad_id"};
+    final String ATRIBUTOS[] = {"idtb_persona", "nombre", "apellido_paterno", "apellido_materno", "correo", "tipo_identificacion", "numero_identificacion", "foto", "tb_cuidad_id"};
     final String CLAVE_PRIMARIA = "idtb_persona";
 
     public ArrayList<Persona> listar();
