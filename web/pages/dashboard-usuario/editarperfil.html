@@ -9,6 +9,40 @@
 </head>
 
 <body>
+    <script>
+        function tipoIdentificacion() {
+            if (document.getElementById("cmbIdentificacionEdit").value == "N") {
+                document.getElementById("EEdit").className = "d-none";
+                document.getElementById("NEdit").className = "";
+            } else {
+                document.getElementById("EEdit").className = "";
+                document.getElementById("NEdit").className = "d-none";
+            }
+
+            if (document.getElementById("cmbIdentificacionAdd").value == "N") {
+                document.getElementById("EAdd").className = "d-none";
+                document.getElementById("NAdd").className = "";
+            } else {
+                document.getElementById("EAdd").className = "";
+                document.getElementById("NAdd").className = "d-none";
+            }
+        }
+
+        $(function() {
+            $('#file').on('change', function() {
+                file = $(this)[0].files[0];
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        document.getElementById('fotoEditarUsuario').src = e.target.result;
+                    };
+                })(file);
+                reader.readAsDataURL(file);
+            })
+        });
+
+        document.getElementById('fotoEditarUsuario').src = "../../img/dashboard/usuario.png"
+    </script>
     <div class="container-fluid">
         <div class="d-md-flex align-items-start justify-content-between mb-4">
             <div class="col-xl-9 col-md-9 col-sm-12">
@@ -58,28 +92,7 @@
                             <input class="form-control ml-3 mt-3 text-dark" type="text" value="OCAÑA">
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <h5 class="mt-3">Fecha de nacimiento</h5>
-                        </td>
-                        <td>
-                            <h5 class="mt-3">:</h5>
-                        </td>
-                        <td>
-                            <input class="form-control ml-3 mt-3 text-dark" type="date" value="2001-05-01">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h5 class="mt-3">DNI</h5>
-                        </td>
-                        <td>
-                            <h5 class="mt-3">:</h5>
-                        </td>
-                        <td>
-                            <input class="form-control ml-3 mt-3 text-dark" type="text" value="73135470" minlength="8" maxlength="8" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
-                        </td>
-                    </tr>
+
                     <tr>
                         <td>
                             <h5 class="mt-3">Correo</h5>
@@ -91,6 +104,49 @@
                             <input class="form-control ml-3 mt-3 text-dark" type="email" value="bcarrascoo@outlook.com">
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mt-3">Tipo de identificacion</h5>
+                        </td>
+                        <td>
+                            <h5 class="mt-3">:</h5>
+                        </td>
+                        <td>
+                            <select id="cmbIdentificacionEdit" onchange="javascript:tipoIdentificacion()" class=" ml-3 mt-3 form-control">
+                                <option value="N">
+                                    Nacional
+                                </option>
+                                <option value="E">
+                                    Extranjero
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr id="NEdit">
+                        <td>
+                            <h5 class="mt-3">DNI</h5>
+                        </td>
+                        <td>
+                            <h5 class="mt-3">:</h5>
+                        </td>
+                        <td>
+                            <input class="form-control ml-3 mt-3 text-dark" type="text" value="73135470" minlength="8" maxlength="8" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
+                        </td>
+                    </tr>
+
+                    <tr id="EEdit" class="d-none">
+                        <td>
+                            <h5 class="mt-3">Carnet de extranjería</h5>
+                        </td>
+                        <td>
+                            <h5 class="mt-3">:</h5>
+                        </td>
+                        <td>
+                            <input class="form-control ml-3 mt-3 text-dark" type="text" value="73135470" minlength="12" maxlength="12" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
                             <h5 class="mt-3">Telefono</h5>
@@ -131,11 +187,14 @@
                 <a href="javascript:editarContrasenia()" class="btn btn-primary shadow-sm mt-3"><i
                     class="fas fa-key fa-sm text-white-50"></i> Cambiar Contraseña</a>
 
-                <img class="d-none d-lg-inline-block mt-5" src="../../img/dashboard/usuario.png" alt="Usuario">
+                <img id="fotoEditarUsuario" class="d-none d-lg-inline-block mt-5 w-50 h-50" src="../../img/dashboard/usuario.png" alt="Usuario">
 
                 <br class="d-none d-lg-inline-block mt-5">
-                <a href="javascript:editarContrasenia()" class="btn btn-md btn-primary shadow-sm mt-3"><i
-                    class="fas fa-upload fa-sm text-white-50"></i> Cargar imagen</a>
+                <div>
+                    <input id="file" type="file" style="display: none;">
+                    <label for="file" class="btn btn-md btn-primary shadow-sm mt-3"><i
+                                    class="fas fa-upload fa-sm text-white-50"></i> Cargar imagen</label>
+                </div>
             </div>
         </div>
 
