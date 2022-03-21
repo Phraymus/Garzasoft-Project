@@ -21,7 +21,7 @@ public interface RequerimientoInterface {
     
     public ArrayList<Requerimiento> listar();
     public Requerimiento buscar(int id);
-    public boolean insertar(Requerimiento ciudad);
-    public boolean editar(Requerimiento ciudad);
+    public boolean insertar(Requerimiento requerimiento);
+    public boolean editar(Requerimiento requerimiento);
     public boolean eliminar(int id);
 }
