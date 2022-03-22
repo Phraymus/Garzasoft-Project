@@ -18,7 +18,8 @@ import modelo.interfaces.DepartamentoInterface;
  * @author Marco
  */
 public class DepartamentoDAO implements DepartamentoInterface{
- /*public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+    
+    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
             ResultSet rs = conexion.recuperar(sql);
@@ -37,7 +38,7 @@ public class DepartamentoDAO implements DepartamentoInterface{
         } finally {
             return listaRetorno;
         }
-    }*/
+    }
 
     @Override
     public Departamento buscar(int id) {

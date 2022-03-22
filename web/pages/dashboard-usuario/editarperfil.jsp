@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>informaciondelacuenta</title>
+    <%@page contentType="text/html"%>
+    <%@page pageEncoding="UTF-8"%> 
 </head>
 
 <body>
@@ -41,7 +43,7 @@
             })
         });
 
-        document.getElementById('fotoEditarUsuario').src = "../../img/dashboard/usuario.png"
+        document.getElementById('fotoEditarUsuario').src = "${pageContext.request.contextPath}/img/dashboard/usuario.png"
     </script>
     <div class="container-fluid">
         <div class="d-md-flex align-items-start justify-content-between mb-4">
@@ -187,7 +189,7 @@
                 <a href="javascript:editarContrasenia()" class="btn btn-primary shadow-sm mt-3"><i
                     class="fas fa-key fa-sm text-white-50"></i> Cambiar Contraseña</a>
 
-                <img id="fotoEditarUsuario" class="d-none d-lg-inline-block mt-5 w-50 h-50" src="../../img/dashboard/usuario.png" alt="Usuario">
+                <img id="fotoEditarUsuario" class="d-none d-lg-inline-block mt-5 w-50 h-50" src="${pageContext.request.contextPath}/img/dashboard/usuario.png" alt="Usuario">
 
                 <br class="d-none d-lg-inline-block mt-5">
                 <div>

@@ -64,9 +64,9 @@ public class PaisDAO implements PaisInterface{
         try {
             String sql = "SELECT ";
             for (int i = 0; i < ATRIBUTOS.length; i++) {
-                sql = (i == ATRIBUTOS.length - 1) ? sql + ATRIBUTOS[i] + ", " : sql + ATRIBUTOS[i];
+                sql = (i != ATRIBUTOS.length - 1) ? sql + ATRIBUTOS[i] + ", " : sql + ATRIBUTOS[i];
             }
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(String.format("%s FROM %s ORDER BY nombre", sql, TABLA));
             while (rs.next()) {
                 Pais pais = new Pais();
 
