@@ -1,3 +1,5 @@
+<%@page import="modelo.beans.Proyecto"%>
+<%@page import="modelo.dao.ProyectoDAO"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,7 +10,9 @@
     <title>informaciondelproyecto</title>
 </head>
 
+    
 <body>
+    
     <table>
         <tr>
             <td>
@@ -17,9 +21,8 @@
             <td>
                 <h5 class="mt-3">:</h5>
             </td>
-
             <td>
-                <h5 class="mt-3 ml-3 text-dark">Proyecto de manzanas</h5>
+                <h5 class="mt-3 ml-3 text-dark"></h5>
             </td>
         </tr>
         <tr>
@@ -30,7 +33,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark">En Proceso</h5>
+                <h5 class="mt-3 ml-3 text-dark"></h5>
             </td>
         </tr>
         <tr>
@@ -41,7 +44,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark">03/01/2022</h5>
+                <h5 class="mt-3 ml-3 text-dark"></h5>
             </td>
         </tr>
         <tr>
@@ -52,7 +55,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark">16/04/2022</h5>
+                <h5 class="mt-3 ml-3 text-dark"></h5>
             </td>
         </tr>
         <tr>
@@ -63,7 +66,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark">Luis Gutierrez</h5>
+                <h5 class="mt-3 ml-3 text-dark"></h5>
             </td>
         </tr>
         <tr>
@@ -74,7 +77,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark">Jorge Gonzales</h5>
+                <h5 class="mt-3 ml-3 text-dark"></h5>
             </td>
         </tr>
     </table>

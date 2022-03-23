@@ -19,6 +19,7 @@ import modelo.interfaces.DepartamentoInterface;
  */
 public class DepartamentoDAO implements DepartamentoInterface{
     
+    /*
     public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
@@ -38,21 +39,17 @@ public class DepartamentoDAO implements DepartamentoInterface{
         } finally {
             return listaRetorno;
         }
-    }
+    }*/
 
     @Override
     public Departamento buscar(int id) {
         Departamento  departamento = null;
         try {
-            String sql = "SELECT d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_departamento AS d JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE d.idtb_departamento = "+id;
+            String sql = "SELECT * FROM tb_departamento where tb_pais_id= "+id;
             ResultSet rs = conexion.recuperar(sql);
             
             while (rs.next()) {
-                departamento = new Departamento();
-                Pais pais= new Pais(rs.getInt(3), rs.getString(4));        
-                departamento.setIdtb_departamento(rs.getInt(1));
-                departamento.setNombre(rs.getString(2));
-                departamento.setPais(pais);
+                departamento = new Departamento(rs.getInt(1), rs.getString(2), rs.getInt(3));
             }
             rs.close();
             conexion.cerrar();
@@ -67,16 +64,11 @@ public class DepartamentoDAO implements DepartamentoInterface{
     public ArrayList<Departamento> listar() {
         ArrayList<Departamento> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT d.idtb_departamento, d.nombre, p.idtb_pais, p.nombre FROM tb_departamento AS d JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais";
+            String sql = "SELECT * FROM tb_departamento";
             ResultSet rs = conexion.recuperar(sql);
             
             while (rs.next()) {
-                Departamento departamento = new Departamento();
-                
-                Pais pais= new Pais(rs.getInt(3), rs.getString(4));        
-                departamento.setIdtb_departamento(rs.getInt(1));
-                departamento.setNombre(rs.getString(2));
-                departamento.setPais(pais);
+                Departamento departamento = new Departamento(rs.getInt(1), rs.getString(2), rs.getInt(3));
                 
                 listaRetorno.add(departamento);
             }
@@ -92,7 +84,7 @@ public class DepartamentoDAO implements DepartamentoInterface{
     @Override
     public boolean insertar(Departamento departamento) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, departamento.getNombre(), departamento.getPais().getIdtb_pais()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, departamento.getNombre(), departamento.getIdtb_departamento()});
         } catch (Exception ex) {
             return false;
         }
@@ -101,7 +93,7 @@ public class DepartamentoDAO implements DepartamentoInterface{
     @Override
     public boolean editar(Departamento departamento) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, tb_pais_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{departamento.getNombre(), departamento.getPais().getIdtb_pais(), departamento.getIdtb_departamento()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, tb_pais_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{departamento.getNombre(), departamento.getIdtb_departamento(), departamento.getIdtb_departamento()});
         } catch (Exception ex) {
             return false;
         }

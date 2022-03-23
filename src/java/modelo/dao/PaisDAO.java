@@ -15,7 +15,8 @@ import modelo.interfaces.PaisInterface;
  * @author Marco
  */
 public class PaisDAO implements PaisInterface{
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+    
+    /*public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
         ArrayList<Object[]> listaRetorno = new ArrayList<>();
         try {
             ResultSet rs = conexion.recuperar(sql);
@@ -34,7 +35,7 @@ public class PaisDAO implements PaisInterface{
         } finally {
             return listaRetorno;
         }
-    }
+    }*/
 
     @Override
     public Pais buscar(int id) {
@@ -46,8 +47,7 @@ public class PaisDAO implements PaisInterface{
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s WHERE %s=%d", sql, TABLA, CLAVE_PRIMARIA, id));
             while (rs.next()) {
-                pais.setIdtb_pais(rs.getInt(1));
-                pais.setNombre(rs.getString(2));
+               pais = new Pais(rs.getInt(1),rs.getString(2));
             }
             rs.close();
             conexion.cerrar();
@@ -68,10 +68,7 @@ public class PaisDAO implements PaisInterface{
             }
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s ORDER BY nombre", sql, TABLA));
             while (rs.next()) {
-                Pais pais = new Pais();
-
-                pais.setIdtb_pais(rs.getInt(1));
-                pais.setNombre(rs.getString(2));
+                Pais pais = new Pais(rs.getInt(1),rs.getString(2));
 
                 listaRetorno.add(pais);
             }

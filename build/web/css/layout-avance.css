@@ -12,6 +12,8 @@
 
 #table-requerimiento{
    border-color: black;
+   padding-left: 30px;
+   padding-right: 30px;
 
 }
 
@@ -21,26 +23,31 @@
 }
 
 #lista-datos{
-   margin-left: 15px;
    margin-top: 10px;
    font-weight: bold;
    color: black;
 
 }
 
+th{
+   background-color: #486ACE;
+   color: white;
+}  
+
 #container{
    float: left;
 }
 
 #container1{
-   margin: 40px;
+   padding: 15px;
+  
 }
 
 #containera{
-   margin-top: 15px;
+   font-size: 4vmin;
+   font-size: 20px;
+   padding-left: 70px;
 }
-
-
 
 #item1{
    justify-content: center;
@@ -51,5 +58,31 @@
 }
 
 #proyecto{
-   margin: 40px;
+   padding-top: 10px;
+   font-weight: bold;
+   font-size: 6vmin;
+   display: inline;
+ 
+  
 }
+
+#imagen-avance{
+   height: 80px;
+   height: 14vmin;
+   display: inline;
+   padding-right: 15px;
+}
+
+#encabezado-pagina{
+   padding-top: 25px;
+}
+
+#parte-inicial{
+   margin-left: 10vmin;
+}
+
+#staticEmail{
+   font-size: 20pxvmin;
+}
+
+
