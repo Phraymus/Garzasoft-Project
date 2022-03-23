@@ -17,6 +17,10 @@ import modelo.interfaces.PersonaInterface;
 public class PersonaLogic implements PersonaInterface{
 
     PersonaDAO personaDao= new PersonaDAO();
+    
+    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
+        return personaDao.listar(sql, numeroAtributos);
+    }
     @Override
     public ArrayList<Persona> listar() {
         return personaDao.listar();
