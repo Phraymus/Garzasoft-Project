@@ -10,32 +10,31 @@ package modelo.beans;
  * @author ELIAS
  */
 public class UsuarioReunion {
-    private Reunion reunion;
-    private Usuario usuario;
+    private int tb_reunion_id;
+    private int tb_usuario_id;
 
     public UsuarioReunion() {
     }
 
-    public UsuarioReunion(Reunion reunion, Usuario usuario) {
-        this.reunion = reunion;
-        this.usuario = usuario;
+    public UsuarioReunion(int tb_reunion_id, int tb_usuario_id) {
+        this.tb_reunion_id = tb_reunion_id;
+        this.tb_usuario_id = tb_usuario_id;
     }
 
-    public Reunion getReunion() {
-        return reunion;
+    public int getTb_reunion_id() {
+        return tb_reunion_id;
     }
 
-    public void setReunion(Reunion reunion) {
-        this.reunion = reunion;
+    public void setTb_reunion_id(int tb_reunion_id) {
+        this.tb_reunion_id = tb_reunion_id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getTb_usuario_id() {
+        return tb_usuario_id;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTb_usuario_id(int tb_usuario_id) {
+        this.tb_usuario_id = tb_usuario_id;
     }
-
     
 }

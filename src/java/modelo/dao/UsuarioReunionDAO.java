@@ -121,7 +121,7 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
     @Override
     public boolean insertar(UsuarioReunion usuarioreunion) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{usuarioreunion.getReunion().getIdtb_reuniones(),usuarioreunion.getUsuario().getIdtb_usuario()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{usuarioreunion.getTb_reunion_id(),usuarioreunion.getTb_usuario_id()});
         } catch (Exception ex) {
             return false;
         }
@@ -130,7 +130,7 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
     @Override
     public boolean editar(UsuarioReunion usuarioreunion) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuarioreunion.getReunion().getIdtb_reuniones(),usuarioreunion.getUsuario().getIdtb_usuario()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuarioreunion.getTb_reunion_id(),usuarioreunion.getTb_usuario_id()});
         } catch (Exception ex) {
             return false;
         }
