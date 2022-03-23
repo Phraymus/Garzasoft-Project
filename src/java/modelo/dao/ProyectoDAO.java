@@ -148,32 +148,79 @@ public class ProyectoDAO implements ProyectoInterface{
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 
-                Pais pais1 = new  Pais(rs.getInt(38), rs.getString(39));
-                Departamento departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais1);
-                Ciudad ciudad1 = new Ciudad(rs.getInt(34), rs.getString(35), departamento1);
-                Persona persona1 = new Persona(rs.getInt(26), rs.getString(27), rs.getString(28),
+                Pais pais1;
+                Departamento departamento1;
+                Ciudad ciudad1 ;
+                Persona persona1;
+                Cliente cliente;               
+                Pais pais ;
+                Departamento departamento;
+                Ciudad ciudad;
+                Persona persona;
+                Pais pais2;
+                Trabajador administrador;
+                Departamento departamento2;
+                Ciudad ciudad2;
+                Persona persona2;
+                Trabajador programador;
+
+              
+                Proyecto proyecto = new Proyecto();
+                proyecto = null;
+                if(rs.getString(6)==null && rs.getString(7)==null){
+                  pais1 = new  Pais(rs.getInt(38), rs.getString(39));
+                departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais1);
+                ciudad1 = new Ciudad(rs.getInt(34), rs.getString(35), departamento1);
+                persona1 = new Persona(rs.getInt(26), rs.getString(27), rs.getString(28),
                 rs.getString(29), rs.getString(30), (Image) rs.getBlob(31), rs.getString(32), rs.getString(33), ciudad1 );
 
-                Cliente cliente = new Cliente(persona1, rs.getString(24), rs.getString(25));
-
-               
-                Pais pais = new Pais(rs.getInt(22), rs.getString(23));
-                Departamento departamento = new Departamento( rs.getInt(20), rs.getString(21), pais);
-                Ciudad ciudad = new Ciudad(rs.getInt(18), rs.getString(19), departamento);
-                Persona persona = new Persona(rs.getInt(10), rs.getString(11), rs.getString(12), rs.getString(13), 
-                rs.getString(14), (Image) rs.getBlob(15), rs.getString(16), rs.getString(17), ciudad );
-                Trabajador administrador = new Trabajador( persona, rs.getString(9));
+                cliente = new Cliente(persona1, rs.getString(24), rs.getString(25));
                 
-                Pais pais2 = new Pais(rs.getInt(53), rs.getString(54));
-                Departamento departamento2 = new Departamento( rs.getInt(51), rs.getString(52), pais2);
-                Ciudad ciudad2 = new Ciudad(rs.getInt(49), rs.getString(50), departamento2);
-                Persona persona2 = new Persona(rs.getInt(41), rs.getString(42), rs.getString(43), 
+                pais = new Pais(rs.getInt(22), rs.getString(23));
+                departamento = new Departamento( rs.getInt(20), rs.getString(21), pais);
+                ciudad = new Ciudad(rs.getInt(18), rs.getString(19), departamento);
+                persona = new Persona(rs.getInt(10), rs.getString(11), rs.getString(12), rs.getString(13), 
+                rs.getString(14), (Image) rs.getBlob(15), rs.getString(16), rs.getString(17), ciudad );
+                administrador = new Trabajador( persona, rs.getString(9));
+                
+                pais2 = new Pais(rs.getInt(53), rs.getString(54));
+                departamento2 = new Departamento( rs.getInt(51), rs.getString(52), pais2);
+                ciudad2 = new Ciudad(rs.getInt(49), rs.getString(50), departamento2);
+                persona2 = new Persona(rs.getInt(41), rs.getString(42), rs.getString(43), 
                 rs.getString(44), rs.getString(45), (Image) rs.getBlob(46), rs.getString(47), rs.getString(48), ciudad2 );
-                Trabajador programador = new Trabajador(persona2, rs.getString(40));
+                programador = new Trabajador(persona2, rs.getString(40));
 
-                Proyecto proyecto = new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), 
-                (Timestamp)rs.getTimestamp(5), rs.getString(6),rs.getString(7),rs.getString(8), administrador, cliente, programador );
+                proyecto = new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), 
+                (Timestamp)rs.getTimestamp(5), null ,null ,rs.getString(8), administrador, cliente, programador );
+                
+              }
+                else {
+                     pais1 = new  Pais(rs.getInt(38), rs.getString(39));
+                departamento1 = new  Departamento(rs.getInt(36), rs.getString(37), pais1);
+                ciudad1 = new Ciudad(rs.getInt(34), rs.getString(35), departamento1);
+                persona1 = new Persona(rs.getInt(26), rs.getString(27), rs.getString(28),
+                rs.getString(29), rs.getString(30), (Image) rs.getBlob(31), rs.getString(32), rs.getString(33), ciudad1 );
 
+                cliente = new Cliente(persona1, rs.getString(24), rs.getString(25));
+                
+                pais = new Pais(rs.getInt(22), rs.getString(23));
+                departamento = new Departamento( rs.getInt(20), rs.getString(21), pais);
+                ciudad = new Ciudad(rs.getInt(18), rs.getString(19), departamento);
+                persona = new Persona(rs.getInt(10), rs.getString(11), rs.getString(12), rs.getString(13), 
+                rs.getString(14), (Image) rs.getBlob(15), rs.getString(16), rs.getString(17), ciudad );
+                administrador = new Trabajador( persona, rs.getString(9));
+                
+                pais2 = new Pais(rs.getInt(53), rs.getString(54));
+                departamento2 = new Departamento( rs.getInt(51), rs.getString(52), pais2);
+                ciudad2 = new Ciudad(rs.getInt(49), rs.getString(50), departamento2);
+                persona2 = new Persona(rs.getInt(41), rs.getString(42), rs.getString(43), 
+                rs.getString(44), rs.getString(45), (Image) rs.getBlob(46), rs.getString(47), rs.getString(48), ciudad2 );
+                programador = new Trabajador(persona2, rs.getString(40));
+
+                proyecto = new Proyecto(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), 
+                (Timestamp)rs.getTimestamp(5), rs.getString(6) ,rs.getString(7),null, administrador, cliente, programador );
+                 
+                }
                 listaRetorno.add(proyecto);
             }
             rs.close();
