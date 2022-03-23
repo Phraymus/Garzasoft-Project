@@ -25,7 +25,7 @@ public class TelefonoDAO implements TelefonoInterface {
     public ArrayList<Telefono> listar() {
         ArrayList<Telefono> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tb_cliente";
+            String sql = "SELECT * FROM tb_telefono";
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 Telefono telefono = new Telefono(rs.getInt(1), rs.getString(2), rs.getInt(3));
@@ -44,7 +44,7 @@ public class TelefonoDAO implements TelefonoInterface {
     public Telefono buscar(int id) {
         Telefono telefono = null;
         try {
-            String sql = "SELECT * FROM tb_cliente WHERE tb_persona_id=" + id;
+            String sql = "SELECT * FROM tb_telefono WHERE tb_persona_id=" + id;
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 telefono = new Telefono(rs.getInt(1), rs.getString(2), rs.getInt(3));
@@ -61,7 +61,7 @@ public class TelefonoDAO implements TelefonoInterface {
     @Override
     public boolean insertar(Telefono telefono) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{telefono.getIdtb_telefono(), telefono.getNumero(), telefono.getIdtb_telefono()});
+            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, telefono.getNumero(), telefono.getIdtb_telefono()});
         } catch (Exception ex) {
             return false;
         }

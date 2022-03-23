@@ -55,20 +55,20 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
             String sql = "SELECT ur.tb_reunion_id,ur.tb_usuario_id, FROM tb_ciudad AS c JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS p ON d.tb_pais_id=p.idtb_pais WHERE c.idtb_ciudad = "+id;
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
-                Pais pais1 = new Pais(rs.getInt(20), rs.getString(21));
-                Departamento departamento1 = new Departamento(rs.getInt(18), rs.getString(19),pais1);
-                Ciudad ciudad1 = new Ciudad(rs.getInt(16), rs.getString(17), departamento1);
-                Persona persona1 = new Persona(rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), (Image) rs.getBlob(13),rs.getString(14), rs.getString(15),  ciudad1);
-                Trabajador trabajador = new Trabajador(persona1, rs.getString(7));  
-                
-                Pais pais2 = new Pais(rs.getInt(30), rs.getString(31));
-                Departamento departamento2 = new Departamento(rs.getInt(16), rs.getString(17),pais2);
-                Ciudad ciudad2 = new Ciudad(rs.getInt(14), rs.getString(15), departamento2);
-                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), (Image)  rs.getBlob(27), rs.getString(28), rs.getString(29),  ciudad2);
-                Cliente cliente = new Cliente(persona2, rs.getString(20), rs.getString(21));
-                Reunion reunion=new Reunion();
-                Usuario usuario=new Usuario();
-                usuarioreunion = new UsuarioReunion(reunion,usuario);
+//                Pais pais1 = new Pais(rs.getInt(20), rs.getString(21));
+//                Departamento departamento1 = new Departamento(rs.getInt(18), rs.getString(19),pais1);
+//                Ciudad ciudad1 = new Ciudad(rs.getInt(16), rs.getString(17), departamento1);
+//                Persona persona1 = new Persona(rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), (Image) rs.getBlob(13),rs.getString(14), rs.getString(15),  ciudad1);
+//                Trabajador trabajador = new Trabajador(persona1, rs.getString(7));  
+//                
+//                Pais pais2 = new Pais(rs.getInt(30), rs.getString(31));
+//                Departamento departamento2 = new Departamento(rs.getInt(16), rs.getString(17),pais2);
+//                Ciudad ciudad2 = new Ciudad(rs.getInt(14), rs.getString(15), departamento2);
+//                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), (Image)  rs.getBlob(27), rs.getString(28), rs.getString(29),  ciudad2);
+//                Cliente cliente = new Cliente(persona2, rs.getString(20), rs.getString(21));
+//                Reunion reunion=new Reunion();
+//                Usuario usuario=new Usuario();
+//                usuarioreunion = new UsuarioReunion(reunion,usuario);
  
             }
             rs.close();
@@ -90,24 +90,24 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
             
             while (rs.next()) {
                 
-                UsuarioReunion usuarioreunion = new UsuarioReunion();
-
-                Pais pais1 = new Pais(rs.getInt(20), rs.getString(21));
-                Departamento departamento1 = new Departamento(rs.getInt(18), rs.getString(19),pais1);
-                Ciudad ciudad1 = new Ciudad(rs.getInt(16), rs.getString(17), departamento1);
-                Persona persona1 = new Persona(rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), (Image) rs.getBlob(13),rs.getString(14), rs.getString(15),  ciudad1);
-                Trabajador trabajador = new Trabajador(persona1, rs.getString(7));  
-                
-                Pais pais2 = new Pais(rs.getInt(30), rs.getString(31));
-                Departamento departamento2 = new Departamento(rs.getInt(16), rs.getString(17),pais2);
-                Ciudad ciudad2 = new Ciudad(rs.getInt(14), rs.getString(15), departamento2);
-                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), (Image)  rs.getBlob(27), rs.getString(28), rs.getString(29),  ciudad2);
-                Cliente cliente = new Cliente(persona2, rs.getString(20), rs.getString(21));
-                Reunion reunion=new Reunion();
-                Usuario usuario=new Usuario();
-                usuarioreunion = new UsuarioReunion(reunion,usuario);
-
-                listaRetorno.add(usuarioreunion);
+//                UsuarioReunion usuarioreunion = new UsuarioReunion();
+//
+//                Pais pais1 = new Pais(rs.getInt(20), rs.getString(21));
+//                Departamento departamento1 = new Departamento(rs.getInt(18), rs.getString(19),pais1);
+//                Ciudad ciudad1 = new Ciudad(rs.getInt(16), rs.getString(17), departamento1);
+//                Persona persona1 = new Persona(rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), (Image) rs.getBlob(13),rs.getString(14), rs.getString(15),  ciudad1);
+//                Trabajador trabajador = new Trabajador(persona1, rs.getString(7));  
+//                
+//                Pais pais2 = new Pais(rs.getInt(30), rs.getString(31));
+//                Departamento departamento2 = new Departamento(rs.getInt(16), rs.getString(17),pais2);
+//                Ciudad ciudad2 = new Ciudad(rs.getInt(14), rs.getString(15), departamento2);
+//                Persona persona2 = new Persona(rs.getInt(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), (Image)  rs.getBlob(27), rs.getString(28), rs.getString(29),  ciudad2);
+//                Cliente cliente = new Cliente(persona2, rs.getString(20), rs.getString(21));
+//                Reunion reunion=new Reunion();
+//                Usuario usuario=new Usuario();
+//                usuarioreunion = new UsuarioReunion(reunion,usuario);
+//
+//                listaRetorno.add(usuarioreunion);
             }
             rs.close();
             conexion.cerrar();
@@ -121,7 +121,7 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
     @Override
     public boolean insertar(UsuarioReunion usuarioreunion) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{usuarioreunion.getReunion().getIdtb_reuniones(),usuarioreunion.getUsuario().getIdtb_usuario()});
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?)", TABLA), new Object[]{usuarioreunion.getTb_reunion_id(),usuarioreunion.getTb_usuario_id()});
         } catch (Exception ex) {
             return false;
         }
@@ -130,7 +130,7 @@ public class UsuarioReunionDAO implements UsuarioReunionInterface{
     @Override
     public boolean editar(UsuarioReunion usuarioreunion) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuarioreunion.getReunion().getIdtb_reuniones(),usuarioreunion.getUsuario().getIdtb_usuario()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, Tb_departamento_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuarioreunion.getTb_reunion_id(),usuarioreunion.getTb_usuario_id()});
         } catch (Exception ex) {
             return false;
         }
