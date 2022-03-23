@@ -36,9 +36,9 @@ public class ModuloDAO implements ModuloInterface {
     public Modulo buscar(int id) {
         Modulo modulo = null;
         try {
-            String sql = "SELECT * FROM tb_modulo" + id;
+            String sql = "SELECT * FROM tb_modulo WHERE idtb_modulo =" + id;
             
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
                   modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 
@@ -58,7 +58,7 @@ public class ModuloDAO implements ModuloInterface {
         try {
             String sql = "SELECT * FROM tb_modulo";
 
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(String.format(sql));
 
             while (rs.next()) {
                 Modulo modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));

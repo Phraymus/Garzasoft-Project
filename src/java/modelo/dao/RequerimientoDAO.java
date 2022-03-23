@@ -32,34 +32,13 @@ import static modelo.interfaces.RequerimientoInterface.conexion;
  */
 public class RequerimientoDAO implements RequerimientoInterface{
 
-//    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-//        ArrayList<Object[]> listaRetorno = new ArrayList<>();
-//        try {
-//            ResultSet rset = conexion.recuperar(sql);
-//            while (rset.next()) {
-//                Object atributos[] = new Object[numeroAtributos];
-//                for (int i = 0; i < numeroAtributos; i++) {
-//                    atributos[i] = rset.getObject(i + 1);
-//                }
-//                listaRetorno.add(atributos);
-//            }
-//            rset.close();
-//            conexion.cerrar();
-//
-//        } catch (Exception ex) {
-//            throw ex;
-//        } finally {
-//            return listaRetorno;
-//        }
-//    }
-
     @Override
     public Requerimiento buscar(int id) {
         Requerimiento  requerimiento = null;
         try {
-            String sql = " "+id;
+            String sql = "SELECT * FROM tb_requerimiento WHERE  idtb_checklist = "+id;
             
-             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+             ResultSet rs = conexion.recuperar(String.format(sql));
             
             while (rs.next()) {
                 
@@ -80,7 +59,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
         try {
             String sql = "SELECT * FROM tb_requerimiento ";
             
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
 
                 Requerimiento requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5), rs.getInt(6));

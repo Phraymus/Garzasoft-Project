@@ -29,34 +29,14 @@ import static modelo.interfaces.RequerimientoInterface.conexion;
  * @author Sttefany
  */
 public class ProyectoDAO implements ProyectoInterface{
-//    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-//        ArrayList<Object[]> listaRetorno = new ArrayList<>();
-//        try {
-//            ResultSet rset = conexion.recuperar(sql);
-//            while (rset.next()) {
-//                Object atributos[] = new Object[numeroAtributos];
-//                for (int i = 0; i < numeroAtributos; i++) {
-//                    atributos[i] = rset.getObject(i + 1);
-//                }
-//                listaRetorno.add(atributos);
-//            }
-//            rset.close();
-//            conexion.cerrar();
-//
-//        } catch (Exception ex) {
-//            throw ex;
-//        } finally {
-//            return listaRetorno;
-//        }
-//    }
-
+//   
     @Override
     public Proyecto buscar(int id) {
         Proyecto  proyecto = null;
         try {
-            String sql = "SELECT * FROM tb_proyecto ="+id; 
+            String sql = "SELECT * FROM tb_proyecto WHERE idtb_proyecto = "+id; 
             
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
                 
                 proyecto = new Proyecto();
@@ -89,7 +69,7 @@ public class ProyectoDAO implements ProyectoInterface{
         try {
             String sql = "SELECT * FROM tb_proyecto ";
             
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
                
                 Proyecto proyecto = new Proyecto();
