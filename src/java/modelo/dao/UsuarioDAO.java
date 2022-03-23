@@ -27,16 +27,7 @@ public class UsuarioDAO implements UsuarioInterface{
     public ArrayList<Usuario> listar() {
         ArrayList<Usuario> listaRetorno = new ArrayList<>();
         try {
-            String sql = "select u.idtb_usuario, u.nombre, u.clave, u.perfil_usuario, "
-                        + "t.tipo, "
-                        + "p1.idtb_persona, p1.nombre, p1.apellido_paterno, p1.apellido_materno, p1.correo, p1.foto, p1.tipo_identificacion, p1.numero_identificacion, "
-                        + "c1.idtb_ciudad, c1.nombre, "
-                        + "d1.idtb_departamento, d1.nombre, "
-                        + "pa1.idtb_pais, pa1.nombre, "
-                        + "cl.tb_persona_id, cl.ruc, cl.nombre_empresa, "
-                        + "p2.nombre, p2.apellido_paterno, p2.apellido_materno, p2.correo, p2.foto, p2.tipo_identificacion, p2.numero_identificacion,  "
-                        + "c2.idtb_ciudad, c2.nombre, d2.idtb_departamento, d2.nombre, pa2.idtb_pais, "
-                        + "pa2.nombre FROM tb_usuario AS u JOIN tb_trabajador AS t ON u.tb_persona_id=t.tb_persona_id JOIN tb_persona AS p1 ON t.tb_persona_id=p1.idtb_persona JOIN tb_ciudad AS c1 ON p1.tb_ciudad_id=c1.idtb_ciudad JOIN tb_departamento AS d1 ON c1.tb_departamento_id=d1.idtb_departamento JOIN tb_pais AS pa1 ON d1.tb_pais_id=pa1.idtb_pais JOIN tb_cliente AS cl ON u.tb_persona_id=cl.tb_persona_id JOIN tb_persona AS p2 ON t.tb_persona_id=p2.idtb_persona JOIN tb_ciudad AS c2 ON p2.tb_ciudad_id=c2.idtb_ciudad JOIN tb_departamento AS d2 ON c2.tb_departamento_id=d2.idtb_departamento JOIN tb_pais AS pa2 ON d2.tb_pais_id=pa2.idtb_pais";
+            String sql = "select u.idtb_usuario, u.nombre, u.clave, u.perfil_usuario, t.tipo, p1.idtb_persona, p1.nombre, p1.apellido_paterno, p1.apellido_materno, p1.correo, p1.foto, p1.tipo_identificacion, p1.numero_identificacion, c1.idtb_ciudad, c1.nombre, d1.idtb_departamento, d1.nombre, pa1.idtb_pais, pa1.nombre, cl.tb_persona_id, cl.ruc, cl.nombre_empresa, p2.nombre, p2.apellido_paterno, p2.apellido_materno, p2.correo, p2.foto, p2.tipo_identificacion, p2.numero_identificacion, c2.idtb_ciudad, c2.nombre, d2.idtb_departamento, d2.nombre, pa2.idtb_pais, pa2.nombre FROM tb_usuario AS u LEFT JOIN tb_trabajador AS t ON u.tb_persona_id=t.tb_persona_id LEFT JOIN tb_persona AS p1 ON t.tb_persona_id=p1.idtb_persona LEFT JOIN tb_ciudad AS c1 ON p1.tb_ciudad_id=c1.idtb_ciudad LEFT JOIN tb_departamento AS d1 ON c1.tb_departamento_id=d1.idtb_departamento LEFT JOIN tb_pais AS pa1 ON d1.tb_pais_id=pa1.idtb_pais LEFT JOIN tb_cliente AS cl ON u.tb_persona_id=cl.tb_persona_id LEFT JOIN tb_persona AS p2 ON t.tb_persona_id=p2.idtb_persona LEFT JOIN tb_ciudad AS c2 ON p2.tb_ciudad_id=c2.idtb_ciudad LEFT JOIN tb_departamento AS d2 ON c2.tb_departamento_id=d2.idtb_departamento LEFT JOIN tb_pais AS pa2 ON d2.tb_pais_id=pa2.idtb_pais";
 //            
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
