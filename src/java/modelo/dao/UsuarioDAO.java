@@ -58,7 +58,7 @@ public class UsuarioDAO implements UsuarioInterface{
     public boolean insertar(Usuario usuario) {
         try{
             return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?,?,?,?)", TABLA), new Object[]
-                {null, usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTb_trabajador_id(), usuario.getTb_cliente_id()});
+                {null, usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTb_trabajador_id(), usuario.getTb_cliente_idc()});
         }
         catch (Exception ex) {
             return false;
@@ -68,7 +68,7 @@ public class UsuarioDAO implements UsuarioInterface{
     @Override
     public boolean editar(Usuario usuario) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET idtb_usuario=?, nombre=? clave=?, perfil_usuario=?, tb_persona_id=? , tb_persona_idc=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuario.getIdtb_usuario() ,usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTb_trabajador_id(), usuario.getTb_cliente_id(), usuario.getIdtb_usuario()});
+            return conexion.ejecutar(String.format("UPDATE %s SET idtb_usuario=?, nombre=? clave=?, perfil_usuario=?, tb_persona_id=? , tb_persona_idc=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{usuario.getIdtb_usuario() ,usuario.getNombre(), usuario.getClave(), usuario.getPerfil_usuario(), usuario.getTb_trabajador_id(), usuario.getTb_cliente_idc(), usuario.getIdtb_usuario()});
         } catch (Exception ex) {
             return false;
         }
