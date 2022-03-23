@@ -1,0 +1,93 @@
+#report {
+    float: right ;
+ }
+ 
+ #imagen-garzasoft{
+    height: 50px;
+ }
+ 
+ #table-status{
+    color:white;
+ }
+
+ #tarea{
+    font-weight: bold;
+    font-size: 6vmin;
+    display: inline;
+    padding-left: 30px;
+   
+ }
+
+ #imagen-tarea{
+   height: 80px;
+   height: 14vmin;
+   display: inline;
+   padding-right: 15px;
+   padding-left: 15px;
+ }
+
+ #parte-inicial{
+    padding: 30px;
+ }
+
+ #title-tarea{
+   align-items: center;
+   height: 50px;
+   position: sticky;
+   padding-top: 20px;
+   padding-left: 10px;
+ }
+
+ #contenedor-titulo{
+   align-items: center;
+ }
+
+ #texto-datos-tarea{
+    font-weight: bold;
+    color: black;
+    font-size: 22px;
+ }
+
+ #floatingTextarea2{
+   resize: none;
+   background-color: white;
+   width: 400px;
+ }
+
+ #div-datos{
+    padding: 10px;
+ }
+
+ #cliente-text{
+   width: 400px;
+   background-color: white;
+}
+
+#boton-enviar{
+   margin-bottom: 40px;
+}
+
+#cliente{
+   border: rgb(238, 238, 241) 0.5px solid;
+   border-color: black;
+   width: 400px;
+   background-color: white;
+   border-radius: 5px;
+   padding: 7px;
+   
+}
+
+#descripcion{
+   border: rgb(238, 238, 241) 0.5px solid;
+   border-color: black;
+   width: 400px;
+   height: 150px;
+   background-color: white;
+   border-radius: 5px;
+   padding: 7px;
+   
+}
+
+#contenedor-form{
+   padding-bottom: 50px;
+}
