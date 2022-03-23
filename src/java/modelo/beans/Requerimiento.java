@@ -12,32 +12,27 @@ import java.sql.Timestamp;
  * @author Sttefany
  */
 public class Requerimiento {
-    private Modulo  modulo;
+
     private int idtb_checklist;
     private String nombre;
     private String estado;
     private Timestamp fecha_inicio;
     private Timestamp fecha_fin;
+    private int tb_modulo_id;
 
     public Requerimiento() {
     }
 
-    public Requerimiento(Modulo modulo, int idtb_checklist, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin) {
-        this.modulo = modulo;
+    public Requerimiento(int idtb_checklist, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, int tb_modulo_id) {
         this.idtb_checklist = idtb_checklist;
         this.nombre = nombre;
         this.estado = estado;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
+        this.tb_modulo_id = tb_modulo_id;
     }
-
-    public Modulo getModulo() {
-        return modulo;
-    }
-
-    public void setModulo(Modulo modulo) {
-        this.modulo = modulo;
-    }
+    
+    
 
     public int getIdtb_checklist() {
         return idtb_checklist;
@@ -79,6 +74,15 @@ public class Requerimiento {
         this.fecha_fin = fecha_fin;
     }
 
+    public int getTb_modulo_id() {
+        return tb_modulo_id;
+    }
+
+    public void setTb_modulo_id(int tb_modulo_id) {
+        this.tb_modulo_id = tb_modulo_id;
+    }
+
+    
     
     
 }

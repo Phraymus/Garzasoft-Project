@@ -19,14 +19,14 @@ public class Proyecto {
     private String tarea;
     private String tarea_descripcion;
     private String checklist;
-    private  Trabajador administrador;
-    private  Cliente cliente;
-    private  Trabajador programador;
+    private int tb_trabajador_persona_id;
+    private int tb_cliente_persona_id;
+    private int tb_trabajador_persona_id1;
 
     public Proyecto() {
     }
 
-    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, Trabajador administrador, Cliente cliente, Trabajador programador) {
+    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, int tb_trabajador_persona_id, int tb_cliente_persona_id, int tb_trabajador_persona_id1) {
         this.idtb_proyecto = idtb_proyecto;
         this.nombre = nombre;
         this.estado = estado;
@@ -35,9 +35,9 @@ public class Proyecto {
         this.tarea = tarea;
         this.tarea_descripcion = tarea_descripcion;
         this.checklist = checklist;
-        this.administrador = administrador;
-        this.cliente = cliente;
-        this.programador = programador;
+        this.tb_trabajador_persona_id = tb_trabajador_persona_id;
+        this.tb_cliente_persona_id = tb_cliente_persona_id;
+        this.tb_trabajador_persona_id1 = tb_trabajador_persona_id1;
     }
 
     public int getIdtb_proyecto() {
@@ -104,28 +104,28 @@ public class Proyecto {
         this.checklist = checklist;
     }
 
-    public Trabajador getAdministrador() {
-        return administrador;
+    public int getTb_trabajador_persona_id() {
+        return tb_trabajador_persona_id;
     }
 
-    public void setAdministrador(Trabajador administrador) {
-        this.administrador = administrador;
+    public void setTb_trabajador_persona_id(int tb_trabajador_persona_id) {
+        this.tb_trabajador_persona_id = tb_trabajador_persona_id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getTb_cliente_persona_id() {
+        return tb_cliente_persona_id;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setTb_cliente_persona_id(int tb_cliente_persona_id) {
+        this.tb_cliente_persona_id = tb_cliente_persona_id;
     }
 
-    public Trabajador getProgramador() {
-        return programador;
+    public int getTb_trabajador_persona_id1() {
+        return tb_trabajador_persona_id1;
     }
 
-    public void setProgramador(Trabajador programador) {
-        this.programador = programador;
+    public void setTb_trabajador_persona_id1(int tb_trabajador_persona_id1) {
+        this.tb_trabajador_persona_id1 = tb_trabajador_persona_id1;
     }
 
     

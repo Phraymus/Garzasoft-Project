@@ -12,18 +12,19 @@ public class Modulo {
     private int idtb_modulo;
     private String nombre;
     private String estado;
-    private Proyecto proyecto;
+    private int tb_proyecto_id;
 
     public Modulo() {
     }
 
-    public Modulo(int idtb_modulo, String nombre, String estado, Proyecto proyecto) {
+    public Modulo(int idtb_modulo, String nombre, String estado, int tb_proyecto_id) {
         this.idtb_modulo = idtb_modulo;
         this.nombre = nombre;
         this.estado = estado;
-        this.proyecto = proyecto;
+        this.tb_proyecto_id = tb_proyecto_id;
     }
 
+    
     public int getIdtb_modulo() {
         return idtb_modulo;
     }
@@ -48,14 +49,15 @@ public class Modulo {
         this.estado = estado;
     }
 
-    public Proyecto getProyecto() {
-        return proyecto;
+    public int getTb_proyecto_id() {
+        return tb_proyecto_id;
     }
 
-    public void setProyecto(Proyecto proyecto) {
-        this.proyecto = proyecto;
+    public void setTb_proyecto_id(int tb_proyecto_id) {
+        this.tb_proyecto_id = tb_proyecto_id;
     }
 
+   
     
     
 }
