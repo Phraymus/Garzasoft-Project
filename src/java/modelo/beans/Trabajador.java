@@ -10,23 +10,23 @@ package modelo.beans;
  * @author ELIAS
  */
 public class Trabajador {
-    private Persona persona;
+    private int tb_persona_id;
     private String tipo;
 
     public Trabajador() {
     }
 
-    public Trabajador(Persona persona, String tipo) {
-        this.persona = persona;
+    public Trabajador(int tb_persona_id, String tipo) {
+        this.tb_persona_id = tb_persona_id;
         this.tipo = tipo;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public int getTb_persona_id() {
+        return tb_persona_id;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setTb_persona_id(int tb_persona_id) {
+        this.tb_persona_id = tb_persona_id;
     }
 
     public String getTipo() {
@@ -36,4 +36,5 @@ public class Trabajador {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
 }
