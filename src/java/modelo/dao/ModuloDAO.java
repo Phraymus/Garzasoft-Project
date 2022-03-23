@@ -32,33 +32,11 @@ import static modelo.interfaces.PersonaInterface.conexion;
 
 public class ModuloDAO implements ModuloInterface {
 
-//    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-//        ArrayList<Object[]> listaRetorno = new ArrayList<>();
-//        try {
-//            ResultSet rset = conexion.recuperar(sql);
-//            while (rset.next()) {
-//                Object atributos[] = new Object[numeroAtributos];
-//                for (int i = 0; i < numeroAtributos; i++) {
-//                    atributos[i] = rset.getObject(i + 1);
-//                }
-//                listaRetorno.add(atributos);
-//            }
-//            rset.close();
-//            conexion.cerrar();
-//
-//        } catch (Exception ex) {
-//            throw ex;
-//        } finally {
-//            return listaRetorno;
-//        }
-//    }
     @Override
     public Modulo buscar(int id) {
         Modulo modulo = null;
         try {
-            String sql = "SELECT m.idtb_modulo, m.nombre, m.estado,pr.idtb_proyecto, pr.nombre, "
-                    + "pr.estado, pr.fecha_inicio, pr.fecha_fin, pr.tarea, pr.tarea_descripcion, pr.checklist "
-                    + "FROM tb_modulo AS m JOIN tb_proyecto AS pr ON m.tb_proyecto_id = pr.idtb_proyecto" + id;
+            String sql = "SELECT * FROM tb_modulo" + id;
             
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
@@ -78,9 +56,7 @@ public class ModuloDAO implements ModuloInterface {
     public ArrayList<Modulo> listar() {
         ArrayList<Modulo> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT m.idtb_modulo, m.nombre, m.estado,pr.idtb_proyecto, pr.nombre, "
-                    + "pr.estado, pr.fecha_inicio, pr.fecha_fin, pr.tarea, pr.tarea_descripcion, pr.checklist "
-                    + "FROM tb_modulo AS m JOIN tb_proyecto AS pr ON m.tb_proyecto_id = pr.idtb_proyecto";
+            String sql = "SELECT * FROM tb_modulo";
 
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
 

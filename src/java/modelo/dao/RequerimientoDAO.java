@@ -57,8 +57,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
     public Requerimiento buscar(int id) {
         Requerimiento  requerimiento = null;
         try {
-            String sql = "SELECT r.idtb_checklist , r.nombre, r.estado, r.fecha_inicio, r.fecha_fin, m.idtb_modulo , m.nombre, m.estado "
-                    + "FROM tb_requerimiento AS r JOIN  tb_modulo AS m ON r.tb_modulo_id = m.idtb_modulo "+id;
+            String sql = " "+id;
             
              ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             
@@ -79,8 +78,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
     public ArrayList<Requerimiento> listar() {
         ArrayList<Requerimiento> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT r.idtb_checklist , r.nombre, r.estado, r.fecha_inicio, r.fecha_fin, m.idtb_modulo , m.nombre, m.estado "
-                    + "FROM tb_requerimiento AS r JOIN  tb_modulo AS m ON r.tb_modulo_id = m.idtb_modulo ";
+            String sql = "SELECT * FROM tb_requerimiento ";
             
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {

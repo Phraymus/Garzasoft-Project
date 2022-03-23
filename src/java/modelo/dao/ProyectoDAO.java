@@ -54,7 +54,7 @@ public class ProyectoDAO implements ProyectoInterface{
     public Proyecto buscar(int id) {
         Proyecto  proyecto = null;
         try {
-            String sql = "select pr.idtb_proyecto, pr.nombre, pr.estado, pr.fecha_inicio, pr.fecha_fin, pr.tarea, pr.tarea_descripcion, pr.checklist, t.tipo, t2.tipo, cl.ruc, cl.nombre_empresa FROM tb_proyecto AS pr JOIN tb_trabajador AS t ON pr.tb_trabajador_tb_persona_id = t.tb_persona_id JOIN tb_trabajador AS t2 ON pr.tb_trabajador_tb_persona_id1 = t2.tb_persona_id JOIN tb_cliente AS cl On  pr.tb_cliente_tb_persona_id = cl.tb_persona_id ="+id; 
+            String sql = "SELECT * FROM tb_proyecto ="+id; 
             
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
@@ -87,7 +87,7 @@ public class ProyectoDAO implements ProyectoInterface{
     public ArrayList<Proyecto> listar() {
         ArrayList<Proyecto> listaRetorno = new ArrayList<>();
         try {
-            String sql = "select pr.idtb_proyecto, pr.nombre, pr.estado, pr.fecha_inicio, pr.fecha_fin, pr.tarea, pr.tarea_descripcion, pr.checklist, t.tipo, t2.tipo, cl.ruc, cl.nombre_empresa FROM tb_proyecto AS pr JOIN tb_trabajador AS t ON pr.tb_trabajador_tb_persona_id = t.tb_persona_id JOIN tb_trabajador AS t2 ON pr.tb_trabajador_tb_persona_id1 = t2.tb_persona_id JOIN tb_cliente AS cl On  pr.tb_cliente_tb_persona_id = cl.tb_persona_id ";
+            String sql = "SELECT * FROM tb_proyecto ";
             
             ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
             while (rs.next()) {
