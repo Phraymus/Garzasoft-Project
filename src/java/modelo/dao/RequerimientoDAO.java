@@ -78,7 +78,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
     @Override
     public boolean insertar(Requerimiento requerimiento) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null,  
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?, ?,?,?)", TABLA), new Object[]{null,  
             requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
             requerimiento.getFecha_fin(), requerimiento.getTb_modulo_id()});
         } catch (Exception ex) {

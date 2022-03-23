@@ -102,7 +102,7 @@ public class ProyectoDAO implements ProyectoInterface{
     @Override
     public boolean insertar(Proyecto proyecto) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null,  
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?,?,?,?,?,?)", TABLA), new Object[]{null,  
             proyecto.getNombre(), proyecto.getEstado(), proyecto.getFecha_inicio(),
             proyecto.getFecha_fin(), proyecto.getTarea(), proyecto.getTarea_descripcion(),
             proyecto.getChecklist(), proyecto.getTb_trabajador_persona_id(), proyecto.getTb_cliente_persona_id(), proyecto.getTb_trabajador_persona_id1()});

@@ -76,7 +76,7 @@ public class ModuloDAO implements ModuloInterface {
     @Override
     public boolean insertar(Modulo modulo) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?)", TABLA), new Object[]{null,
+            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?)", TABLA), new Object[]{null,
                 modulo.getNombre(), modulo.getEstado(), modulo.getTb_proyecto_id()});
         } catch (Exception ex) {
             return false;
