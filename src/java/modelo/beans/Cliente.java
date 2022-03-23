@@ -11,17 +11,25 @@ package modelo.beans;
  */
 public class Cliente {
 
-    private Persona persona;
+    private int tb_persona_id;
     private String ruc;
     private String nombreEmpresa;
 
     public Cliente() {
     }
 
-    public Cliente(Persona persona, String ruc, String nombreEmpresa) {
-        this.persona = persona;
+    public Cliente(int tb_persona_id, String ruc, String nombreEmpresa) {
+        this.tb_persona_id = tb_persona_id;
         this.ruc = ruc;
         this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public int getTb_persona_id() {
+        return tb_persona_id;
+    }
+
+    public void setTb_persona_id(int tb_persona_id) {
+        this.tb_persona_id = tb_persona_id;
     }
 
     public String getRuc() {
@@ -39,13 +47,4 @@ public class Cliente {
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
     }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
 }
