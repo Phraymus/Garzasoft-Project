@@ -17,26 +17,25 @@ public class Persona {
     private String apellido_paterno;
     private String apellido_materno;
     private String correo;
-    private Image foto;
     private String tipo_identificacion;
     private String numero_identificacion;
+    private Image foto;
     
-
-    private Ciudad ciudad;
+    private int tb_ciudad_id;
 
     public Persona() {
     }
 
-    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, Image foto, String tipo_identificacion, String numero_identificacion, Ciudad ciudad) {
+    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, String tipo_identificacion, String numero_identificacion, Image foto, int tb_ciudad_id) {
         this.idtb_persona = idtb_persona;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
         this.correo = correo;
-        this.foto = foto;
         this.tipo_identificacion = tipo_identificacion;
         this.numero_identificacion = numero_identificacion;
-        this.ciudad = ciudad;
+        this.foto = foto;
+        this.tb_ciudad_id = tb_ciudad_id;
     }
 
     public int getIdtb_persona() {
@@ -79,14 +78,6 @@ public class Persona {
         this.correo = correo;
     }
 
-    public Image getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Image foto) {
-        this.foto = foto;
-    }
-
     public String getTipo_identificacion() {
         return tipo_identificacion;
     }
@@ -103,15 +94,21 @@ public class Persona {
         this.numero_identificacion = numero_identificacion;
     }
 
-    public Ciudad getCiudad() {
-        return ciudad;
+    public Image getFoto() {
+        return foto;
     }
 
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
+    public void setFoto(Image foto) {
+        this.foto = foto;
     }
 
-   
-    
+    public int getTb_ciudad_id() {
+        return tb_ciudad_id;
+    }
+
+    public void setTb_ciudad_id(int tb_ciudad_id) {
+        this.tb_ciudad_id = tb_ciudad_id;
+    }
+
     
 }

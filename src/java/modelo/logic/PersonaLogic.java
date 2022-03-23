@@ -18,9 +18,6 @@ public class PersonaLogic implements PersonaInterface{
 
     PersonaDAO personaDao= new PersonaDAO();
     
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-        return personaDao.listar(sql, numeroAtributos);
-    }
     @Override
     public ArrayList<Persona> listar() {
         return personaDao.listar();
@@ -28,22 +25,22 @@ public class PersonaLogic implements PersonaInterface{
 
     @Override
     public Persona buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personaDao.buscar(id);
     }
 
     @Override
     public boolean insertar(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personaDao.insertar(persona);
     }
 
     @Override
     public boolean editar(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personaDao.editar(persona);
     }
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personaDao.eliminar(id);
     }
     
 }

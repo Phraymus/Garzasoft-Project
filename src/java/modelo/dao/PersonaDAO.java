@@ -8,10 +8,6 @@ package modelo.dao;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import modelo.beans.Ciudad;
-import modelo.beans.Departamento;
-
-import modelo.beans.Pais;
 import modelo.beans.Persona;
 import modelo.interfaces.PersonaInterface;
 
@@ -21,51 +17,16 @@ import modelo.interfaces.PersonaInterface;
  */
 public class PersonaDAO implements PersonaInterface{
     
-        public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-        ArrayList<Object[]> listaRetorno = new ArrayList<>();
-        try {
-            ResultSet rs = conexion.recuperar(sql);
-            while (rs.next()) {
-                Object atributos[] = new Object[numeroAtributos];
-                for (int i = 0; i < numeroAtributos; i++) {
-                    atributos[i] = rs.getObject(i + 1);
-                }
-                listaRetorno.add(atributos);
-            }
-            rs.close();
-            conexion.cerrar();
-
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            return listaRetorno;
-        }
-    }
-
     @Override
     public ArrayList<Persona> listar() {
         ArrayList<Persona> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto,p.tipo_identificacion, p.numero_identificacion,  c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, pa.idtb_pais, pa.nombre FROM tb_persona AS p JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS pa ON d.tb_pais_id=pa.idtb_pais";
+            String sql = "Select * from tb_persona";
             
-            ResultSet rs = conexion.recuperar(String.format("%s FROM %s", sql, TABLA));
+            ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
-                Persona persona = new Persona();
-                Pais pais = new Pais(rs.getInt(13), rs.getString(14));
-                Departamento departamento = new Departamento(rs.getInt(11), rs.getString(12),pais);
-                Ciudad ciudad = new Ciudad(rs.getInt(9), rs.getString(10), departamento);
-                               
-                persona.setIdtb_persona(rs.getInt(1));
-                persona.setNombre(rs.getString(2));
-                persona.setApellido_paterno(rs.getString(3));
-                persona.setApellido_materno(rs.getString(4));
-                persona.setCorreo(rs.getString(5));
-                persona.setTipo_identificacion(rs.getString(7));
-                persona.setNumero_identificacion(rs.getString(8));
-                persona.setFoto((Image) rs.getBlob(6));
+                Persona persona = new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), (Image) rs.getBlob(8), rs.getInt(9));
                 
-                persona.setCiudad(ciudad);
-               
                 listaRetorno.add(persona);
             }
             rs.close();
@@ -81,27 +42,14 @@ public class PersonaDAO implements PersonaInterface{
     public Persona buscar(int id) {
         Persona persona = null;
         try {
-            String sql = "SELECT p.idtb_persona, p.nombre, p.apellido_paterno, p.apellido_materno, p.correo, p.foto,p.tipo_identificacion, p.numero_identificacion,  c.idtb_ciudad, c.nombre, d.idtb_departamento, d.nombre, pa.idtb_pais, pa.nombre FROM tb_persona AS p JOIN tb_ciudad AS c ON p.tb_ciudad_id=c.idtb_ciudad JOIN tb_departamento AS d ON c.tb_departamento_id=d.idtb_departamento JOIN tb_pais AS pa ON d.tb_pais_id=pa.idtb_pais WHERE p.idtb_persona="+id;
-      
+            
+            String sql = "Select * from tb_persona where idtb_persona = " +id; 
+            
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
                 
-                persona = new Persona();
-                Pais pais = new Pais(rs.getInt(13), rs.getString(14));
-                Departamento departamento = new Departamento(rs.getInt(11), rs.getString(12),pais);
-                Ciudad ciudad = new Ciudad(rs.getInt(9), rs.getString(10), departamento);
-                               
-                persona.setIdtb_persona(rs.getInt(1));
-                persona.setNombre(rs.getString(2));
-                persona.setApellido_paterno(rs.getString(3));
-                persona.setApellido_materno(rs.getString(4));
-                persona.setCorreo(rs.getString(5));
-               persona.setTipo_identificacion(rs.getString(7));
-                persona.setNumero_identificacion(rs.getString(8));
-                persona.setFoto((Image) rs.getBlob(6));
+                persona = new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), (Image) rs.getBlob(8), rs.getInt(9));
                 
-                
-                persona.setCiudad(ciudad);
             }
             rs.close();
             conexion.cerrar();
@@ -117,7 +65,7 @@ public class PersonaDAO implements PersonaInterface{
         
         try{
             return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?,?,?,?,?,?)", TABLA), new Object[]
-                {null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getTipo_identificacion(), persona.getNumero_identificacion() ,persona.getFoto(), persona.getCiudad().getIdtb_ciudad()});
+                {null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getTipo_identificacion(), persona.getNumero_identificacion() ,persona.getFoto(), persona.getTb_ciudad_id()});
         }
         catch (Exception ex) {
             return false;
@@ -128,7 +76,7 @@ public class PersonaDAO implements PersonaInterface{
     @Override
     public boolean editar(Persona persona) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, apellido_paterno=?, apellido_materno=?, tipo_identificacion=?, numero_identificacion=?, correo=?, foto=?, ciudad=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{null, persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getTipo_identificacion(), persona.getNumero_identificacion(), persona.getFoto(), persona.getCiudad().getIdtb_ciudad()});
+            return conexion.ejecutar(String.format("UPDATE %s SET idtb_persona= ?, nombre=?, apellido_paterno=?, apellido_materno=?, tipo_identificacion=?, numero_identificacion=?, correo=?, foto=?, tb_ciudad_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{persona.getIdtb_persona(), persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getTipo_identificacion(), persona.getNumero_identificacion(), persona.getFoto(), persona.getTb_ciudad_id(), persona.getIdtb_persona()});
         } catch (Exception ex) {
             return false;
         }

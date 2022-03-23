@@ -21,21 +21,21 @@
 
 
 
-         Custom fonts for this template
+        <!--Custom fonts for this template-->
         <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <link rel="stylesheet" href="../../css/layout-dashboard.css">
-         Custom styles for this template
+        <!--Custom styles for this template-->
         <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../../css/layout-requerimiento.css" type="text/css">
 
          <link rel="stylesheet" href="../../src/css/bootstrap.min.css"> 
 
-        JQuery
+        <!--JQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        functions for open windows
+        <!--functions for open windows-->
         <script src="../../js/functions.js"></script>
 
     </head>
@@ -61,13 +61,13 @@
             }
         </script>
 
-         Page Wrapper 
+        <!--Page Wrapper -->
         <div id="wrapper">
 
-             Sidebar 
+            <!--Sidebar -->
             <ul class="navbar-nav bg-navbar-lateral sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                 Sidebar - Brand 
+                <!--Sidebar - Brand -->
                 <a class="sidebar-brand text-dark d-flex align-items-center justify-content-center logo" href="../dashboard-inicio/dashboard.html">
                     <div class="sidebar-brand-icon ml-3">
                         <img src="../../img/logos/GarzaSoft.png">
@@ -77,27 +77,27 @@
                     </div>
                 </a>
 
-                 Divider 
+                <!--Divider -->
                 <hr class="sidebar-divider my-0">
 
-                 Nav Item - Dashboard 
+                <!-- Nav Item - Dashboard -->
                 <li class="nav-item bg-navbar-lateral-items">
                     <a class="nav-link" href="../dashboard-inicio/dashboard.html">
                         <i class="fas fa-fw fa-home"></i>
                         <span>Inicio</span></a>
                 </li>
 
-                 Divider 
+                <!-- Divider -->
                 <hr class="sidebar-divider">
 
-                 Heading 
+                 <!--Heading--> 
                 <div class="sidebar-heading">
                     Usuario
                 </div>
 
-                 Nav Item - Pages Collapse Menu 
+                 <!--Nav Item - Pages Collapse Menu--> 
 
-                 Nav Item - Charts 
+                 <!--Nav Item - Charts--> 
                 <li class="nav-item bg-navbar-lateral-items">
                     <a class="nav-link" href="../dashboard-usuario/dashboard.html">
                         <i class="fas fa-fw fa-user"></i>
@@ -111,15 +111,15 @@
                 </li>
 
 
-                 Divider 
+                 <!--Divider--> 
                 <hr class="sidebar-divider">
 
-                 Heading 
+                 <!--Heading--> 
                 <div class="sidebar-heading">
                     Proyecto
                 </div>
 
-                 Nav Item - Pages Collapse Menu 
+                 <!--Nav Item - Pages Collapse Menu--> 
                 <li class="nav-item">
                     <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="#">
                         <i class="fas fa-fw fa-folder"></i>
@@ -143,15 +143,15 @@
                 </li>
 
 
-                 Divider 
+                 <!--Divider--> 
                 <hr class="sidebar-divider">
 
-                 Heading 
+                 <!--Heading--> 
                 <div class="sidebar-heading">
                     Soporte
                 </div>
 
-                 soporte 
+                 <!--soporte--> 
                 <li class="nav-item bg-navbar-lateral-items">
                     <a class="nav-link" href="../dashboard-contacto/contacto.html">
                         <i class="fas fa-fw fa-phone"></i>
@@ -159,31 +159,31 @@
                 </li>
 
 
-                 Divider 
+                 <!--Divider--> 
                 <hr class="sidebar-divider d-none d-md-block">
 
-                 Sidebar Toggler (Sidebar) 
+                 <!--Sidebar Toggler (Sidebar)--> 
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
             </ul>
-             End of Sidebar 
+             <!--End of Sidebar--> 
 
-             Content Wrapper 
+             <!--Content Wrapper--> 
             <div id="content-wrapper" class="d-flex flex-column">
 
-                 Main Content 
+                 <!--Main Content--> 
                 <div id="content">
 
-                     Topbar 
+                     <!--Topbar--> 
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                         Sidebar Toggle (Topbar) 
+                         <!--Sidebar Toggle (Topbar)--> 
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
 
-                         Topbar Search 
+                         <!--Topbar Search--> 
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small" placeholder="Busquedad de proyectos por nombre o código" aria-label="Search" aria-describedby="basic-addon2">
@@ -195,15 +195,15 @@
                             </div>
                         </form>
 
-                         Topbar Navbar 
+                         <!--Topbar Navbar--> 
                         <ul class="navbar-nav ml-auto">
 
-                             Nav Item - Search Dropdown (Visible Only XS) 
+                             <!--Nav Item - Search Dropdown (Visible Only XS)--> 
                             <li class="nav-item dropdown no-arrow d-sm-none">
                                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-search fa-fw"></i>
                                 </a>
-                                 Dropdown - Messages 
+                                 <!--Dropdown - Messages--> 
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                     <form class="form-inline mr-auto w-100 navbar-search">
                                         <div class="input-group">
@@ -218,14 +218,14 @@
                                 </div>
                             </li>
 
-                             Nav Item - Alerts 
+                             <!--Nav Item - Alerts--> 
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
-                                     Counter - Alerts 
+                                     <!--Counter - Alerts--> 
                                     <span class="badge badge-danger badge-counter">5+</span>
                                 </a>
-                                 Dropdown - Alerts 
+                                 <!--Dropdown - Alerts--> 
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 class="dropdown-header">
                                         Notificaciones
@@ -270,13 +270,13 @@
 
                             <div class="topbar-divider d-none d-sm-block"></div>
 
-                             Nav Item - User Information 
+                             <!--Nav Item - User Information--> 
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                     <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg">
                                 </a>
-                                 Dropdown - User Information 
+                                 <!--Dropdown - User Information--> 
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
@@ -298,9 +298,9 @@
                         </ul>
 
                     </nav>
-                     End of Topbar 
+                     <!--End of Topbar--> 
 
-                     Begin Page Content 
+                     <!--Begin Page Content--> 
                     <div class="row justify-content-start align-items-center" style="margin-left: 7%;">
                         <div class="col-5">
                             <h3 class="text-dark">Crear nuevo proyecto</h3>
@@ -309,7 +309,7 @@
 
                     <hr style="width: 85%; height: 0.2%; margin-top: 0%;" noshade="noshade">
 
-                    <form action="${pageContext.request.contextPath}/ProyectoServlet" method="post" enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/NuevoProyectoServlet" method="post" enctype="multipart/form-data">
                         <div class="container-fluid">
                             <div class="d-md-flex align-items-center justify-content-end mb-4">
                                 <div class="col-xl-9 col-md-9 col-sm-12">
@@ -335,7 +335,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group w-100 ml-3 mt-3 ">
-                                                    <input type="text" class="form-control" placeholder="Nombre del Trabajador" aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <input name="txtNombreTrabajador" type="text" class="form-control" placeholder="Nombre del Trabajador" aria-label="Input group example" aria-describedby="basic-addon1">
                                                     <span class="input-group-text" id="basic-addon1" data-bs-toggle="modal" data-bs-target="#modalTrabajador">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16" >
                                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
@@ -353,7 +353,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group w-100 ml-3 mt-3 ">
-                                                    <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Input group example" aria-describedby="basic-addon1">
+                                                    <input name="txtNombreCliente" type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Input group example" aria-describedby="basic-addon1">
                                                     <span class="input-group-text" id="basic-addon1" data-bs-toggle="modal" data-bs-target="#modalCliente">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16" >
                                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
@@ -599,24 +599,24 @@
             </div>
         </div>
 
-         Bootstrap core JavaScript
+         <!--Bootstrap core JavaScript-->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-         Core plugin JavaScript
+         <!--Core plugin JavaScript-->
         <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-         Custom scripts for all pages
+         <!--Custom scripts for all pages-->
         <script src="../../js/sb-admin-2.min.js"></script>
 
-         Page level plugins 
+         <!--Page level plugins--> 
         <script src="../../vendor/chart.js/Chart.min.js"></script>
 
-         Page level custom scripts 
+         <!--Page level custom scripts--> 
         <script src="../../js/demo/chart-area-demo.js"></script>
         <script src="../../js/demo/chart-pie-demo.js"></script>
 
-         Option 1: Bootstrap Bundle with Popper 
+         <!--Option 1: Bootstrap Bundle with Popper--> 
         <script src="../../src/js/bootstrap.bundle.min.js"></script>
 
         <script src="../../js/dashboard-nuevoProyecto/nuevoProyecto.js"></script>
