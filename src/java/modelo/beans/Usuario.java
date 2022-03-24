@@ -21,6 +21,13 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String perfil_usuario, int tb_trabajador_id, int tb_cliente_idc) {
+        this.perfil_usuario = perfil_usuario;
+        this.tb_trabajador_id = tb_trabajador_id;
+        this.tb_cliente_idc = tb_cliente_idc;
+    }
+    
+    
     public Usuario(int idtb_usuario, String nombre, String clave, String perfil_usuario, int tb_trabajador_id, int tb_cliente_idc) {
         this.idtb_usuario = idtb_usuario;
         this.nombre = nombre;

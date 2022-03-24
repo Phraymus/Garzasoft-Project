@@ -11,43 +11,39 @@ import modelo.beans.Departamento;
 import modelo.beans.Pais;
 import modelo.interfaces.DepartamentoInterface;
 
-
-
 /**
  *
  * @author Marco
  */
-public class DepartamentoDAO implements DepartamentoInterface{
-    
-    /*
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-        ArrayList<Object[]> listaRetorno = new ArrayList<>();
+public class DepartamentoDAO implements DepartamentoInterface {
+
+    public ArrayList<Departamento> listarPorPais(String pais) {
+        ArrayList<Departamento> listaRetorno = new ArrayList<>();
         try {
+            String sql = "SELECT * FROM tb_departamento WHERE tb_pais_id="+pais+" ORDER BY nombre";
             ResultSet rs = conexion.recuperar(sql);
+
             while (rs.next()) {
-                Object atributos[] = new Object[numeroAtributos];
-                for (int i = 0; i < numeroAtributos; i++) {
-                    atributos[i] = rs.getObject(i + 1);
-                }
-                listaRetorno.add(atributos);
+                Departamento departamento = new Departamento(rs.getInt(1), rs.getString(2), rs.getInt(3));
+
+                listaRetorno.add(departamento);
             }
             rs.close();
             conexion.cerrar();
-
         } catch (Exception ex) {
             throw ex;
         } finally {
             return listaRetorno;
         }
-    }*/
+    }
 
     @Override
     public Departamento buscar(int id) {
-        Departamento  departamento = null;
+        Departamento departamento = null;
         try {
-            String sql = "SELECT * FROM tb_departamento where tb_pais_id= "+id;
+            String sql = "SELECT * FROM tb_departamento where idtb_departamento= " + id;
             ResultSet rs = conexion.recuperar(sql);
-            
+
             while (rs.next()) {
                 departamento = new Departamento(rs.getInt(1), rs.getString(2), rs.getInt(3));
             }
@@ -66,10 +62,10 @@ public class DepartamentoDAO implements DepartamentoInterface{
         try {
             String sql = "SELECT * FROM tb_departamento";
             ResultSet rs = conexion.recuperar(sql);
-            
+
             while (rs.next()) {
                 Departamento departamento = new Departamento(rs.getInt(1), rs.getString(2), rs.getInt(3));
-                
+
                 listaRetorno.add(departamento);
             }
             rs.close();

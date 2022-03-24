@@ -61,7 +61,7 @@ public class TelefonoDAO implements TelefonoInterface {
     @Override
     public boolean insertar(Telefono telefono) {
         try {
-            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, telefono.getNumero(), telefono.getIdtb_telefono()});
+            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?)", TABLA), new Object[]{null, telefono.getNumero(), telefono.getTb_persona_id()});
         } catch (Exception ex) {
             return false;
         }

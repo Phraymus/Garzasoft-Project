@@ -5,40 +5,35 @@
 package modelo.logic;
 
 import java.util.ArrayList;
-import modelo.beans.Ciudad;
-import modelo.dao.CiudadDAO;
-import modelo.interfaces.CiudadInterface;
+import modelo.beans.Cliente;
+import modelo.dao.ClienteDAO;
+import modelo.interfaces.ClienteInterface;
 
 /**
  *
  * @author phraymus
  */
-public class CiudadLogic implements CiudadInterface{
-    
-    CiudadDAO ciudadDao= new CiudadDAO();
-    
-    
-    public ArrayList<Ciudad> listarPorDepartamento(String departamento) {
-        return ciudadDao.listarPorDepartamento(departamento);
-    }
+public class ClienteLogic implements ClienteInterface{
+
+    ClienteDAO clienteDao= new ClienteDAO();
     
     @Override
-    public ArrayList<Ciudad> listar() {
+    public ArrayList<Cliente> listar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Ciudad buscar(int id) {
-        return ciudadDao.buscar(id);
+    public Cliente buscar(int id) {
+        return clienteDao.buscar(id);
     }
 
     @Override
-    public boolean insertar(Ciudad ciudad) {
+    public boolean insertar(Cliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean editar(Ciudad ciudad) {
+    public boolean editar(Cliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

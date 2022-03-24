@@ -19,7 +19,7 @@ import java.sql.Statement;
 public class Conexion {
 
     final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    final String URL = "132.226.240.106";
+    final String URL = "localhost";
     final String PUERTO = "3306";
     final String DATABASE = "db_garzasoftproject";
     final String USER = "garzasoft";

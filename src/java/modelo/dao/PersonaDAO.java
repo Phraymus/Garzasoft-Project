@@ -17,6 +17,25 @@ import modelo.interfaces.PersonaInterface;
  */
 public class PersonaDAO implements PersonaInterface{
     
+    
+    public int getUltimoRegistro() {
+        int retorno = 0;
+        try {
+
+            ResultSet rs = conexion.recuperar(String.format("SELECT max(idtb_persona) FROM %s", TABLA));
+            while (rs.next()) {
+
+                retorno = rs.getInt(1);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return retorno;
+        }
+    }
+    
     @Override
     public ArrayList<Persona> listar() {
         ArrayList<Persona> listaRetorno = new ArrayList<>();
@@ -76,7 +95,7 @@ public class PersonaDAO implements PersonaInterface{
     @Override
     public boolean editar(Persona persona) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET idtb_persona= ?, nombre=?, apellido_paterno=?, apellido_materno=?, tipo_identificacion=?, numero_identificacion=?, correo=?, foto=?, tb_ciudad_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{persona.getIdtb_persona(), persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getTipo_identificacion(), persona.getNumero_identificacion(), persona.getFoto(), persona.getTb_ciudad_id(), persona.getIdtb_persona()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, apellido_paterno=?, apellido_materno=?, correo=?, tipo_identificacion=?, numero_identificacion=?,  foto=?, tb_ciudad_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{persona.getNombre(), persona.getApellido_paterno(), persona.getApellido_materno(), persona.getCorreo(), persona.getTipo_identificacion(), persona.getNumero_identificacion(), persona.getFoto(), persona.getTb_ciudad_id(), persona.getIdtb_persona()});
         } catch (Exception ex) {
             return false;
         }

@@ -23,7 +23,7 @@ public class PaisLogic implements PaisInterface{
 
     @Override
     public Pais buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return paisDao.buscar(id);
     }
 
     @Override

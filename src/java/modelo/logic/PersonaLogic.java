@@ -18,6 +18,10 @@ public class PersonaLogic implements PersonaInterface{
 
     PersonaDAO personaDao= new PersonaDAO();
     
+    public int getUltimoRegistro(){
+        return personaDao.getUltimoRegistro();
+    }
+    
     @Override
     public ArrayList<Persona> listar() {
         return personaDao.listar();

@@ -16,8 +16,9 @@ import modelo.interfaces.DepartamentoInterface;
 public class DepartamentoLogic implements DepartamentoInterface{
     DepartamentoDAO departamentoDao=new DepartamentoDAO();
     
-    public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-        return departamentoDao.listar(sql, numeroAtributos);
+    
+    public ArrayList<Departamento> listarPorPais(String pais) {
+        return departamentoDao.listarPorPais(pais);
     }
     
     @Override
@@ -27,7 +28,7 @@ public class DepartamentoLogic implements DepartamentoInterface{
 
     @Override
     public Departamento buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return departamentoDao.buscar(id);
     }
 
     @Override

@@ -36,12 +36,32 @@ public class CiudadDAO implements CiudadInterface{
             return listaRetorno;
         }
     }*/
+    
+    public ArrayList<Ciudad> listarPorDepartamento(String departamento) {
+        ArrayList<Ciudad> listaRetorno = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_ciudad WHERE tb_departamento_id="+departamento+" ORDER BY nombre";
+            ResultSet rs = conexion.recuperar(sql);
+            
+            while (rs.next()) {
+                Ciudad ciudad = new Ciudad(rs.getInt(1), rs.getString(2), rs.getInt(3));
+              
+                listaRetorno.add(ciudad);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return listaRetorno;
+        }
+    }
 
     @Override
     public Ciudad buscar(int id) {
         Ciudad ciudad = null;
         try {
-            String sql = "SELECT * FROM tb_ciudad where tb_departamento_id="+id;
+            String sql = "SELECT * FROM tb_ciudad where idtb_ciudad="+id;
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {             
                 ciudad = new Ciudad(rs.getInt(1), rs.getString(2), rs.getInt(3));         
