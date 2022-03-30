@@ -75,11 +75,16 @@ public class UsuarioController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
 
             if (request.getParameter("btnEnviar").equals("getVG")) {
-//                getTrabajadores(request, response);
+                getTrabajadores(request, response);
             }
             if (request.getParameter("btnEnviar").equals("getTrabajadores")) {
                 getTrabajadores(request, response);
             }
+
+            if (request.getParameter("btnEnviar").equals("getClientes")) {
+                getClientes(request, response);
+            }
+
             if (request.getParameter("btnEnviar").equals("getDepartamentos")) {
                 getDepartamentos(request, response);
 
@@ -90,14 +95,26 @@ public class UsuarioController extends HttpServlet {
             if (request.getParameter("btnEnviar").equals("putUserTrabajador")) {
                 putUserTrabajador(request, response);
             }
+            if (request.getParameter("btnEnviar").equals("putUserCliente")) {
+                putUserCliente(request, response);
+            }
             if (request.getParameter("btnEnviar").equals("setUserTrabajador")) {
                 setUserTrabajador(request, response);
+            }
+            if (request.getParameter("btnEnviar").equals("setUserCliente")) {
+                setUserCliente(request, response);
             }
             if (request.getParameter("btnEnviar").equals("deleteUserTrabajador")) {
                 deleteUserTrabajador(request, response);
             }
+            if (request.getParameter("btnEnviar").equals("deleteUserCliente")) {
+                deleteUserCliente(request, response);
+            }
             if (request.getParameter("btnEnviar").equals("autentificarUsuario")) {
                 autentificarUsuario(request, response);
+            }
+            if (request.getParameter("btnEnviar").equals("cerrarSesion")) {
+                cerrarSesion(request, response);
             }
         }
     }
@@ -142,10 +159,14 @@ public class UsuarioController extends HttpServlet {
     }// </editor-fold>
 
     public void getTrabajadores(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
 
-        RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard-gestionarUsuario/dashboard.jsp");
+        if (request.getParameter("llamado") != null) {
+            request.setAttribute("llamado", "nuevo");
+        }
+        RequestDispatcher rd = request.getRequestDispatcher("components/trabajadores-general.jsp");
         ArrayList<Usuario> listUsuariosTrabajadores = usuarioLogic.listarUsuariosTrabajadores();
 
         ArrayList<InformacionUsuarios> listTrabajadores = new ArrayList<InformacionUsuarios>();
@@ -164,6 +185,34 @@ public class UsuarioController extends HttpServlet {
         }
 
         session.setAttribute("lstTrabajadores", listTrabajadores);
+        session.setAttribute("lstPaises", paisLogic.listar());
+        rd.forward(request, response);
+    }
+
+    public void getClientes(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+
+        RequestDispatcher rd = request.getRequestDispatcher("components/clientes-general.jsp");
+        ArrayList<Usuario> listUsuariosClientes = usuarioLogic.listarUsuariosClientes();
+        if (request.getParameter("llamado") != null) {
+            request.setAttribute("llamado", "nuevo");
+        }
+        ArrayList<InformacionUsuarios> listClientes = new ArrayList<InformacionUsuarios>();
+        for (int i = 0; i < listUsuariosClientes.size(); i++) {
+            Usuario usuario = listUsuariosClientes.get(i);
+            Cliente cliente = clienteLogic.buscar(usuario.getTb_cliente_idc());
+            Persona persona = personaLogic.buscar(cliente.getTb_persona_id());
+            Telefono telefono = telefonoLogic.buscar(persona.getIdtb_persona());
+
+            Ciudad ciudad = ciudadLogic.buscar(persona.getTb_ciudad_id());
+            Departamento departamento = departamentoLogic.buscar(ciudad.getTb_departamento_id());
+            Pais pais = paisLogic.buscar(departamento.getTb_pais_id());
+
+            InformacionUsuarios informacionUsuarios = new InformacionUsuarios(usuario, cliente, null, persona, telefono, ciudad, departamento, pais);
+            listClientes.add(informacionUsuarios);
+        }
+        session.setAttribute("lstClientes", listClientes);
         session.setAttribute("lstPaises", paisLogic.listar());
         rd.forward(request, response);
 
@@ -217,7 +266,8 @@ public class UsuarioController extends HttpServlet {
         int idCiudad = Integer.parseInt(request.getParameter("txtCiudad"));
         Part foto = request.getPart("txtImagen");
 
-        Persona persona = new Persona(1, nombres, apellidoPaterno, apellidoMaterno, correo, tipoIdentificacion, ((tipoIdentificacion.equals("N")) ? dni : carnet), (foto != null) ? ImageIO.read(foto.getInputStream()) : null, idCiudad);
+        Persona persona = new Persona(1, nombres, apellidoPaterno, apellidoMaterno, correo, tipoIdentificacion, ((tipoIdentificacion.equals("N")) ? dni : carnet), foto.getInputStream(), idCiudad);
+
         Trabajador trabajador = new Trabajador(0, "P");
         Telefono telefono = new Telefono(1, telef, 0);
         Usuario usuario = new Usuario("P", 0, 0);
@@ -236,7 +286,73 @@ public class UsuarioController extends HttpServlet {
                         usuarioGenerado = usuarioLogic.generarUsuario(usuario);
                         if (!usuarioGenerado[0].equals("Error")) {
                             out.print("Se ha registrado al usuario");
-                            getTrabajadores(request, response);
+                            response.sendRedirect("pages/dashboard-gestionarUsuario/dashboard.jsp");
+                        } else {
+                            out.print("Ha ocurrido un error");
+                        }
+                        out.print("Se ha registrado a telefono");
+
+                    } else {
+                        out.print("Ha ocurrido un error");
+                    }
+                    out.print("Se ha registrado a trabajador");
+
+                } else {
+                    out.print("Ha ocurrido un error");
+                }
+                out.print("Se ha registrado a persona");
+            } else {
+                out.print("Ha ocurrido un error");
+            }
+        }
+
+    }
+
+    public void putUserCliente(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        HttpSession session = request.getSession();
+
+        String nombres = request.getParameter("txtNombres");
+        String apellidoPaterno = request.getParameter("txtApellidoPaterno");
+        String apellidoMaterno = request.getParameter("txtApellidoMaterno");
+        String correo = request.getParameter("txtCorreo");
+        String tipoIdentificacion = request.getParameter("txtTipoIdentificacion");
+        String dni = request.getParameter("txtDni");
+        String carnet = request.getParameter("txtCarnet");
+        String telef = request.getParameter("txtTelefono");
+        String ruc = request.getParameter("txtRuc");
+        String nombreEmpresa = request.getParameter("txtNombreEmpresa");
+        int idCiudad = Integer.parseInt(request.getParameter("txtCiudad"));
+        Part foto = request.getPart("txtImagen");
+
+        Persona persona = new Persona(1, nombres, apellidoPaterno, apellidoMaterno, correo, tipoIdentificacion, ((tipoIdentificacion.equals("N")) ? dni : carnet), foto.getInputStream(), idCiudad);
+        Cliente cliente = null;
+        if (request.getParameter("txtTipoPersona").equals("Natural")) {
+            cliente = new Cliente(0, null, null);
+        } else {
+            cliente = new Cliente(0, ruc, nombreEmpresa);
+        }
+
+        Telefono telefono = new Telefono(1, telef, 0);
+        Usuario usuario = new Usuario("C", 0, 0);
+
+        String[] usuarioGenerado;
+
+        try ( PrintWriter out = response.getWriter()) {
+
+            if (personaLogic.insertar(persona)) {
+                int idPersona = personaLogic.getUltimoRegistro();
+                cliente.setTb_persona_id(idPersona);
+                telefono.setTb_persona_id(idPersona);
+                usuario.setTb_cliente_idc(idPersona);
+                if (clienteLogic.insertar(cliente)) {
+                    if (telefonoLogic.insertar(telefono)) {
+                        usuarioGenerado = usuarioLogic.generarUsuario(usuario);
+                        if (!usuarioGenerado[0].equals("Error")) {
+                            out.print("Se ha registrado al usuario");
+                            response.sendRedirect("pages/dashboard-gestionarUsuario/dashboard.jsp");
                         } else {
                             out.print("Ha ocurrido un error");
                         }
@@ -276,17 +392,18 @@ public class UsuarioController extends HttpServlet {
         int idCiudad = Integer.parseInt(request.getParameter("txtCiudad"));
         Part foto = request.getPart("txtImagen");
 
-        Persona persona = new Persona(idPersona, nombres, apellidoPaterno, apellidoMaterno, correo, tipoIdentificacion, ((tipoIdentificacion.equals("N")) ? dni : carnet), (foto != null) ? ImageIO.read(foto.getInputStream()) : null, idCiudad);
+        Persona personaAux = personaLogic.buscar(idPersona);
+
+        Persona persona = new Persona(idPersona, nombres, apellidoPaterno, apellidoMaterno, correo, tipoIdentificacion, ((tipoIdentificacion.equals("N")) ? dni : carnet), (foto.getSize() != 0) ? foto.getInputStream() : personaAux.getFoto(), idCiudad);
+
         Trabajador trabajador = new Trabajador(idPersona, "P");
         Telefono telefono = telefonoLogic.buscar(idPersona);
 
         try ( PrintWriter out = response.getWriter()) {
-            out.print(idPersona);
             if (personaLogic.editar(persona)) {
                 if (telefonoLogic.editar(telefono)) {
-
+                    response.sendRedirect("pages/dashboard-gestionarUsuario/dashboard.jsp");
                     out.print("Se ha registrado a telefono");
-                    getTrabajadores(request, response);
                 } else {
                     out.print("Ha ocurrido un error");
                 }
@@ -295,7 +412,59 @@ public class UsuarioController extends HttpServlet {
                 out.print("Ha ocurrido un error");
             }
         }
+    }
 
+    public void setUserCliente(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        HttpSession session = request.getSession();
+
+        int idPersona = Integer.parseInt(request.getParameter("txtIdPersona"));
+        String nombres = request.getParameter("txtNombres");
+        String apellidoPaterno = request.getParameter("txtApellidoPaterno");
+        String apellidoMaterno = request.getParameter("txtApellidoMaterno");
+        String correo = request.getParameter("txtCorreo");
+        String tipoIdentificacion = request.getParameter("txtTipoIdentificacion");
+        String dni = request.getParameter("txtDni");
+        String carnet = request.getParameter("txtCarnet");
+        String telef = request.getParameter("txtTelefono");
+        int idCiudad = Integer.parseInt(request.getParameter("txtCiudad"));
+        String ruc = request.getParameter("txtRuc");
+        String nombreEmpresa = request.getParameter("txtNombreEmpresa");
+        Part foto = request.getPart("txtImagen");
+
+        Persona personaAux = personaLogic.buscar(idPersona);
+
+        Persona persona = new Persona(idPersona, nombres, apellidoPaterno, apellidoMaterno, correo, tipoIdentificacion, ((tipoIdentificacion.equals("N")) ? dni : carnet), (foto.getSize() != 0) ? foto.getInputStream() : personaAux.getFoto(), idCiudad);
+
+        Cliente cliente = null;
+
+        if (request.getParameter("txtTipoPersona").equals("Natural")) {
+            cliente = new Cliente(0, null, null);
+        } else {
+            cliente = new Cliente(0, ruc, nombreEmpresa);
+        }
+
+        Telefono telefono = telefonoLogic.buscar(idPersona);
+
+        try ( PrintWriter out = response.getWriter()) {
+            if (personaLogic.editar(persona)) {
+                if (clienteLogic.editar(cliente)) {
+                    if (telefonoLogic.editar(telefono)) {
+                        response.sendRedirect("pages/dashboard-gestionarUsuario/dashboard.jsp");
+                        out.print("Se ha registrado a telefono");
+                    } else {
+                        out.print("Ha ocurrido un error");
+                    }
+                } else {
+                    out.print("Ha ocurrido un error");
+                }
+                out.print("Se ha registrado a trabajador");
+            } else {
+                out.print("Ha ocurrido un error");
+            }
+        }
     }
 
     public void deleteUserTrabajador(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
@@ -307,8 +476,22 @@ public class UsuarioController extends HttpServlet {
 
             if (usuarioLogic.eliminar(idUsuario)) {
                 out.println("Eliminado");
-                getTrabajadores(request, response);
+                response.sendRedirect("pages/dashboard-gestionarUsuario/dashboard.jsp");
+            }
 
+        }
+    }
+
+    public void deleteUserCliente(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        int idUsuario = Integer.parseInt(request.getParameter("txtIdObjeto"));
+
+        try ( PrintWriter out = response.getWriter()) {
+
+            if (usuarioLogic.eliminar(idUsuario)) {
+                out.println("Eliminado");
+                response.sendRedirect("pages/dashboard-gestionarUsuario/dashboard.jsp");
             }
 
         }
@@ -317,20 +500,32 @@ public class UsuarioController extends HttpServlet {
     public void autentificarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        RequestDispatcher rd = request.getRequestDispatcher("pages/login.jsp");
 
         try ( PrintWriter out = response.getWriter()) {
             Usuario usuario = usuarioLogic.autentificar(request.getParameter("txtUser"), request.getParameter("txtPassword"));
             if (usuario != null) {
+                session.setMaxInactiveInterval(60*20);
                 session.setAttribute("userSession", usuario);
-                rd = request.getRequestDispatcher("pages/dashboard-inicio/dashboard.jsp");
+                if (usuario.getPerfil_usuario().equals("C")) {
+                    session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_cliente_idc()));
+                } else {
+                    session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_trabajador_id()));
+                }
+                response.sendRedirect("pages/dashboard-inicio/dashboard.jsp");
             } else {
-                request.setAttribute("respuesta", "no autentificado");
+                session.setAttribute("respuesta", "no autentificado");
                 out.print("No autentificado");
+                response.sendRedirect("pages/login.jsp");
             }
-            rd.forward(request, response);
-
         }
+    }
+    
+    public void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        
+        session.invalidate();
+        response.sendRedirect("pages/login.jsp");
     }
 
     //Estructuras Adicionales

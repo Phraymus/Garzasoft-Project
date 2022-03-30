@@ -31,12 +31,43 @@ import static modelo.interfaces.RequerimientoInterface.conexion;
  * @author Windows10
  */
 public class RequerimientoDAO implements RequerimientoInterface{
+    
+    
+    public ArrayList<Requerimiento> listarPorModulo(int id) {
+        ArrayList<Requerimiento> listaRetorno = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_requerimiento WHERE tb_modulo_id="+id;
+            
+            ResultSet rs = conexion.recuperar(sql);
+            while (rs.next()) {
 
+                Requerimiento requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5), rs.getInt(6));
+
+                listaRetorno.add(requerimiento);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return listaRetorno;
+        }
+    }
+    
+    public boolean editarEstado(Requerimiento requerimiento) {
+        try {
+            return conexion.ejecutar(String.format("UPDATE %s SET estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+            requerimiento.getEstado(), requerimiento.getIdtb_requerimiento()});
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+    
     @Override
     public Requerimiento buscar(int id) {
         Requerimiento  requerimiento = null;
         try {
-            String sql = "SELECT * FROM tb_requerimiento WHERE  idtb_checklist = "+id;
+            String sql = "SELECT * FROM tb_requerimiento WHERE  idtb_requerimiento = "+id;
             
              ResultSet rs = conexion.recuperar(String.format(sql));
             
@@ -78,7 +109,7 @@ public class RequerimientoDAO implements RequerimientoInterface{
     @Override
     public boolean insertar(Requerimiento requerimiento) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?, ?,?,?)", TABLA), new Object[]{null,  
+            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?,?,?,?)", TABLA), new Object[]{null,  
             requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
             requerimiento.getFecha_fin(), requerimiento.getTb_modulo_id()});
         } catch (Exception ex) {
@@ -89,9 +120,9 @@ public class RequerimientoDAO implements RequerimientoInterface{
     @Override
     public boolean editar(Requerimiento requerimiento) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET idtb_checklist=?, nombre=?, fecha_inicio=?, fecha_fin=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, estado=?, fecha_inicio=?, fecha_fin=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
             requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
-            requerimiento.getFecha_fin(), requerimiento.getTb_modulo_id()});
+            requerimiento.getFecha_fin(), requerimiento.getIdtb_requerimiento()});
         } catch (Exception ex) {
             return false;
         }

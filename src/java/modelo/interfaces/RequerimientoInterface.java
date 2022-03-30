@@ -16,8 +16,8 @@ import modelo.beans.Requerimiento;
 public interface RequerimientoInterface {
     final Conexion conexion=new Conexion();
     final String TABLA = "tb_requerimiento";
-    final String ATRIBUTOS[] = {"idtb_checklist", "nombre", "estado", "fecha_inicio", "fecha_fin", "modulo_id"};
-    final String CLAVE_PRIMARIA = "idtb_checklist";
+    final String ATRIBUTOS[] = {"idtb_requerimiento", "nombre", "estado", "fecha_inicio", "fecha_fin", "modulo_id"};
+    final String CLAVE_PRIMARIA = "idtb_requerimiento";
     
     public ArrayList<Requerimiento> listar();
     public Requerimiento buscar(int id);

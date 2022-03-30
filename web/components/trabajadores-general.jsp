@@ -28,20 +28,20 @@
             });
 
             $(function () {
-                $('#file').on('change', function () {
-                    file = $(this)[0].files[0];
+                $('#file2').on('change', function () {
+                    file2 = $(this)[0].files[0];
                     var reader = new FileReader();
                     reader.onload = (function (theFile) {
                         return function (e) {
                             document.getElementById('fotoEditarUsuario').src = e.target.result;
                         };
-                    })(file);
-                    reader.readAsDataURL(file);
+                    })(file2);
+                    reader.readAsDataURL(file2);
                 })
             });
 
             $(document).ready(function () {
-                $('#example').DataTable({
+                $('#example2').DataTable({
                     //para cambiar el lenguaje a español
                     "language": {
                         "lengthMenu": "Mostrar _MENU_ registros",
@@ -62,7 +62,7 @@
             });
 
 
-            function editUser(idPersonaEdit, id, nombre, nombres, apellido_paterno, apellido_materno, correo, tipo_identificacion, numero_identificacion, telefono, idPais, idDepartamento, nombreDepartamento, idCiudad, nombreCiudad) {
+            function editUser(idPersonaEdit, id, nombre, nombres, apellido_paterno, apellido_materno, correo, tipo_identificacion, numero_identificacion, telefono, idPais, idDepartamento, nombreDepartamento, idCiudad, nombreCiudad, src) {
                 $('#editUser').modal('show');
                 document.getElementById('idPersona').value = idPersonaEdit;
                 document.getElementById('fotoEditarUsuario').src = "${pageContext.request.contextPath}/img/dashboard/usuario.png"
@@ -86,7 +86,7 @@
                 document.getElementById("cmbCiudadesEdit").innerHTML = "<option value=0>seleccione</option><option value=" + idCiudad + ">" + nombreCiudad + "</option>";
                 document.getElementById("cmbCiudadesEdit").value = idCiudad;
 
-
+                document.getElementById("fotoEditarUsuario").src = src;
             }
 
             function addUser() {
@@ -96,7 +96,7 @@
 
             function deleteUser(idObjeto) {
                 $('#deleteUser').modal('show');
-                document.getElementById('idObjetoEliminar').value=idObjeto;
+                document.getElementById('idObjetoEliminar').value = idObjeto;
             }
 
             function editPassword() {
@@ -142,7 +142,7 @@
                 <div class="table-responsive w-100 p-3">
 
 
-                    <table id="example" class="table table-striped" style="width:100%">
+                    <table id="example2" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col" class="font-weight-bold">Nombre Usuario</th>
@@ -161,6 +161,7 @@
                                     <td>${user.getPersona().getApellido_paterno()}</td>
                                     <td>${user.getPersona().getApellido_materno()}</td>
                                     <td>${user.getPersona().getNumero_identificacion()}</td>
+                                    <%if(request.getAttribute("llamado")==null){%>
                                     <td>
                                         <a class="btn btn-sm btn-circle bg-warning text-white" 
                                            href="javascript:editUser(
@@ -178,12 +179,18 @@
                                            '${user.getDepartamento().getIdtb_departamento()}',
                                            '${user.getDepartamento().getNombre()}',
                                            '${user.getCiudad().getIdtb_ciudad()}',
-                                           '${user.getCiudad().getNombre()}')"><i class="fas fa-pen"></i></a>
+                                           '${user.getCiudad().getNombre()}',
+                                           '${pageContext.request.contextPath}/PersonaController?btnEnviar=getImage&id=${user.getPersona().getIdtb_persona()}')"><i class="fas fa-pen"></i></a>
                                         <a class="btn btn-sm btn-circle bg-danger text-white" href="javascript:deleteUser('${user.getUsuario().getIdtb_usuario()}')"><i class="fas fa-trash"></i></a>
                                     </td>
+                                    <%} else{%>
+
+                                    <td>
+                                        <input type="button" class="btn btn-success" onclick="seleccionarTrabajador('${user.getPersona().getIdtb_persona()}','${user.getPersona().getNombre()}','${user.getPersona().getApellido_paterno()}','${user.getPersona().getApellido_materno()}')" value="Seleccionar">
+                                    </td>
+                                    <%}%>
                                 </tr>
                             </c:forEach>
-
                         </tbody>
                     </table>
                 </div>
@@ -366,7 +373,7 @@
                                 </div>
 
                                 <div class="col-xl-12">
-                                    <img id="fotoNuevoUsuario" class="d-none d-lg-inline-block mt-5 w-25 h-25" src="${pageContext.request.contextPath}/img/dashboard/usuario.png" alt="Usuario">
+                                    <img id="fotoNuevoUsuario" class="rounded-circle d-none d-lg-inline-block mt-5 w-25 h-25" src="${pageContext.request.contextPath}/img/dashboard/usuario.png" alt="Usuario">
 
                                     <br class="d-none d-lg-inline-block mt-5">
                                     <div>
@@ -579,12 +586,12 @@
                                 </div>
 
                                 <div class="col-xl-12">
-                                    <img id="fotoEditarUsuario" class="d-none d-lg-inline-block mt-5 w-25 h-25" src="${pageContext.request.contextPath}/img/dashboard/usuario.png" alt="Usuario">
+                                    <img id="fotoEditarUsuario" class="rounded-circle d-none d-lg-inline-block mt-5 w-25 h-25" src="${pageContext.request.contextPath}/img/dashboard/usuario.png">
 
                                     <br class="d-none d-lg-inline-block mt-5">
                                     <div>
-                                        <input name="txtImagen" id="file" type="file" style="display: none;">
-                                        <label for="file" class="btn btn-md btn-primary shadow-sm mt-3"><i
+                                        <input name="txtImagen" id="file2" type="file" style="display: none;">
+                                        <label for="file2" class="btn btn-md btn-primary shadow-sm mt-3"><i
                                                 class="fas fa-upload fa-sm text-white-50"></i> Cargar imagen</label>
                                     </div>
                                 </div>

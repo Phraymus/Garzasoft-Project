@@ -29,12 +29,12 @@ public class ClienteLogic implements ClienteInterface{
 
     @Override
     public boolean insertar(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return clienteDao.insertar(cliente);
     }
 
     @Override
     public boolean editar(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return clienteDao.editar(cliente);
     }
 
     @Override

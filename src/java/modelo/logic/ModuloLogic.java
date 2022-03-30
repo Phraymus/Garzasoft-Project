@@ -16,6 +16,10 @@ import modelo.interfaces.ModuloInterface;
  */
 public class ModuloLogic  implements ModuloInterface{
     ModuloDAO moduloDao=new ModuloDAO();
+    
+    public ArrayList<Modulo> listarPorProyecto(int id) {
+        return moduloDao.listarPorProyecto(id);
+    }
     @Override
     public ArrayList<Modulo> listar() {
         return moduloDao.listar();

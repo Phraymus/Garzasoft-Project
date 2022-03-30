@@ -24,6 +24,7 @@ public class Conexion {
     final String DATABASE = "db_garzasoftproject";
     final String USER = "garzasoft";
     final String PASSWORD = "garzasoft1234";
+   
 
     private Connection cn;
 

@@ -6,6 +6,8 @@
 package modelo.logic;
 
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import modelo.beans.Persona;
 import modelo.dao.PersonaDAO;
 import modelo.interfaces.PersonaInterface;
@@ -17,6 +19,10 @@ import modelo.interfaces.PersonaInterface;
 public class PersonaLogic implements PersonaInterface{
 
     PersonaDAO personaDao= new PersonaDAO();
+    
+    public void listarImg(int id,HttpServletRequest request, HttpServletResponse response){
+        personaDao.listarImg(id,request, response);
+    }
     
     public int getUltimoRegistro(){
         return personaDao.getUltimoRegistro();

@@ -70,7 +70,7 @@ public class TelefonoDAO implements TelefonoInterface {
     @Override
     public boolean editar(Telefono telefono) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET numero=?, tb_persona_id=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{telefono.getNumero(), telefono.getIdtb_telefono(), telefono.getIdtb_telefono()});
+            return conexion.ejecutar(String.format("UPDATE %s SET numero=? WHERE tb_persona_id=? ", TABLA, CLAVE_PRIMARIA), new Object[]{telefono.getNumero(), telefono.getTb_persona_id()});
         } catch (Exception ex) {
             return false;
         }

@@ -39,8 +39,9 @@
         </script>
 
         <%
-            if (request.getAttribute("respuesta") != null) {
+            if (session.getAttribute("respuesta") != null) {
                 out.print("<script>error()</script>");
+                session.setAttribute("respuesta",null);
             }
         %>
         <div class="login-container">

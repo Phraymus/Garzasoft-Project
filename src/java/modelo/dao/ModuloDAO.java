@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -28,19 +28,37 @@ import static modelo.interfaces.PersonaInterface.conexion;
  *
  * @author Sttefany
  */
-
-
 public class ModuloDAO implements ModuloInterface {
+
+    public ArrayList<Modulo> listarPorProyecto(int id) {
+        ArrayList<Modulo> listaRetorno = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_modulo WHERE tb_proyecto_id="+id;
+
+            ResultSet rs = conexion.recuperar(String.format(sql));
+
+            while (rs.next()) {
+                Modulo modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                listaRetorno.add(modulo);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return listaRetorno;
+        }
+    }
 
     @Override
     public Modulo buscar(int id) {
         Modulo modulo = null;
         try {
             String sql = "SELECT * FROM tb_modulo WHERE idtb_modulo =" + id;
-            
+
             ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
-                  modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                modulo = new Modulo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 
             }
             rs.close();
@@ -76,7 +94,7 @@ public class ModuloDAO implements ModuloInterface {
     @Override
     public boolean insertar(Modulo modulo) {
         try {
-            return conexion.ejecutar(String.format("INSERT IGNORE INTO %s VALUES(?,?,?,?)", TABLA), new Object[]{null,
+            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?,?)", TABLA), new Object[]{null,
                 modulo.getNombre(), modulo.getEstado(), modulo.getTb_proyecto_id()});
         } catch (Exception ex) {
             return false;
@@ -86,8 +104,8 @@ public class ModuloDAO implements ModuloInterface {
     @Override
     public boolean editar(Modulo modulo) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET idtb_modulo=?, nombre=? , estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
-                modulo.getNombre(), modulo.getEstado(), modulo.getTb_proyecto_id()});
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=? , estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+                modulo.getNombre(), modulo.getEstado(), modulo.getIdtb_modulo()});
         } catch (Exception ex) {
             return false;
         }

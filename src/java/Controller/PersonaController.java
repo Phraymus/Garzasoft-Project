@@ -6,22 +6,20 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.beans.Pais;
-import modelo.logic.PaisLogic;
+import javax.servlet.http.HttpSession;
+import modelo.logic.PersonaLogic;
 
 /**
  *
  * @author phraymus
  */
-@WebServlet(name = "CRUDUsuarioController", urlPatterns = {"/CRUDUsuarioController"})
-public class CRUDUsuarioController extends HttpServlet {
+@WebServlet(name = "PersonaController", urlPatterns = {"/PersonaController"})
+public class PersonaController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,34 +30,14 @@ public class CRUDUsuarioController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    PersonaLogic personaLogic = new PersonaLogic();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-
-        switch (String.valueOf(request.getParameter("btnEnviar"))) {
-            case "getUser":
-                getUser(request, response);
-                
-
-                break;
-            default:
-                throw new AssertionError();
+        if (request.getParameter("btnEnviar").equals("getImage")) {
+            getImage(request, response);
         }
-    }
-
-    public void getUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
-        response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard-usuario/dashboard.jsp");
-        PaisLogic paisLogic = new PaisLogic();
-        request.setAttribute("lstPaises", paisLogic.listar());
-        rd.forward(request, response);
-//        try ( PrintWriter out = response.getWriter()) {
-//
-//            out.println("<select>");
-//            out.println("</select>");
-//
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -101,4 +79,10 @@ public class CRUDUsuarioController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public void getImage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        int id = Integer.parseInt(request.getParameter("id"));
+        personaLogic.listarImg(id,request, response);
+    }
 }

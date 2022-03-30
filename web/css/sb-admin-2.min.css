@@ -13,7 +13,7 @@
  */
 
 :root {
-    --blue: #4e73df;
+    --blue: #00449c;
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #e83e8c;
@@ -26,7 +26,7 @@
     --white: #fff;
     --gray: #858796;
     --gray-dark: #5a5c69;
-    --primary: #4e73df;
+    --primary: #00449c;
     --secondary: #858796;
     --success: #1cc88a;
     --info: #36b9cc;

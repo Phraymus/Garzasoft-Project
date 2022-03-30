@@ -6,6 +6,8 @@
 package modelo.beans;
 
 import java.awt.Image;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -19,14 +21,14 @@ public class Persona {
     private String correo;
     private String tipo_identificacion;
     private String numero_identificacion;
-    private Image foto;
+    private InputStream foto;
     
     private int tb_ciudad_id;
 
     public Persona() {
     }
 
-    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, String tipo_identificacion, String numero_identificacion, Image foto, int tb_ciudad_id) {
+    public Persona(int idtb_persona, String nombre, String apellido_paterno, String apellido_materno, String correo, String tipo_identificacion, String numero_identificacion, InputStream foto, int tb_ciudad_id) {
         this.idtb_persona = idtb_persona;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
@@ -94,11 +96,11 @@ public class Persona {
         this.numero_identificacion = numero_identificacion;
     }
 
-    public Image getFoto() {
+    public InputStream getFoto() {
         return foto;
     }
 
-    public void setFoto(Image foto) {
+    public void setFoto(InputStream foto) {
         this.foto = foto;
     }
 
@@ -109,6 +111,8 @@ public class Persona {
     public void setTb_ciudad_id(int tb_ciudad_id) {
         this.tb_ciudad_id = tb_ciudad_id;
     }
+
+    
 
     
 }

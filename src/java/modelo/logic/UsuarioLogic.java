@@ -61,6 +61,10 @@ public class UsuarioLogic implements UsuarioInterface {
     public ArrayList<Usuario> listarUsuariosTrabajadores() {
         return usuarioDAO.listarUsuariosTrabajadores();
     }
+    
+    public ArrayList<Usuario> listarUsuariosClientes() {
+        return usuarioDAO.listarUsuariosClientes();
+    }
 
     public int buscar(String nombre) {
         return usuarioDAO.buscar(nombre);

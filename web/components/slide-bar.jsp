@@ -1,6 +1,9 @@
 <!-- Page Wrapper -->
 <% String pagina=request.getParameter("llamarPagina"); %>
 
+<%@page contentType="text/html"%>
+        <%@page pageEncoding="UTF-8"%> 
+
 <div id="wrapper">
 
     <!-- Sidebar -->
@@ -44,7 +47,7 @@
         </li>
 
         <li class="nav-item <%=(pagina.equals("gest"))?"active":""%> bg-navbar-lateral-items">
-            <a class="nav-link" href="${pageContext.request.contextPath}/UsuarioController?btnEnviar=getTrabajadores ">
+            <a class="nav-link" href="${pageContext.request.contextPath}/pages/dashboard-gestionarUsuario/dashboard.jsp">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Usuarios</span></a>
         </li>
@@ -59,24 +62,24 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item <%=(pagina.equals("proy"))?"active":""%>">
             <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="#">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Proyecto de manzanas</span>
             </a>
             <div id="proyecton1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-navbar-lateral py-2 collapse-inner rounded">
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/dashboard-proyecto/dashboard.html">Informacion General</a>
-                    <a class="collapse-item " href="#">Administrar</a>
+                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/dashboard.html">Informacion General</a>
+                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-administar/administrar.jsp">Administrar</a>
                     <a class="collapse-item " href="#">Calendario</a>
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/dashboard-proyecto/requerimiento.html">Requerimiento</a>
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/dashboard-proyecto/avance-requerimiento.html">Avance</a>
+                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/requerimiento.html">Requerimiento</a>
+                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/avance-requerimiento.html">Avance</a>
                 </div>
             </div>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link bg-navbar-lateral-items" href="${pageContext.request.contextPath}/dashboard-nuevoProyecto/nuevoProyecto.html">
+        <li class="nav-item <%=(pagina.equals("newPro"))?"active":""%>">
+            <a class="nav-link bg-navbar-lateral-items" href="${pageContext.request.contextPath}/pages/dashboard-nuevoProyecto/nuevoProyecto.jsp">
                 <i class="fas fa-fw fa-plus" style="color: #00C2CB;"></i>
                 <span style="color: #00C2CB;"><strong>Nuevo Proyecto</strong></span></a>
         </li>

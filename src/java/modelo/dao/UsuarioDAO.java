@@ -57,6 +57,24 @@ public class UsuarioDAO implements UsuarioInterface {
             return listaRetorno;
         }
     }
+    
+    public ArrayList<Usuario> listarUsuariosClientes() {
+        ArrayList<Usuario> listaRetorno = new ArrayList<>();
+        try {
+            String sql = "SELECT * from tb_usuario WHERE perfil_usuario='C'";
+            ResultSet rs = conexion.recuperar(sql);
+            while (rs.next()) {
+                Usuario usuario = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), (rs.getString(5) != null) ? rs.getInt(5) : 0, (rs.getString(6) != null) ? rs.getInt(6) : 0);
+                listaRetorno.add(usuario);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return listaRetorno;
+        }
+    }
 
     public int buscar(String nombre) {
         int retorno = -1;

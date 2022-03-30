@@ -19,6 +19,8 @@ public class Proyecto {
     private String tarea;
     private String tarea_descripcion;
     private String checklist;
+    private String nombre_empresa;
+    private String ruc;
     private int tb_trabajador_persona_id;
     private int tb_cliente_persona_id;
     private int tb_trabajador_persona_id1;
@@ -26,7 +28,7 @@ public class Proyecto {
     public Proyecto() {
     }
 
-    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, int tb_trabajador_persona_id, int tb_cliente_persona_id, int tb_trabajador_persona_id1) {
+    public Proyecto(int idtb_proyecto, String nombre, String estado, Timestamp fecha_inicio, Timestamp fecha_fin, String tarea, String tarea_descripcion, String checklist, String nombre_empresa, String ruc, int tb_trabajador_persona_id, int tb_cliente_persona_id, int tb_trabajador_persona_id1) {
         this.idtb_proyecto = idtb_proyecto;
         this.nombre = nombre;
         this.estado = estado;
@@ -35,6 +37,8 @@ public class Proyecto {
         this.tarea = tarea;
         this.tarea_descripcion = tarea_descripcion;
         this.checklist = checklist;
+        this.nombre_empresa = nombre_empresa;
+        this.ruc = ruc;
         this.tb_trabajador_persona_id = tb_trabajador_persona_id;
         this.tb_cliente_persona_id = tb_cliente_persona_id;
         this.tb_trabajador_persona_id1 = tb_trabajador_persona_id1;
@@ -102,6 +106,22 @@ public class Proyecto {
 
     public void setChecklist(String checklist) {
         this.checklist = checklist;
+    }
+
+    public String getNombre_empresa() {
+        return nombre_empresa;
+    }
+
+    public void setNombre_empresa(String nombre_empresa) {
+        this.nombre_empresa = nombre_empresa;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
 
     public int getTb_trabajador_persona_id() {

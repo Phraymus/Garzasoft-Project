@@ -95,14 +95,16 @@
 
                     <div>
 
-
+                    <script>
+                        abrirUrl('${pageContext.request.contextPath}/UsuarioController?btnEnviar=getTrabajadores', 'cont');
+                    </script>
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick="abrirUrl('${pageContext.request.contextPath}/pages/dashboard-gestionarUsuario/trabajadores-general.jsp', 'cont')">Trabajadores</button>
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick="abrirUrl('${pageContext.request.contextPath}/UsuarioController?btnEnviar=getTrabajadores', 'cont')">Trabajadores</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="abrirUrl('${pageContext.request.contextPath}/pages/dashboard-gestionarUsuario/clientes-general.html', 'cont')">Clientes</button>
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="abrirUrl('${pageContext.request.contextPath}/UsuarioController?btnEnviar=getClientes', 'cont')">Clientes</button>
                             </li>
                         </ul>
 
@@ -158,9 +160,7 @@
 
         <script src="${pageContext.request.contextPath}/datatables/datatables.js"></script>
 
-        <script>
-                                        abrirUrl('${pageContext.request.contextPath}/pages/dashboard-gestionarUsuario/trabajadores-general.jsp', 'cont');
-        </script>
+        
     </body>
 
 </html>

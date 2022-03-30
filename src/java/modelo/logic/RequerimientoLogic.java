@@ -15,6 +15,15 @@ import modelo.interfaces.RequerimientoInterface;
  */
 public class RequerimientoLogic implements RequerimientoInterface{
     RequerimientoDAO requerimientoDao=new RequerimientoDAO();
+    
+    public ArrayList<Requerimiento> listarPorModulo(int id) {
+        return requerimientoDao.listarPorModulo(id);
+    }
+    
+    public boolean editarEstado(Requerimiento requerimiento) {
+        return requerimientoDao.editarEstado(requerimiento);
+    }
+    
     @Override
     public ArrayList<Requerimiento> listar() {
         return requerimientoDao.listar();
