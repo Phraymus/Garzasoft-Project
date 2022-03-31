@@ -28,6 +28,7 @@ import modelo.beans.Modulo;
 import modelo.beans.Proyecto;
 import modelo.beans.Requerimiento;
 import modelo.logic.ClienteLogic;
+import modelo.logic.PersonaLogic;
 import modelo.logic.ProyectoLogic;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -52,6 +53,7 @@ public class ProyectoController extends HttpServlet {
      */
     ProyectoLogic proyectoLogic = new ProyectoLogic();
     ClienteLogic clienteLogic = new ClienteLogic();
+    PersonaLogic personaLogic = new PersonaLogic();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,6 +61,12 @@ public class ProyectoController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             if (request.getParameter("btnEnviar").equals("getVAdm")) {
                 getVAdm(request, response);
+            }
+            if (request.getParameter("btnEnviar").equals("getVInf")) {
+                getVInf(request, response);
+            }
+            if (request.getParameter("btnEnviar").equals("getVReq")) {
+                getVReq(request, response);
             }
             if (request.getParameter("btnEnviar").equals("getProy")) {
                 getProy(request, response);
@@ -172,8 +180,11 @@ public class ProyectoController extends HttpServlet {
                 }
                 mapModulos.put(modulo, requerimientos);
             }
-            request.setAttribute("mapModulos", mapModulos);
-            request.setAttribute("infoProyecto", proyectoLogic.buscar(id));
+            Proyecto proyecto=proyectoLogic.buscar(id);
+            session.setAttribute("mapModulos", mapModulos);
+            session.setAttribute("infoProyecto", proyecto);
+            session.setAttribute("infoProgramador", personaLogic.buscar(proyecto.getTb_trabajador_persona_id1()));
+            session.setAttribute("infoCliente", personaLogic.buscar(proyecto.getTb_cliente_persona_id()));
         } catch (ParseException ex) {
         } catch (java.text.ParseException ex) {
         }
@@ -185,6 +196,30 @@ public class ProyectoController extends HttpServlet {
         HttpSession session = request.getSession();
 
         RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard-administar/administrar.jsp");
+
+        try ( PrintWriter out = response.getWriter()) {
+            getProy(request, response);
+            rd.forward(request, response);
+        }
+    }
+    
+    public void getVInf(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+
+        RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard-proyecto/dashboard.jsp");
+
+        try ( PrintWriter out = response.getWriter()) {
+            getProy(request, response);
+            rd.forward(request, response);
+        }
+    }
+    
+    public void getVReq(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+
+        RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard-proyecto/requerimiento.jsp");
 
         try ( PrintWriter out = response.getWriter()) {
             getProy(request, response);
@@ -233,7 +268,8 @@ public class ProyectoController extends HttpServlet {
         String respuesta = Utilities.getURL(Information.getURL_WEB() + request.getContextPath() + String.format("/RequerimientoController?btnEnviar=doUpdateEstado&idRequerimiento=%s&txtEstado=%s",idRequerimiento, estado));
 
         if (respuesta.equals("true")) {
-            response.sendRedirect("ProyectoController?btnEnviar=getVAdm&idProyecto="+request.getParameter("idProyecto"));
+            String llamado=request.getParameter("llamado");
+            response.sendRedirect("ProyectoController?btnEnviar=get"+llamado+"&idProyecto="+request.getParameter("idProyecto"));
         } else {
             System.out.println("false");
         }

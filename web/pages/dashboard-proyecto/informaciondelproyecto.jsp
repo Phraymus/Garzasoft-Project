@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="modelo.beans.Proyecto"%>
 <%@page import="modelo.dao.ProyectoDAO"%>
 <!DOCTYPE html>
@@ -8,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>informaciondelproyecto</title>
+    <%@page contentType="text/html"%>
+        <%@page pageEncoding="UTF-8"%> 
 </head>
 
     
@@ -22,7 +25,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark"></h5>
+                <h5 class="mt-3 ml-3 text-dark">${infoProyecto.getNombre()}</h5>
             </td>
         </tr>
         <tr>
@@ -33,7 +36,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark"></h5>
+                <h5 class="mt-3 ml-3 text-dark">${(infoProyecto.getEstado().equals("P"))?"Pendiente":(infoProyecto.getEstado().equals("E"))?"En proceso":"Terminado"}</h5>
             </td>
         </tr>
         <tr>
@@ -44,7 +47,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark"></h5>
+                <h5 class="mt-3 ml-3 text-dark"><fmt:formatDate value = "${infoProyecto.getFecha_inicio()}" pattern = "dd/MM/yyyy"/></h5>
             </td>
         </tr>
         <tr>
@@ -55,7 +58,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark"></h5>
+                <h5 class="mt-3 ml-3 text-dark"><fmt:formatDate value = "${infoProyecto.getFecha_fin()}" pattern = "dd/MM/yyyy"/></h5>
             </td>
         </tr>
         <tr>
@@ -66,7 +69,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark"></h5>
+                <h5 class="mt-3 ml-3 text-dark">${infoProgramador.getNombre()} ${infoProgramador.getApellido_paterno()} ${infoProgramador.getApellido_materno()}</h5>
             </td>
         </tr>
         <tr>
@@ -77,7 +80,7 @@
                 <h5 class="mt-3">:</h5>
             </td>
             <td>
-                <h5 class="mt-3 ml-3 text-dark"></h5>
+                <h5 class="mt-3 ml-3 text-dark">${infoCliente.getNombre()} ${infoCliente.getApellido_paterno()} ${infoCliente.getApellido_materno()}</h5>
             </td>
         </tr>
     </table>

@@ -30,7 +30,54 @@ import static modelo.interfaces.RequerimientoInterface.conexion;
  */
 public class ProyectoDAO implements ProyectoInterface {
 //   
+    
+    public ArrayList<Proyecto> listarProyectoCliente(int id) {
+        ArrayList<Proyecto> listaRetorno = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_proyecto WHERE tb_cliente_tb_persona_id="+id;
 
+            ResultSet rs = conexion.recuperar(String.format(sql));
+            while (rs.next()) {
+                Proyecto proyecto = new  Proyecto(rs.getInt(1), rs.getString(2), 
+                        rs.getString(3), (Timestamp) rs.getTimestamp(4),
+                        (Timestamp) rs.getTimestamp(5), rs.getString(6), 
+                        rs.getString(7), rs.getString(8), rs.getString(9), 
+                        rs.getString(10), rs.getInt(11), rs.getInt(12), 
+                        rs.getInt(13)); 
+                listaRetorno.add(proyecto);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return listaRetorno;
+        }
+    }
+    
+    public ArrayList<Proyecto> listarProyectoTrabajador(int id) {
+        ArrayList<Proyecto> listaRetorno = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_proyecto WHERE tb_trabajador_tb_persona_id1="+id;
+
+            ResultSet rs = conexion.recuperar(String.format(sql));
+            while (rs.next()) {
+                Proyecto proyecto = new  Proyecto(rs.getInt(1), rs.getString(2), 
+                        rs.getString(3), (Timestamp) rs.getTimestamp(4),
+                        (Timestamp) rs.getTimestamp(5), rs.getString(6), 
+                        rs.getString(7), rs.getString(8), rs.getString(9), 
+                        rs.getString(10), rs.getInt(11), rs.getInt(12), 
+                        rs.getInt(13)); 
+                listaRetorno.add(proyecto);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return listaRetorno;
+        }
+    }
     @Override
     public Proyecto buscar(int id) {
         Proyecto proyecto = null;

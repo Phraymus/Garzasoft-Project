@@ -33,7 +33,7 @@
 
         <!--JQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        
+
 
         <!--JQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -50,53 +50,54 @@
     <script>
         function informacion_modal(id, titulo, mensaje, accion) {
             $('#confirmacion-modal').modal('show');
-            document.getElementById("titulo-confirmacion-modal").innerHTML=titulo;
-            document.getElementById("mensaje-confirmacion-modal").innerHTML=mensaje;
-            document.getElementById("idObjetoModal").innerHTML=id;
-            document.frmConfirmacionModal.action=accion;
+            document.getElementById("titulo-confirmacion-modal").innerHTML = titulo;
+            document.getElementById("mensaje-confirmacion-modal").innerHTML = mensaje;
+            document.getElementById("idObjetoModal").innerHTML = id;
+            document.frmConfirmacionModal.action = accion;
         }
 
-        function informacion_modal2(id, titulo, mensaje, accion) {
+        function informacion_modal2(id, titulo, mensaje, accion, anterior) {
             $('#confirmacion-modal').modal('show');
-            document.getElementById("titulo-confirmacion-modal").innerHTML=titulo;
-            document.getElementById("mensaje-confirmacion-modal").innerHTML=mensaje;
-            document.frmConfirmacionModal.action=accion+"&txtEstado="+document.getElementById(id).value;
+            document.getElementById("titulo-confirmacion-modal").innerHTML = titulo;
+            document.getElementById("mensaje-confirmacion-modal").innerHTML = mensaje;
+            document.frmConfirmacionModal.action = accion + "&txtEstado=" + document.getElementById(id).value+"&llamado=VAdm";
+            document.getElementById(id).value=anterior;
         }
 
-        function modulo(accion,nombre,id,idProyecto) {
-            if(accion=="add"){
+        function modulo(accion, nombre, id, idProyecto) {
+            if (accion == "add") {
                 $('#Modulo').modal('show');
-                document.frmModulo.action="${pageContext.request.contextPath}/ProyectoController?btnEnviar=doPutModulo&idProyecto="+idProyecto;
-                document.getElementById("nombreModulo").value=""; 
-                document.getElementById("tituloModulo").innerHTML="Añadir Módulo";  
-                document.getElementById("btnModulo").value="Agregar"; 
-            }else{
-                $('#Modulo').modal('show'); 
-                document.frmModulo.action="${pageContext.request.contextPath}/ProyectoController?btnEnviar=doUpdateModulo&idProyecto="+idProyecto+"&idModulo="+id;
-                document.getElementById("nombreModulo").value=nombre; 
-                document.getElementById("contModulo").value=id; 
-                document.getElementById("tituloModulo").innerHTML="Editar Módulo";  
-                document.getElementById("btnModulo").value="Guardar Cambios";
+                document.frmModulo.action = "${pageContext.request.contextPath}/ProyectoController?btnEnviar=doPutModulo&idProyecto=" + idProyecto;
+                document.getElementById("nombreModulo").value = "";
+                document.getElementById("tituloModulo").innerHTML = "Añadir Módulo";
+                document.getElementById("btnModulo").value = "Agregar";
+            } else {
+                $('#Modulo').modal('show');
+                document.frmModulo.action = "${pageContext.request.contextPath}/ProyectoController?btnEnviar=doUpdateModulo&idProyecto=" + idProyecto + "&idModulo=" + id;
+                document.getElementById("nombreModulo").value = nombre;
+                document.getElementById("contModulo").value = id;
+                document.getElementById("tituloModulo").innerHTML = "Editar Módulo";
+                document.getElementById("btnModulo").value = "Guardar Cambios";
             }
         }
 
         function requerimiento(accion, nombre, fecha_inicio, fecha_fin, id, idModulo, idProyecto) {
-            if(accion=="add"){
+            if (accion == "add") {
                 $('#Requerimiento').modal('show');
-                document.frmRequerimiento.action="${pageContext.request.contextPath}/ProyectoController?btnEnviar=doPutRequerimiento&idModulo="+idModulo+"&idProyecto="+idProyecto;
-                document.getElementById("nombreRequerimiento").value="";
-                document.getElementById("fechaInicioRequerimiento").value="";
-                document.getElementById("fechaFinRequerimiento").value="";  
-                document.getElementById("tituloRequerimiento").innerHTML="Añadir Requerimiento";  
-                document.getElementById("btnRequerimiento").value="Agregar";  
-            }else{
+                document.frmRequerimiento.action = "${pageContext.request.contextPath}/ProyectoController?btnEnviar=doPutRequerimiento&idModulo=" + idModulo + "&idProyecto=" + idProyecto;
+                document.getElementById("nombreRequerimiento").value = "";
+                document.getElementById("fechaInicioRequerimiento").value = "";
+                document.getElementById("fechaFinRequerimiento").value = "";
+                document.getElementById("tituloRequerimiento").innerHTML = "Añadir Requerimiento";
+                document.getElementById("btnRequerimiento").value = "Agregar";
+            } else {
                 $('#Requerimiento').modal('show');
-                document.frmRequerimiento.action="${pageContext.request.contextPath}/ProyectoController?btnEnviar=doUpdateRequerimiento&idModulo="+idModulo+"&idProyecto="+idProyecto+"&idRequerimiento="+id;
-                document.getElementById("nombreRequerimiento").value=nombre;
-                document.getElementById("fechaInicioRequerimiento").value=fecha_inicio;
-                document.getElementById("fechaFinRequerimiento").value=fecha_fin;  
-                document.getElementById("tituloRequerimiento").innerHTML="Editar Requerimiento";  
-                document.getElementById("btnRequerimiento").value="Guardar Cambios";  
+                document.frmRequerimiento.action = "${pageContext.request.contextPath}/ProyectoController?btnEnviar=doUpdateRequerimiento&idModulo=" + idModulo + "&idProyecto=" + idProyecto + "&idRequerimiento=" + id;
+                document.getElementById("nombreRequerimiento").value = nombre;
+                document.getElementById("fechaInicioRequerimiento").value = fecha_inicio;
+                document.getElementById("fechaFinRequerimiento").value = fecha_fin;
+                document.getElementById("tituloRequerimiento").innerHTML = "Editar Requerimiento";
+                document.getElementById("btnRequerimiento").value = "Guardar Cambios";
             }
         }
 
@@ -105,8 +106,7 @@
     <body id="page-top">
 
 
-        <jsp:include page="../../components/slide-bar.jsp?llamarPagina=proy" flush="true"/>
-
+        <jsp:include page="../../components/slide-bar.jsp?llamarPagina=proy${infoProyecto.getIdtb_proyecto()}" flush="true"/>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -133,10 +133,10 @@
                 <div class="table-responsive w-100 p-3">
                     <c:forEach var="modulos" items="${mapModulos}">
 
-                        <table class="mt-3 table table-responsive-xxl taover">
+                        <table class="mt-3 table table-responsive-xxl table-hover">
 
-                            <thead class="table-light " >
-                                <tr id="table-requerimiento" class="table-active" style="background-color:#00449c;">
+                            <thead class="table-light bg-primary " >
+                                <tr id="table-requerimiento" class="table-active"> <!--style="background-color:#00449c;"-->
                                     <th id="table-id" class="col-1 table-id ">  </th>
                                     <th id="table-name" class="col-10">${modulos.key.getNombre()}</th>
                                     <th colspan="3"></th>
@@ -145,9 +145,9 @@
                                     </td>
                                     <td>
                                         <a href="javascript:informacion_modal('${modulos.key.getIdtb_modulo()}'
-                                        ,'Eliminar Modulo',
-                                        '¿Está seguro de eliminar el módulo y todos sus requerimientos?',
-                                        '${pageContext.request.contextPath}/ProyectoController?btnEnviar=doDeleteModulo&idProyecto=${modulos.key.getTb_proyecto_id()}&idModulo=${modulos.key.getIdtb_modulo()}')" class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
+                                           ,'Eliminar Modulo',
+                                           '¿Está seguro de eliminar el módulo y todos sus requerimientos?',
+                                           '${pageContext.request.contextPath}/ProyectoController?btnEnviar=doDeleteModulo&idProyecto=${modulos.key.getTb_proyecto_id()}&idModulo=${modulos.key.getIdtb_modulo()}')" class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             </thead>
@@ -170,34 +170,35 @@
                                         <td scope="row"><fmt:formatDate value = "${requerimientos.getFecha_fin()}" pattern = "dd/MM/yyyy"/></td>
                                         <td>
                                             <select id="estado${requerimientos.getIdtb_requerimiento()}" onChange="informacion_modal2(
-                                                    'estado${requerimientos.getIdtb_requerimiento()}'
-                                                    ,'Cambiar estado',
-                                                    '¿Está seguro de cambiar el estado del requerimiento?',
-                                                    '${pageContext.request.contextPath}/ProyectoController?btnEnviar=doUpdateEstadoRequerimiento&idProyecto=${modulos.key.getTb_proyecto_id()}&idRequerimiento=${requerimientos.getIdtb_requerimiento()}')" class="badge form-control" style="width: 100px" name="tareas">
-                                                    <option class="bg-danger text-light" value="P">Pendiente</option>
-                                                    <option class="bg-warning text-dark" value="E">En Proceso</option>
-                                                    <option class="bg-success" value="F">Finalizado</option>
+                                                            'estado${requerimientos.getIdtb_requerimiento()}'
+                                                            , 'Cambiar estado',
+                                                            '¿Está seguro de cambiar el estado del requerimiento?',
+                                                            '${pageContext.request.contextPath}/ProyectoController?btnEnviar=doUpdateEstadoRequerimiento&idProyecto=${modulos.key.getTb_proyecto_id()}&idRequerimiento=${requerimientos.getIdtb_requerimiento()}',
+                                                            '${requerimientos.getEstado()}')" class="badge form-control" style="width: 100px" name="tareas">
+                                                <option class="bg-danger text-light" value="P">Pendiente</option>
+                                                <option class="bg-warning text-dark" value="E">En Proceso</option>
+                                                <option class="bg-success" value="F">Finalizado</option>
                                             </select>
                                             <script>document.getElementById("estado${requerimientos.getIdtb_requerimiento()}").value = "${requerimientos.getEstado()}"</script>
                                         </td> 
                                         <td>
 
                                             <a href="javascript:requerimiento(
-                                                'edit',
-                                                '${requerimientos.getNombre()}',
-                                                '<fmt:formatDate value = "${requerimientos.getFecha_inicio()}" pattern = "yyyy-MM-dd"/>',
-                                                '<fmt:formatDate value = "${requerimientos.getFecha_inicio()}" pattern = "yyyy-MM-dd"/>',
-                                                '${requerimientos.getIdtb_requerimiento()}',
-                                                '${modulos.key.getIdtb_modulo()}',
-                                                '${modulos.key.getTb_proyecto_id()}'
-                                                )" class="btn btn-sm btn-circle bg-warning text-white"><i class="fas fa-pen"></i></a>
+                                               'edit',
+                                               '${requerimientos.getNombre()}',
+                                               '<fmt:formatDate value = "${requerimientos.getFecha_inicio()}" pattern = "yyyy-MM-dd"/>',
+                                               '<fmt:formatDate value = "${requerimientos.getFecha_inicio()}" pattern = "yyyy-MM-dd"/>',
+                                               '${requerimientos.getIdtb_requerimiento()}',
+                                               '${modulos.key.getIdtb_modulo()}',
+                                               '${modulos.key.getTb_proyecto_id()}'
+                                               )" class="btn btn-sm btn-circle bg-warning text-white"><i class="fas fa-pen"></i></a>
 
                                         </td>  
                                         <td>
                                             <a href="javascript:informacion_modal('${requerimientos.getIdtb_requerimiento()}',
-                                            'Eliminar Requerimiento',
-                                            '¿Está seguro de eliminar el requerimiento?',
-                                            '${pageContext.request.contextPath}/ProyectoController?btnEnviar=doDeleteRequerimiento&idProyecto=${modulos.key.getTb_proyecto_id()}&idRequerimiento=${requerimientos.getIdtb_requerimiento()}')" class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
+                                               'Eliminar Requerimiento',
+                                               '¿Está seguro de eliminar el requerimiento?',
+                                               '${pageContext.request.contextPath}/ProyectoController?btnEnviar=doDeleteRequerimiento&idProyecto=${modulos.key.getTb_proyecto_id()}&idRequerimiento=${requerimientos.getIdtb_requerimiento()}')" class="btn btn-sm btn-circle bg-danger text-white"><i class="fas fa-trash"></i></a>
                                         </td>
 
                                     </tr>
@@ -239,16 +240,16 @@
                         <div class="modal-body">
                             <table>
                                 <tr>
-                                    <input class="d-none" name="txtIdModulo" id="contModulo">
-                                    <td>
-                                        <h5 class="mt-3">Nombre del módulo</h5>
-                                    </td>
-                                    <td>
-                                        <h5 class="mt-3">:</h5>
-                                    </td>
-                                    <td>
-                                        <input id="nombreModulo" name="txtNombre" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control ml-1 mt-3 text-dark" type="text" >
-                                    </td>
+                                <input class="d-none" name="txtIdModulo" id="contModulo">
+                                <td>
+                                    <h5 class="mt-3">Nombre del módulo</h5>
+                                </td>
+                                <td>
+                                    <h5 class="mt-3">:</h5>
+                                </td>
+                                <td>
+                                    <input id="nombreModulo" name="txtNombre" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" class="form-control ml-1 mt-3 text-dark" type="text" >
+                                </td>
                                 </tr>
                             </table>
                         </div>
@@ -340,7 +341,7 @@
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
         <script src="${pageContext.request.contextPath}/src/js/bootstrap.bundle.min.js"></script>
-        
+
         <script src="popup.js"></script>
         <script src="popup1.js"></script>
     </body>   

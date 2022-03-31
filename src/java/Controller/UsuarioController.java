@@ -33,11 +33,13 @@ import modelo.beans.Cliente;
 import modelo.beans.Departamento;
 import modelo.beans.Pais;
 import modelo.beans.Persona;
+import modelo.beans.Proyecto;
 import modelo.beans.Telefono;
 import modelo.beans.Trabajador;
 import modelo.beans.Usuario;
 import modelo.logic.ClienteLogic;
 import modelo.logic.PersonaLogic;
+import modelo.logic.ProyectoLogic;
 import modelo.logic.TelefonoLogic;
 import modelo.logic.TrabajadorLogic;
 import modelo.logic.UsuarioLogic;
@@ -67,6 +69,7 @@ public class UsuarioController extends HttpServlet {
     DepartamentoLogic departamentoLogic = new DepartamentoLogic();
     PaisLogic paisLogic = new PaisLogic();
     TelefonoLogic telefonoLogic = new TelefonoLogic();
+    ProyectoLogic proyectoLogic = new ProyectoLogic();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -504,13 +507,23 @@ public class UsuarioController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             Usuario usuario = usuarioLogic.autentificar(request.getParameter("txtUser"), request.getParameter("txtPassword"));
             if (usuario != null) {
-                session.setMaxInactiveInterval(60*20);
+                session.setMaxInactiveInterval(60 * 20);
                 session.setAttribute("userSession", usuario);
+                ArrayList<Proyecto> listProyectos = null;
+
                 if (usuario.getPerfil_usuario().equals("C")) {
                     session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_cliente_idc()));
+                    listProyectos = proyectoLogic.listarProyectoCliente(usuario.getTb_cliente_idc());
+                } else if (usuario.getPerfil_usuario().equals("T")) {
+                    session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_trabajador_id()));
+                    listProyectos = proyectoLogic.listarProyectoTrabajador(usuario.getTb_trabajador_id());
                 } else {
                     session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_trabajador_id()));
+                    listProyectos = proyectoLogic.listar();
                 }
+                
+                session.setAttribute("listProyectos", listProyectos);
+
                 response.sendRedirect("pages/dashboard-inicio/dashboard.jsp");
             } else {
                 session.setAttribute("respuesta", "no autentificado");
@@ -519,11 +532,11 @@ public class UsuarioController extends HttpServlet {
             }
         }
     }
-    
+
     public void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        
+
         session.invalidate();
         response.sendRedirect("pages/login.jsp");
     }

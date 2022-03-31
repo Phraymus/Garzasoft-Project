@@ -16,6 +16,13 @@ import modelo.interfaces.ProyectoInterface;
 public class ProyectoLogic implements ProyectoInterface{
 
     ProyectoDAO proyectoDao= new ProyectoDAO();
+    
+    public ArrayList<Proyecto> listarProyectoCliente(int id) {
+        return proyectoDao.listarProyectoCliente(id);
+    }
+    public ArrayList<Proyecto> listarProyectoTrabajador(int id) {
+        return proyectoDao.listarProyectoTrabajador(id);
+    }
     @Override
     public ArrayList<Proyecto> listar() {
         return proyectoDao.listar();

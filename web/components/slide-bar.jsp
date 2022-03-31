@@ -1,8 +1,15 @@
+<%@page import="modelo.beans.Persona"%>
+<%@page import="modelo.beans.Usuario"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Page Wrapper -->
-<% String pagina=request.getParameter("llamarPagina"); %>
+<% 
+    String pagina = request.getParameter("llamarPagina");
+    Usuario usuario= (Usuario)session.getAttribute("userSession");
+    Persona persona= (Persona)session.getAttribute("personaSession");
+%>
 
 <%@page contentType="text/html"%>
-        <%@page pageEncoding="UTF-8"%> 
+<%@page pageEncoding="UTF-8"%> 
 
 <div id="wrapper">
 
@@ -23,7 +30,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item <%=(pagina.equals("ini"))?"active":""%> bg-navbar-lateral-items">
+        <li class="nav-item <%=(pagina.equals("ini")) ? "active" : ""%> bg-navbar-lateral-items">
             <a class="nav-link" href="${pageContext.request.contextPath}/pages/dashboard-inicio/dashboard.jsp">
                 <i class="fas fa-fw fa-home"></i>
                 <span>Inicio</span></a>
@@ -40,13 +47,13 @@
         <!-- Nav Item - Pages Collapse Menu -->
 
         <!-- Nav Item - Charts -->
-        <li class="nav-item <%=(pagina.equals("usu"))?"active":""%> bg-navbar-lateral-items">
+        <li class="nav-item <%=(pagina.equals("usu")) ? "active" : ""%> bg-navbar-lateral-items">
             <a class="nav-link " href="${pageContext.request.contextPath}/pages/dashboard-usuario/dashboard.jsp">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Usuario</span></a>
         </li>
 
-        <li class="nav-item <%=(pagina.equals("gest"))?"active":""%> bg-navbar-lateral-items">
+        <li class="nav-item <%=(pagina.equals("gest")) ? "active" : ""%> bg-navbar-lateral-items <%=(usuario.getPerfil_usuario().equals("A"))?"":"d-none"%>">
             <a class="nav-link" href="${pageContext.request.contextPath}/pages/dashboard-gestionarUsuario/dashboard.jsp">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Usuarios</span></a>
@@ -60,25 +67,28 @@
         <div class="sidebar-heading">
             Proyecto
         </div>
-
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item <%=(pagina.equals("proy"))?"active":""%>">
-            <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton1" aria-expanded="true" aria-controls="collapseTwo" href="#">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Proyecto de manzanas</span>
-            </a>
-            <div id="proyecton1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-navbar-lateral py-2 collapse-inner rounded">
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/dashboard.html">Informacion General</a>
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-administar/administrar.jsp">Administrar</a>
-                    <a class="collapse-item " href="#">Calendario</a>
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/requerimiento.html">Requerimiento</a>
-                    <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/avance-requerimiento.html">Avance</a>
+        <c:forEach var="proyectos" items="${listProyectos}">
+            <li id="proy${proyectos.getIdtb_proyecto()}" class="nav-item ">
+                <a class="nav-link collapsed bg-navbar-lateral-items" data-toggle="collapse" data-target="#proyecton${proyectos.getIdtb_proyecto()}" aria-expanded="true" aria-controls="collapseTwo" href="#">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>${proyectos.getNombre()}</span>
+                </a>
+                <div id="proyecton${proyectos.getIdtb_proyecto()}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-navbar-lateral py-2 collapse-inner rounded">
+                        <a class="collapse-item " href="${pageContext.request.contextPath}/ProyectoController?btnEnviar=getVInf&idProyecto=${proyectos.getIdtb_proyecto()}">Informacion General</a>
+                        <a class="collapse-item <%=(usuario.getPerfil_usuario().equals("A"))?"":"d-none"%> " href="${pageContext.request.contextPath}/ProyectoController?btnEnviar=getVAdm&idProyecto=${proyectos.getIdtb_proyecto()}">Administrar</a>
+                        <a class="collapse-item " href="#">Calendario</a>
+                        <a class="collapse-item <%=(usuario.getPerfil_usuario().equals("T"))?"":"d-none"%>" href="${pageContext.request.contextPath}/ProyectoController?btnEnviar=getVReq&idProyecto=${proyectos.getIdtb_proyecto()}">CheckList</a>
+                        <a class="collapse-item " href="${pageContext.request.contextPath}/pages/dashboard-proyecto/avance-requerimiento.html">Avance</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
 
-        <li class="nav-item <%=(pagina.equals("newPro"))?"active":""%>">
+        </c:forEach>
+
+
+        <li class="nav-item <%=(pagina.equals("newPro")) ? "active" : ""%> <%=(usuario.getPerfil_usuario().equals("A"))?"":"d-none"%>">
             <a class="nav-link bg-navbar-lateral-items" href="${pageContext.request.contextPath}/pages/dashboard-nuevoProyecto/nuevoProyecto.jsp">
                 <i class="fas fa-fw fa-plus" style="color: #00C2CB;"></i>
                 <span style="color: #00C2CB;"><strong>Nuevo Proyecto</strong></span></a>
@@ -110,3 +120,6 @@
         </div>
     </ul>
     <!-- End of Sidebar -->
+
+    <script>document.getElementById("<%=pagina%>").className += " active";</script>
+
