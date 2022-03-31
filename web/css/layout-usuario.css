@@ -1,0 +1,219 @@
+#tabla-blanca-1{
+    background-color: white;
+    height: 650px;
+    width: 100px;
+    box-shadow: 0 0 40px rgb(224, 224, 224);
+  
+}
+
+
+
+#tabla-blanca-2{
+    background-color: white;
+    height: 650px;
+    box-shadow: 0 0 40px rgb(224, 224, 224);
+ 
+}
+
+#contenedor-todo{
+    margin-bottom: 50px;
+}
+
+#perfl-titulo{
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 40px;
+    font-size: large;
+    color: #004AAD;
+}
+
+#datos-nombre{
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: 12px;
+    
+
+}
+
+#contenedo{
+margin-top: 5px;
+}
+
+#input-nombre{
+    width: 250;
+    height: 50px;
+    border-radius: 4px;
+    background-color: rgb(236, 233, 233);
+    border: 2px;
+    margin: 10px;
+    border-style: solid, 3px;
+    border-color: rgb(66, 66, 66);
+ 
+}
+
+#text-pssword{
+    border-radius: 4px;
+    background-color: rgb(236, 233, 233);
+    border: 2px;
+ 
+    border-style: solid, 3px;
+    border-color: rgb(66, 66, 66);
+}
+
+#contraseña-container{
+    border-radius: 4px;
+    background-color: rgb(236, 233, 233);
+    border: 2px;
+    margin: 10px;
+    border-style: solid, 3px;
+    border-color: rgb(66, 66, 66);
+}
+
+#botonesGurdar{
+    margin: 15px;
+    width: 200px;
+}
+
+#imagen-pefil{
+    text-align: center;
+    padding: 30px;
+}
+
+#usuario-rol{
+    font-weight: bolder;
+    margin-top: 8px;
+    font-size: small;
+
+}
+
+#usuario-nombre{
+ 
+    font-weight: bold;
+    color: rgb(207, 207, 207);
+}
+
+#imagen-usuario{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+#camara-icon{
+    border: none;
+    background-color: rgb(161, 161, 161);
+    color: white;
+    padding: 9x;
+    border-radius: 50%;
+}
+
+#imagen-button-change{
+    margin-top: -20px;
+}
+
+#nombre-div-encabezdo{
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#botonesfoto{
+    width: 150px;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+#imagen-titulo-encabezado{
+    font-weight: bold;
+    text-align: center;
+    margin: 15px;
+    font-size: large;
+}
+
+#archivo-imagen{
+    margin: 20px;
+    background-color: #fff;
+    width: 350px;
+    text-align: center;
+}
+
+#imagen-usuario-contenedor-modal{
+    text-align: center;
+    align-self: center;
+    margin: 15px;
+}
+
+
+.modalDialogImagen {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+ 
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+.modalDialogImagen:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialogImagen > div {
+	width: 500px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+ 
+    transition: opacity 400ms ease-in;
+}
+.close {
+	background: #616060;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	text-align: center;
+	top: 10px;	
+    right: 12px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+    border-radius: 12px;
+}
+.close:hover { background: #606061; }
+
+#codigo-passwod{
+    text-decoration: underline;
+}
+
+
+.modalDialogContrasena {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+ 
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialogContrasena:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialogContrasena > div {
+	width: 600px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+ 
+    transition: opacity 400ms ease-in;
+}
