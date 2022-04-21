@@ -30,20 +30,20 @@ import static modelo.interfaces.RequerimientoInterface.conexion;
  */
 public class ProyectoDAO implements ProyectoInterface {
 //   
-    
+
     public ArrayList<Proyecto> listarProyectoCliente(int id) {
         ArrayList<Proyecto> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tb_proyecto WHERE tb_cliente_tb_persona_id="+id;
+            String sql = "SELECT * FROM tb_proyecto WHERE tb_cliente_tb_persona_id=" + id;
 
             ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
-                Proyecto proyecto = new  Proyecto(rs.getInt(1), rs.getString(2), 
+                Proyecto proyecto = new Proyecto(rs.getInt(1), rs.getString(2),
                         rs.getString(3), (Timestamp) rs.getTimestamp(4),
-                        (Timestamp) rs.getTimestamp(5), rs.getString(6), 
-                        rs.getString(7), rs.getString(8), rs.getString(9), 
-                        rs.getString(10), rs.getInt(11), rs.getInt(12), 
-                        rs.getInt(13)); 
+                        (Timestamp) rs.getTimestamp(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getInt(11), rs.getInt(12),
+                        rs.getInt(13));
                 listaRetorno.add(proyecto);
             }
             rs.close();
@@ -54,20 +54,49 @@ public class ProyectoDAO implements ProyectoInterface {
             return listaRetorno;
         }
     }
-    
+
+    public boolean editarEstado(Proyecto proyecto) {
+        try {
+            return conexion.ejecutar(String.format("UPDATE %s SET estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+                proyecto.getEstado(), proyecto.getIdtb_proyecto()});
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public int porcentajeAvance(Proyecto proyecto) {
+        int resultado = 0;
+        try {
+            String sql = "SELECT ((SELECT count(*) FROM tb_modulo WHERE estado='F' AND tb_proyecto_id=%s)/(SELECT count(*) FROM tb_modulo WHERE tb_proyecto_id=%s))*100 FROM tb_proyecto WHERE idtb_proyecto=%s;";
+
+            ResultSet rs = conexion.recuperar(String.format(sql, proyecto.getIdtb_proyecto(), proyecto.getIdtb_proyecto(),proyecto.getIdtb_proyecto()));
+
+            while (rs.next()) {
+                resultado = (int)Math.round(rs.getDouble(1));
+                System.out.println(resultado);
+            }
+            rs.close();
+            conexion.cerrar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return resultado ;
+        }
+    }
+
     public ArrayList<Proyecto> listarProyectoTrabajador(int id) {
         ArrayList<Proyecto> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tb_proyecto WHERE tb_trabajador_tb_persona_id1="+id;
+            String sql = "SELECT * FROM tb_proyecto WHERE tb_trabajador_tb_persona_id1=" + id;
 
             ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
-                Proyecto proyecto = new  Proyecto(rs.getInt(1), rs.getString(2), 
+                Proyecto proyecto = new Proyecto(rs.getInt(1), rs.getString(2),
                         rs.getString(3), (Timestamp) rs.getTimestamp(4),
-                        (Timestamp) rs.getTimestamp(5), rs.getString(6), 
-                        rs.getString(7), rs.getString(8), rs.getString(9), 
-                        rs.getString(10), rs.getInt(11), rs.getInt(12), 
-                        rs.getInt(13)); 
+                        (Timestamp) rs.getTimestamp(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getInt(11), rs.getInt(12),
+                        rs.getInt(13));
                 listaRetorno.add(proyecto);
             }
             rs.close();
@@ -78,6 +107,7 @@ public class ProyectoDAO implements ProyectoInterface {
             return listaRetorno;
         }
     }
+
     @Override
     public Proyecto buscar(int id) {
         Proyecto proyecto = null;
@@ -86,13 +116,13 @@ public class ProyectoDAO implements ProyectoInterface {
 
             ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
-                
-                proyecto = new Proyecto(rs.getInt(1), rs.getString(2), 
+
+                proyecto = new Proyecto(rs.getInt(1), rs.getString(2),
                         rs.getString(3), (Timestamp) rs.getTimestamp(4),
-                        (Timestamp) rs.getTimestamp(5), rs.getString(6), 
-                        rs.getString(7), rs.getString(8), rs.getString(9), 
-                        rs.getString(10), rs.getInt(11), rs.getInt(12), 
-                        rs.getInt(13)); 
+                        (Timestamp) rs.getTimestamp(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getInt(11), rs.getInt(12),
+                        rs.getInt(13));
             }
             rs.close();
             conexion.cerrar();
@@ -112,12 +142,12 @@ public class ProyectoDAO implements ProyectoInterface {
             ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
 
-                Proyecto proyecto = new  Proyecto(rs.getInt(1), rs.getString(2), 
+                Proyecto proyecto = new Proyecto(rs.getInt(1), rs.getString(2),
                         rs.getString(3), (Timestamp) rs.getTimestamp(4),
-                        (Timestamp) rs.getTimestamp(5), rs.getString(6), 
-                        rs.getString(7), rs.getString(8), rs.getString(9), 
-                        rs.getString(10), rs.getInt(11), rs.getInt(12), 
-                        rs.getInt(13)); 
+                        (Timestamp) rs.getTimestamp(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9),
+                        rs.getString(10), rs.getInt(11), rs.getInt(12),
+                        rs.getInt(13));
 
                 listaRetorno.add(proyecto);
             }
@@ -136,7 +166,7 @@ public class ProyectoDAO implements ProyectoInterface {
             return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", TABLA), new Object[]{null,
                 proyecto.getNombre(), proyecto.getEstado(), proyecto.getFecha_inicio(),
                 proyecto.getFecha_fin(), proyecto.getTarea(), proyecto.getTarea_descripcion(),
-                proyecto.getChecklist(),proyecto.getNombre_empresa(),proyecto.getRuc(), proyecto.getTb_trabajador_persona_id(), proyecto.getTb_cliente_persona_id(), proyecto.getTb_trabajador_persona_id1()});
+                proyecto.getChecklist(), proyecto.getNombre_empresa(), proyecto.getRuc(), proyecto.getTb_trabajador_persona_id(), proyecto.getTb_cliente_persona_id(), proyecto.getTb_trabajador_persona_id1()});
         } catch (Exception ex) {
             return false;
         }
@@ -145,10 +175,9 @@ public class ProyectoDAO implements ProyectoInterface {
     @Override
     public boolean editar(Proyecto proyecto) {
         try {
-            return conexion.ejecutar(String.format("UPDATE %s SET idtb_proyecto=?, nombre=?, estado=?, fecha_inicio=?, fecha_fin=?,tarea=?, tarea_descripcion=?,  checklist=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+            return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, estado=?, fecha_inicio=?, fecha_fin=?,tarea=?, tarea_descripcion=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
                 proyecto.getNombre(), proyecto.getEstado(), proyecto.getFecha_inicio(),
-                proyecto.getFecha_fin(), proyecto.getTarea(), proyecto.getTarea_descripcion(),
-                proyecto.getChecklist(), proyecto.getTb_trabajador_persona_id(), proyecto.getTb_cliente_persona_id(), proyecto.getTb_trabajador_persona_id1()});
+                proyecto.getFecha_fin(), proyecto.getTarea(), proyecto.getTarea_descripcion(), proyecto.getIdtb_proyecto()});
         } catch (Exception ex) {
             return false;
         }

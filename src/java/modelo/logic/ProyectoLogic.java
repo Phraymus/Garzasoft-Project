@@ -23,6 +23,14 @@ public class ProyectoLogic implements ProyectoInterface{
     public ArrayList<Proyecto> listarProyectoTrabajador(int id) {
         return proyectoDao.listarProyectoTrabajador(id);
     }
+    
+    public boolean editarEstado(Proyecto proyecto){
+        return proyectoDao.editarEstado(proyecto);
+    }
+    
+    public int porcentajeAvance(Proyecto proyecto){
+        return proyectoDao.porcentajeAvance(proyecto);
+    }
     @Override
     public ArrayList<Proyecto> listar() {
         return proyectoDao.listar();
@@ -40,12 +48,12 @@ public class ProyectoLogic implements ProyectoInterface{
 
     @Override
     public boolean editar(Proyecto proyecto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return proyectoDao.editar(proyecto);
     }
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return proyectoDao.eliminar(id);
     }
     
 }

@@ -15,27 +15,6 @@ import modelo.interfaces.PaisInterface;
  * @author Marco
  */
 public class PaisDAO implements PaisInterface{
-    
-    /*public ArrayList<Object[]> listar(String sql, int numeroAtributos) {
-        ArrayList<Object[]> listaRetorno = new ArrayList<>();
-        try {
-            ResultSet rs = conexion.recuperar(sql);
-            while (rs.next()) {
-                Object atributos[] = new Object[numeroAtributos];
-                for (int i = 0; i < numeroAtributos; i++) {
-                    atributos[i] = rs.getObject(i + 1);
-                }
-                listaRetorno.add(atributos);
-            }
-            rs.close();
-            conexion.cerrar();
-
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            return listaRetorno;
-        }
-    }*/
 
     @Override
     public Pais buscar(int id) {

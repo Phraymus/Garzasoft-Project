@@ -4,7 +4,6 @@
  */
 package modelo.dao;
 
-
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -30,18 +29,17 @@ import static modelo.interfaces.RequerimientoInterface.conexion;
  *
  * @author Windows10
  */
-public class RequerimientoDAO implements RequerimientoInterface{
-    
-    
+public class RequerimientoDAO implements RequerimientoInterface {
+
     public ArrayList<Requerimiento> listarPorModulo(int id) {
         ArrayList<Requerimiento> listaRetorno = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tb_requerimiento WHERE tb_modulo_id="+id;
-            
+            String sql = "SELECT * FROM tb_requerimiento WHERE tb_modulo_id=" + id;
+
             ResultSet rs = conexion.recuperar(sql);
             while (rs.next()) {
 
-                Requerimiento requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5), rs.getInt(6));
+                Requerimiento requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp) rs.getTimestamp(4), (Timestamp) rs.getTimestamp(5), rs.getInt(6));
 
                 listaRetorno.add(requerimiento);
             }
@@ -53,27 +51,47 @@ public class RequerimientoDAO implements RequerimientoInterface{
             return listaRetorno;
         }
     }
-    
+
     public boolean editarEstado(Requerimiento requerimiento) {
         try {
             return conexion.ejecutar(String.format("UPDATE %s SET estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
-            requerimiento.getEstado(), requerimiento.getIdtb_requerimiento()});
+                requerimiento.getEstado(), requerimiento.getIdtb_requerimiento()});
         } catch (Exception ex) {
             return false;
         }
     }
-    
+
+    public boolean estaLleno(Requerimiento requerimiento) {
+        int resultado=0;
+        try {
+            String sql = "SELECT CASE WHEN (count(*)=(SELECT count(*) FROM tb_requerimiento WHERE tb_modulo_id=%d)) THEN 1 ELSE 0 END FROM tb_requerimiento WHERE tb_modulo_id=%d AND estado='F';";
+
+            ResultSet rs = conexion.recuperar(String.format(sql,requerimiento.getTb_modulo_id(), requerimiento.getTb_modulo_id()));
+
+            while (rs.next()) {
+                resultado= rs.getInt(1);
+            }
+            rs.close();
+            conexion.cerrar();
+            return resultado==1;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return resultado==1;
+        }
+    }
+
     @Override
     public Requerimiento buscar(int id) {
-        Requerimiento  requerimiento = null;
+        Requerimiento requerimiento = null;
         try {
-            String sql = "SELECT * FROM tb_requerimiento WHERE  idtb_requerimiento = "+id;
-            
-             ResultSet rs = conexion.recuperar(String.format(sql));
-            
+            String sql = "SELECT * FROM tb_requerimiento WHERE  idtb_requerimiento = " + id;
+
+            ResultSet rs = conexion.recuperar(String.format(sql));
+
             while (rs.next()) {
-                
-            requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5), rs.getInt(6));
+
+                requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp) rs.getTimestamp(4), (Timestamp) rs.getTimestamp(5), rs.getInt(6));
             }
             rs.close();
             conexion.cerrar();
@@ -89,11 +107,11 @@ public class RequerimientoDAO implements RequerimientoInterface{
         ArrayList<Requerimiento> listaRetorno = new ArrayList<>();
         try {
             String sql = "SELECT * FROM tb_requerimiento ";
-            
+
             ResultSet rs = conexion.recuperar(String.format(sql));
             while (rs.next()) {
 
-                Requerimiento requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp)rs.getTimestamp(4), (Timestamp)rs.getTimestamp(5), rs.getInt(6));
+                Requerimiento requerimiento = new Requerimiento(rs.getInt(1), rs.getString(2), rs.getString(3), (Timestamp) rs.getTimestamp(4), (Timestamp) rs.getTimestamp(5), rs.getInt(6));
 
                 listaRetorno.add(requerimiento);
             }
@@ -109,9 +127,9 @@ public class RequerimientoDAO implements RequerimientoInterface{
     @Override
     public boolean insertar(Requerimiento requerimiento) {
         try {
-            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?,?,?,?)", TABLA), new Object[]{null,  
-            requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
-            requerimiento.getFecha_fin(), requerimiento.getTb_modulo_id()});
+            return conexion.ejecutar(String.format("INSERT INTO %s VALUES(?,?,?,?,?,?)", TABLA), new Object[]{null,
+                requerimiento.getNombre(), requerimiento.getEstado(), requerimiento.getFecha_inicio(),
+                requerimiento.getFecha_fin(), requerimiento.getTb_modulo_id()});
         } catch (Exception ex) {
             return false;
         }
@@ -121,8 +139,8 @@ public class RequerimientoDAO implements RequerimientoInterface{
     public boolean editar(Requerimiento requerimiento) {
         try {
             return conexion.ejecutar(String.format("UPDATE %s SET nombre=?, estado=?, fecha_inicio=?, fecha_fin=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
-            requerimiento.getNombre(), requerimiento.getEstado() ,requerimiento.getFecha_inicio(),
-            requerimiento.getFecha_fin(), requerimiento.getIdtb_requerimiento()});
+                requerimiento.getNombre(), requerimiento.getEstado(), requerimiento.getFecha_inicio(),
+                requerimiento.getFecha_fin(), requerimiento.getIdtb_requerimiento()});
         } catch (Exception ex) {
             return false;
         }
@@ -135,5 +153,5 @@ public class RequerimientoDAO implements RequerimientoInterface{
         } catch (Exception ex) {
             return false;
         }
-    } 
+    }
 }

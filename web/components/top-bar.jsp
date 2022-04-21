@@ -115,7 +115,7 @@
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/pages/dashboard-usuario/dashboard.jsp">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/pages/dashboard-usuario/dashboard.jsp">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Editar perfil
                 </a>
                 <!-- <a class="dropdown-item" href="#">

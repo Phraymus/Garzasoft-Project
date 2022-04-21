@@ -48,7 +48,7 @@
         </script>
         <!-- Page Wrapper -->
 
-            <jsp:include page="../../components/slide-bar.jsp?llamarPagina=proy${infoProyecto.getIdtb_proyecto()}" flush="true"/>
+            <jsp:include page="../../components/slide-bar.jsp?llamarPagina=${infoProyecto.getIdtb_proyecto()}" flush="true"/>
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">

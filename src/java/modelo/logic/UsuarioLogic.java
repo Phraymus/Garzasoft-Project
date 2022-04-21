@@ -69,6 +69,14 @@ public class UsuarioLogic implements UsuarioInterface {
     public int buscar(String nombre) {
         return usuarioDAO.buscar(nombre);
     }
+    
+    public Usuario buscarTrabajador(int id) {
+        return usuarioDAO.buscarTrabajador(id);
+    }
+    
+    public Usuario buscarCliente(int id) {
+        return usuarioDAO.buscarCliente(id);
+    }
 
     @Override
     public ArrayList<Usuario> listar() {

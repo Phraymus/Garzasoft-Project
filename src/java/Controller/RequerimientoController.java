@@ -201,8 +201,9 @@ public class RequerimientoController extends HttpServlet {
             
             int idRequerimiento=Integer.parseInt(request.getParameter("idRequerimiento"));
             String estado = request.getParameter("txtEstado");
-
-            Requerimiento requerimiento = new Requerimiento(idRequerimiento, null, estado, null, null, 0);
+            
+            Requerimiento requerimiento=requerimientoLogic.buscar(idRequerimiento);
+            requerimiento.setEstado(estado);
 
             if (requerimientoLogic.editarEstado(requerimiento)) {
                 out.print("true");

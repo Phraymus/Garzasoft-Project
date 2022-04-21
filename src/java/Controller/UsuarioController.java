@@ -101,6 +101,12 @@ public class UsuarioController extends HttpServlet {
             if (request.getParameter("btnEnviar").equals("putUserCliente")) {
                 putUserCliente(request, response);
             }
+            if (request.getParameter("btnEnviar").equals("setUser")) {
+                setUser(request, response);
+            }
+            if (request.getParameter("btnEnviar").equals("setUserFoto")) {
+                setUserFoto(request, response);
+            }
             if (request.getParameter("btnEnviar").equals("setUserTrabajador")) {
                 setUserTrabajador(request, response);
             }
@@ -311,6 +317,64 @@ public class UsuarioController extends HttpServlet {
 
     }
 
+    public void setUser(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        HttpSession session = request.getSession();
+
+        String nombres = request.getParameter("txtNombres");
+        String apellidoPaterno = request.getParameter("txtApellidoPaterno");
+        String apellidoMaterno = request.getParameter("txtApellidoMaterno");
+        String correo = request.getParameter("txtCorreo");
+        String telef = request.getParameter("txtTelefono");
+
+        Persona persona = (Persona) session.getAttribute("personaSession");
+        Telefono telefono = (Telefono) session.getAttribute("telefonoSession");
+        
+        persona.setNombre(nombres);
+        persona.setApellido_paterno(apellidoPaterno);
+        persona.setApellido_materno(apellidoMaterno);
+        persona.setCorreo(correo);
+        telefono.setNumero(telef);
+
+        try ( PrintWriter out = response.getWriter()) {
+
+            if (personaLogic.editar(persona)) {
+                if (telefonoLogic.editar(telefono)) {
+                    response.sendRedirect("pages/dashboard-usuario/dashboard.jsp");
+                } else {
+                    out.print("Ha ocurrido un error");
+                }
+            } else {
+                out.print("Ha ocurrido un error");
+            }
+        }
+    }
+
+    public void setUserFoto(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException, ServletException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        HttpSession session = request.getSession();
+
+        Part foto = request.getPart("txtImagen");
+
+        Persona persona = (Persona) session.getAttribute("personaSession");
+        if (foto.getSize() != 0) {
+            persona.setFoto(foto.getInputStream());
+        }
+
+        try ( PrintWriter out = response.getWriter()) {
+
+            if (personaLogic.editar(persona)) {
+                response.sendRedirect("pages/dashboard-usuario/dashboard.jsp");
+            } else {
+                out.print("Ha ocurrido un error");
+            }
+        }
+    }
+
     public void putUserCliente(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -374,7 +438,6 @@ public class UsuarioController extends HttpServlet {
                 out.print("Ha ocurrido un error");
             }
         }
-
     }
 
     public void setUserTrabajador(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, IOException, ServletException {
@@ -513,15 +576,19 @@ public class UsuarioController extends HttpServlet {
 
                 if (usuario.getPerfil_usuario().equals("C")) {
                     session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_cliente_idc()));
+                    session.setAttribute("telefonoSession", telefonoLogic.buscar(usuario.getTb_cliente_idc()));
+                    session.setAttribute("clienteSession", clienteLogic.buscar(usuario.getTb_cliente_idc()));
                     listProyectos = proyectoLogic.listarProyectoCliente(usuario.getTb_cliente_idc());
                 } else if (usuario.getPerfil_usuario().equals("T")) {
                     session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_trabajador_id()));
+                    session.setAttribute("telefonoSession", telefonoLogic.buscar(usuario.getTb_trabajador_id()));
                     listProyectos = proyectoLogic.listarProyectoTrabajador(usuario.getTb_trabajador_id());
                 } else {
                     session.setAttribute("personaSession", personaLogic.buscar(usuario.getTb_trabajador_id()));
+                    session.setAttribute("telefonoSession", telefonoLogic.buscar(usuario.getTb_trabajador_id()));
                     listProyectos = proyectoLogic.listar();
                 }
-                
+
                 session.setAttribute("listProyectos", listProyectos);
 
                 response.sendRedirect("pages/dashboard-inicio/dashboard.jsp");

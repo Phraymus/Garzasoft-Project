@@ -49,6 +49,26 @@ public class ModuloDAO implements ModuloInterface {
             return listaRetorno;
         }
     }
+    
+    public boolean estaLleno(Modulo modulo) {
+        int resultado=0;
+        try {
+            String sql = "SELECT CASE WHEN (count(*)=(SELECT count(*) FROM tb_modulo WHERE tb_proyecto_id=%s)) THEN 1 ELSE 0 END FROM tb_modulo WHERE tb_proyecto_id=%s AND estado='F';";
+
+            ResultSet rs = conexion.recuperar(String.format(sql,modulo.getTb_proyecto_id(), modulo.getTb_proyecto_id()));
+
+            while (rs.next()) {
+                resultado= rs.getInt(1);
+            }
+            rs.close();
+            conexion.cerrar();
+            return resultado==1;
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            return resultado==1;
+        }
+    }
 
     @Override
     public Modulo buscar(int id) {
@@ -88,6 +108,15 @@ public class ModuloDAO implements ModuloInterface {
             throw ex;
         } finally {
             return listaRetorno;
+        }
+    }
+    
+    public boolean editarEstado(Modulo modulo) {
+        try {
+            return conexion.ejecutar(String.format("UPDATE %s SET estado=? WHERE %s=?", TABLA, CLAVE_PRIMARIA), new Object[]{
+                modulo.getEstado(), modulo.getIdtb_modulo()});
+        } catch (Exception ex) {
+            return false;
         }
     }
 

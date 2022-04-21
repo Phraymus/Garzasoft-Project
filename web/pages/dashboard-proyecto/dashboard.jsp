@@ -39,7 +39,7 @@
     <body id="page-top">
 
 
-            <jsp:include page="../../components/slide-bar.jsp?llamarPagina=proy${infoProyecto.getIdtb_proyecto()}" flush="true"/>
+            <jsp:include page="../../components/slide-bar.jsp?llamarPagina=${infoProyecto.getIdtb_proyecto()}" flush="true"/>
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -82,7 +82,7 @@
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick="abrirUrl('${pageContext.request.contextPath}/pages/dashboard-proyecto/informaciondelproyecto.jsp', 'cont')">Información de Proyecto</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="abrirUrl('${pageContext.request.contextPath}/pages/dashboard-proyecto/informaciondemodulos.jsp', 'cont')">Información de Módulos</button>
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="abrirUrl('${pageContext.request.contextPath}/pages/dashboard-proyecto/${(infoProyecto.getTarea()==null)?"informaciondemodulos":"informaciontarea"}.jsp', 'cont')">${(infoProyecto.getTarea()==null)?"Información de CheckList":"Información de tarea"}</button>
                                 </li>
                             </ul>
                             
